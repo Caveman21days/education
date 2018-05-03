@@ -1,24 +1,45 @@
-# README
+# GETTING STARTED
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Думаю, как заклонить себе проект вы знаете, поэтому сперва в дирректории проекта:
+`bundle install`
 
-Things you may want to cover:
+**Установка postgres:**
 
-* Ruby version
+    sudo sh -c "echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
+    
+    wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
+    
+    sudo apt-get update
+    
+    sudo apt-get install postgresql-common
+    
+    sudo apt-get install postgresql-9.5 libpq-dev
+    
+    sudo -u postgres createuser ВАШЕИМЯ -s (без кавычек)
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+**В папке /config создать файл database.yml,
+в него поместить**
 
-* Database initialization
+    default: &default
+      adapter: postgresql
+      encoding: unicode
+      host: localhost
+      pool: 5
+      username: ВАШЕИМЯ (без кавычек)
 
-* How to run the test suite
+    development:
+      <<: *default
+      database: education_development
 
-* Services (job queues, cache servers, search engines, etc.)
+    test:
+      <<: *default
+      database: education_test
 
-* Deployment instructions
+_Дальше в дирректории проекта выполнить команду:_ `rake db:create`
 
-* ...
+В файл _.gitignore_ добавить строку `config/database.yml`
+
+Далее `rails s` и радуемся)
+
