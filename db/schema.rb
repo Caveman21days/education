@@ -46,10 +46,11 @@ ActiveRecord::Schema.define(version: 20180510121329) do
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "project_id"
+    t.integer "taskable_id"
+    t.string "taskable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_tasks_on_project_id"
+    t.index ["taskable_id", "taskable_type"], name: "index_tasks_on_taskable_id_and_taskable_type"
   end
 
   create_table "trainings", force: :cascade do |t|
@@ -80,15 +81,13 @@ ActiveRecord::Schema.define(version: 20180510121329) do
 
   create_table "user_tasks", force: :cascade do |t|
     t.integer "student_id"
-    t.integer "project_id"
     t.integer "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["student_id", "task_id", "project_id"], name: "index_user_tasks_on_student_id_and_task_id_and_project_id"
+    t.index ["student_id", "task_id"], name: "index_user_tasks_on_student_id_and_task_id"
   end
 
   create_table "user_trainings", force: :cascade do |t|
-    t.integer "course_id"
     t.integer "training_id"
     t.integer "student_id"
     t.datetime "created_at", null: false

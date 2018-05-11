@@ -1,8 +1,8 @@
 class CreateUserProjects < ActiveRecord::Migration[5.1]
   def change
     create_table :user_projects do |t|
-      t.integer :course_id
       t.integer :student_id
+      t.integer :course_id
       t.integer :project_id
 
       t.timestamps
