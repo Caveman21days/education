@@ -6,6 +6,6 @@ class CreateUserTasks < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index :user_tasks, [:student_id, :task_id]
+    add_index :user_tasks, [:user_id, :task_id]
   end
 end

@@ -63,16 +63,16 @@ ActiveRecord::Schema.define(version: 20180510121329) do
   end
 
   create_table "user_courses", force: :cascade do |t|
-    t.integer "course_id"
     t.integer "student_id"
+    t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id", "student_id"], name: "index_user_courses_on_course_id_and_student_id"
   end
 
   create_table "user_projects", force: :cascade do |t|
-    t.integer "course_id"
     t.integer "student_id"
+    t.integer "course_id"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -80,16 +80,16 @@ ActiveRecord::Schema.define(version: 20180510121329) do
   end
 
   create_table "user_tasks", force: :cascade do |t|
-    t.integer "student_id"
+    t.integer "user_id"
     t.integer "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["student_id", "task_id"], name: "index_user_tasks_on_student_id_and_task_id"
+    t.index ["user_id", "task_id"], name: "index_user_tasks_on_user_id_and_task_id"
   end
 
   create_table "user_trainings", force: :cascade do |t|
-    t.integer "training_id"
     t.integer "student_id"
+    t.integer "training_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["training_id", "student_id"], name: "index_user_trainings_on_training_id_and_student_id"
