@@ -1,12 +1,13 @@
 class ProjectsController < ApplicationController
 
   #Можно писать так
+  # тупо поменял слова пока что
   def index
-    @courses = Course.all
+    @projects = Project.all
   end
 
   def show
-    @courses = Course.find(params[:id])
+    @projects = Project.find(params[:id])
   end
 
   #Можно и так, если ничего внутри нет
