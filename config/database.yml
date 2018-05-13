@@ -2,10 +2,10 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: kirill
-  password: 
+  username: max
+  password:
 
-development: 
+development:
   <<: *default
   database: education_development
 
