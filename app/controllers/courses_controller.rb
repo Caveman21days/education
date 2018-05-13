@@ -6,17 +6,18 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @courses = Course.find(params[:id])
+    # мы разве не хотим показать один курс или за что вообще отвечает @courses
+    @course = Course.find(params[:id])
   end
 
   #Можно и так, если ничего внутри нет
   def new; end
-  
+
   def create; end
-  
+
   def edit; end
-  
+
   def update; end
-  
+
   def destroy; end
 end
