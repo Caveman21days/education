@@ -11,7 +11,7 @@ class Course < ApplicationRecord
   # На вас остается подумать, какой тут еще необходимый атрибут и как написать на него валидацию!
 
   validates :description, presence: true, length: { in: 1..100 }
-  validates :curator_id, presense: true
+  validates :curator_id, presence: true
 
 
   belongs_to :curator, class_name: 'User', foreign_key: 'curator_id'
