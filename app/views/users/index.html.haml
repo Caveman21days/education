@@ -1,0 +1,22 @@
+%h1
+  Add a user
+%label
+  first name:
+  %input{:type => "text", :id => 'input-field', :placeholder => "here..."}
+%button{:onclick => "addUser()"}
+  Add
+
+%h1
+  All users
+- @users.each do |i|
+  %div #{i}
+
+:javascript
+  const inputField = document.querySelector('#input-field');
+  function addUser() {
+    const firstName = inputField.value;
+    // try to manually access a users#new through url
+    fetch(`new?f_name=${firstName}`)
+      .then(console.log)
+      .catch(console.error);
+  }
