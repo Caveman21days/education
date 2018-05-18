@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :users
   resources :courses do
 
-    resources :projects, shallow: true do
-      resources :issue
+    resources :projects do
+      resources :tasks
     end
 
     resources :trainings, shallow: true
