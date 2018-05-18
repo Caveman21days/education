@@ -1,12 +1,4 @@
 %h1
-  Add a user
-%label
-  first name:
-  %input{:type => "text", :id => 'input-field', :placeholder => "here..."}
-%button{:onclick => "addUser()"}
-  Add
-
-%h1
   All users
 - @users.each do |i|
   %div #{i}
