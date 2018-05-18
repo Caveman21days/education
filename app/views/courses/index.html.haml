@@ -1,1 +1,8 @@
-%h1= 'Yo'
+%h1 All courses n shit
+%ul
+  - @courses.each do |i|
+    %li
+      %h2
+        %a{:href => "courses/#{i.id}/projects"}#{i.name}
+      %p #{i.description}
+      %span Curator id: #{i.curator_id}
