@@ -1,0 +1,7 @@
+%h1 All projects for #{@course.name} (n shit)
+%ul
+  - @projects.each do |project|
+    %li
+      %h2 #{project.name}
+      %a{:href => "projects/#{project.id}/tasks"} View tasks
+      %p #{project.description}

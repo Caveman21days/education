@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
   #Можно писать так
   # тупо поменял слова пока что
   def index
+    @course = Course.find(params[:course_id])
     @projects = Project.all
   end
 
