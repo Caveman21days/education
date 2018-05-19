@@ -2,7 +2,7 @@
 
 %h1 Tasks
 %ul
-- @tasks.each do |task|
-  %li
-    %h1 #{task.name}
-    %p1 #{task.description}
+  - @tasks.each do |task|
+    %li
+      %h2 #{task.name}
+      %p #{task.description}
