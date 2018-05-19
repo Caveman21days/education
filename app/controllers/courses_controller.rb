@@ -5,11 +5,11 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find(params[:id]) 
+    @course = Course.find(params[:id])
   end
 
   def new
-    @course = Courses.new
+    @course = Course.new
   end
 
   def create; end
