@@ -1,0 +1,6 @@
+%h1 Проекты
+%ul
+- @projects.each do |project|
+  %li
+    %a{:href => "projects/#{project.id}/tasks"}#{project.name}
+    %p1 #{project.description}
