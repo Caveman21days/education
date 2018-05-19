@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+
+  root 'courses#index'
   devise_for :users
 
   resources :courses do
-    resources :projects, shallow: true
-
-    resources :trainings, shallow: true
+    resources :projects do
+      resources :tasks
+    end
   end
 end

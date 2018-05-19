@@ -6,7 +6,10 @@ class Course < ApplicationRecord
 
   # Попробуйте создать таблицу-справочник и свяжите на уровне базы данных и ActiveRecord пользователей и курс
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { in: 1..20 }
+  validates :description, presence: true, length: {in: 1..100}
+  validates :curator_id, presence: true
+
 
   # На вас остается подумать, какой тут еще необходимый атрибут и как написать на него валидацию!
 
