@@ -10,18 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180510121329) do
+ActiveRecord::Schema.define(version: 20180604114205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "courses", force: :cascade do |t|
+    t.integer "field_id"
+    t.integer "teacher_id"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "fields", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "curator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["curator_id"], name: "index_courses_on_curator_id"
+    t.index ["curator_id"], name: "index_fields_on_curator_id"
   end
 
   create_table "forums", force: :cascade do |t|
@@ -33,66 +42,50 @@ ActiveRecord::Schema.define(version: 20180510121329) do
     t.index ["user_id"], name: "index_forums_on_user_id"
   end
 
+  create_table "issues", force: :cascade do |t|
+    t.integer "issuable_id"
+    t.string "issuable_type"
+    t.integer "author_id"
+    t.string "title", null: false
+    t.text "body", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["issuable_id", "issuable_type"], name: "index_issues_on_issuable_id_and_issuable_type"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "project_manager_id"
-    t.integer "course_id"
+    t.integer "field_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id", "project_manager_id"], name: "index_projects_on_course_id_and_project_manager_id"
+    t.index ["project_manager_id"], name: "index_projects_on_project_manager_id"
   end
 
-  create_table "tasks", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "taskable_id"
-    t.string "taskable_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["taskable_id", "taskable_type"], name: "index_tasks_on_taskable_id_and_taskable_type"
-  end
-
-  create_table "trainings", force: :cascade do |t|
-    t.integer "course_id"
-    t.integer "teacher_id"
-    t.string "name"
-    t.text "description"
+  create_table "roles", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "info", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_courses", force: :cascade do |t|
-    t.integer "course_id"
-    t.integer "student_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["course_id", "student_id"], name: "index_user_courses_on_course_id_and_student_id"
+  create_table "user_answers", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "user_issue_id"
+    t.text "body"
   end
 
-  create_table "user_projects", force: :cascade do |t|
-    t.integer "course_id"
-    t.integer "student_id"
-    t.integer "project_id"
+  create_table "user_assignments", force: :cascade do |t|
+    t.integer "assignmentable_id"
+    t.string "assignmentable_type"
+    t.integer "user_id"
+    t.integer "role_id"
+    t.datetime "date_start"
+    t.datetime "date_end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id", "student_id", "project_id"], name: "index_user_projects_on_course_id_and_student_id_and_project_id"
-  end
-
-  create_table "user_tasks", force: :cascade do |t|
-    t.integer "student_id"
-    t.integer "task_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["student_id", "task_id"], name: "index_user_tasks_on_student_id_and_task_id"
-  end
-
-  create_table "user_trainings", force: :cascade do |t|
-    t.integer "training_id"
-    t.integer "student_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["training_id", "student_id"], name: "index_user_trainings_on_training_id_and_student_id"
+    t.index ["assignmentable_id", "user_id"], name: "index_user_assignments_on_assignmentable_id_and_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,16 +1,9 @@
 class Course < ApplicationRecord
-  has_many :projects
-  has_many :trainings
-  has_many :user_courses
-  has_many :students, through: :user_courses
+  belongs_to :field
 
-  # Попробуйте создать таблицу-справочник и свяжите на уровне базы данных и ActiveRecord пользователей и курс
-
-  validates :name, presence: true
-
-  # На вас остается подумать, какой тут еще необходимый атрибут и как написать на него валидацию!
-
-
-  belongs_to :curator, class_name: 'User', foreign_key: 'curator_id'
-
+  has_many :user_assignments, as: :assignmentable, dependent: :destroy
+  has_many :users
+  has_many :issues
+  has_many :users,  through: :user_assignments
+  has_many :issues, through: :user_assignments, dependent: :destroy
 end

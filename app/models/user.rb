@@ -1,15 +1,16 @@
 class User < ApplicationRecord
-  has_many :user_courses
-  has_many :user_projects
-  has_many :user_trainings
-  has_many :user_tasks
+  has_many :fields
+  has_many :courses
+  has_many :projects
+  has_many :issues
+  has_many :roles
 
-  has_many :courses, through: :user_courses
-  has_many :projects, through: :user_projects
-  has_many :trainings, through: :user_trainings
-  has_many :tasks, through: :user_tasks
+  has_many :fields,   through: :user_assignments
+  has_many :courses,  through: :user_assignments
+  has_many :projects, through: :user_assignments
+  has_many :issues,   through: :user_assignments
+  has_many :roles,    through: :user_assignments
 
-  # Валидации пробуйте писать сами, какие считаете нужными! Для примера - вот:
 
   validates :f_name, presence: true, length: { in: 1..20 }
 

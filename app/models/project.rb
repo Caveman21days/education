@@ -1,10 +1,8 @@
 class Project < ApplicationRecord
-  belongs_to :course
+  belongs_to :field
 
-  has_many :user_projects
-  has_many :user_tasks
-  has_many :students, through: :user_projects                                #связь многие ко многим через справочник
-  has_many :tasks, as: :taskable, through: :user_tasks, dependent: :destroy  #Здесь устанавливается та самая полиморфная ассоциация так же через справочник
-
-
+  has_many :users
+  has_many :issues
+  has_many :users,  through: :user_assignments
+  has_many :issues, through: :user_assignments, dependent: :destroy
 end
