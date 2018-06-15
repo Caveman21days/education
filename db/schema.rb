@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20180604114205) do
     t.index ["assignmentable_id", "user_id"], name: "index_user_assignments_on_assignmentable_id_and_user_id"
   end
 
-  create_table "devise", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "l_name"
     t.string "f_name"
     t.string "s_name"

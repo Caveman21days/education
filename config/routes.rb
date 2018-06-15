@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :devise
+  devise_for :users
 
   resources :fields do
     resources :projects, shallow: true
