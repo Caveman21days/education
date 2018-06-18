@@ -1,7 +1,7 @@
 class Field < ApplicationRecord
   has_many :projects
   has_many :courses
-  has_many :users, 
+  has_many :users
 
   validates :name, presence: true
 

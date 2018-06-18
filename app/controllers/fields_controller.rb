@@ -1,6 +1,8 @@
 class FieldsController < ApplicationController
-  before_action set_field, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_field, only: [:show, :edit, :update, :destroy]
 
+  authorize_resource
 
   def index
     respond_with @fields = Field.all

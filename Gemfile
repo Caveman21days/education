@@ -25,6 +25,7 @@ gem 'cocoon'
 # gem 'skim'
 gem 'responders', '~> 2.0'
 gem 'bootstrap', '~> 4.1.1'
+gem 'cancancan', '~> 2.0'
 
 
 # gem 'therubyracer', platforms: :ruby
