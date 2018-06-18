@@ -3,8 +3,7 @@ Rails.application.routes.draw do
 
   resources :fields do
     resources :projects, shallow: true
-
-    resources :trainings, shallow: true
+    resources :courses, shallow: true
   end
 
   root to: 'fields#index'

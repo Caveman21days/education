@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20180604114205) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "fields", force: :cascade do |t|
+  create_table "filelds", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "curator_id"

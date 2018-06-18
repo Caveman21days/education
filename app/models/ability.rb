@@ -3,12 +3,11 @@ class Ability
 
   attr_reader :user
 
-
   def initialize(user)
     @user = user
 
     if user.roles.empty?
-      guest_abilities
+      admin_abilities
     else
       user.roles.each do |role|
         case role.name
@@ -27,6 +26,13 @@ class Ability
     end
   end
 
+
+
+# =======================================
+  def guest_abilities
+    can :read, :all
+  end
+# =======================================
 
   def admin_abilities
     can :manage, :all

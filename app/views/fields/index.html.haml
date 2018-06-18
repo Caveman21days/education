@@ -1,0 +1,7 @@
+%h5
+  - @fields.each do |field|
+    %ul
+      %li= link_to field.name, field_path(field)
+      - field.courses.each do |course|
+        %ul
+          %li= link_to course.name, course_path(course)

@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :roles
   has_many :user_answers
 
+  has_many :user_assignments
+
   has_many :fields,   through: :user_assignments
   has_many :courses,  through: :user_assignments
   has_many :projects, through: :user_assignments
