@@ -6,4 +6,6 @@ Rails.application.routes.draw do
 
     resources :trainings, shallow: true
   end
+
+  root to: 'fields#index'
 end

@@ -1,3 +1,3 @@
 class UserAssignmentsController < ApplicationController
-
+  authorize_resource
 end
