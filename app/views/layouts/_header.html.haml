@@ -1,0 +1,19 @@
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  %a.navbar-brand{:href => "/"} EDUCATION
+
+  %button.navbar-toggler{ "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+
+  .collapse.navbar-collapse#navbarSupportedContent.nav-content-left
+    %ul.navbar-nav.mr-auto
+      %li.nav-item
+        %a.nav-link{ :href => fields_path } Направления
+
+
+    %ul.nav.navbar-nav.navbar-right
+      %li.nav-item
+        = link_to "#{current_user.l_name } #{current_user.f_name}", user_path(current_user.id), class: 'nav-link'
+
+      - if current_user
+        %li.nav-item
+          = link_to 'Выйти', destroy_user_session_path, method: :delete, class: 'nav-link'

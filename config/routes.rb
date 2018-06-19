@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     resources :courses, shallow: true
   end
 
+  resources :users
+
   root to: 'fields#index'
 end

@@ -1,7 +1,25 @@
 %h5
-  - @fields.each do |field|
-    %ul
-      %li= link_to field.name, field_path(field)
-      - field.courses.each do |course|
-        %ul
-          %li= link_to course.name, course_path(course)
+
+.col-12.card.bg-light
+  .row
+    .col-12.card-header.bg-info.text-white
+      .row
+        .col-10
+          %h5.text-left Направления
+        .col-2
+          - if can? :manage, Field
+            = link_to "Добавить", new_field_path, class: 'btn btn-sm btn-light'
+
+    .col-12.card-body
+
+      - @fields.each do |field|
+        .col-4.card
+          .row
+            .col-12.card-header
+              %h5= field.name
+            .col-12.card-body
+              %p.card-text= field.description
+              - if can? :read, field
+                = link_to 'Просмотр', field_path(field), class: "btn btn-outline-secondary btn-sm"
+              - if can? :update, field
+                = link_to 'Редакитровать', edit_field_path(field), class: "btn btn-outline-secondary btn-sm"

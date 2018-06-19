@@ -1,0 +1,7 @@
+.row
+  .col-4
+    - flash.each do |type, message|
+      - if type == 'notice'
+        = content_tag(:div, message, class: "alert alert-success")
+      - elsif type == 'alert'
+        = content_tag(:div, message, class: "alert alert-danger")
