@@ -14,4 +14,14 @@
  *= require_self
  */
 
- @import "bootstrap";
+@import "bootstrap";
+
+$green: rgba(1, 0, 255, 0.47);
+
+.bg-custom {
+  background-color: $green;
+}
+//
+//.navbar-nav > a {
+//  color: red;
+//}
