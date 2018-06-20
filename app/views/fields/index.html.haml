@@ -9,15 +9,16 @@
             = link_to "Добавить", new_field_path, class: 'btn btn-sm btn-dark'
 
     .col-12.card-body
-
       - @fields.each do |field|
         .col-4.card
           .row
             .col-12.card-header
               %h5= field.name
             .col-12.card-body
-              %p.card-text= field.description
+              %p.card-text= description_preview(field.description)
               - if can? :read, field
                 = link_to 'Просмотр', field_path(field), class: "btn btn-outline-secondary btn-sm"
               - if can? :update, field
                 = link_to 'Редакитровать', edit_field_path(field), class: "btn btn-outline-secondary btn-sm"
+
+

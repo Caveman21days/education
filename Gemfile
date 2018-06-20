@@ -26,6 +26,10 @@ gem 'cocoon'
 gem 'responders', '~> 2.0'
 gem 'bootstrap', '~> 4.1.1'
 gem 'cancancan', '~> 2.0'
+gem 'select2-rails'
+gem 'pygments.rb', '~> 0.6.0'
+gem 'redcarpet'
+
 
 
 # gem 'therubyracer', platforms: :ruby
