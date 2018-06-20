@@ -1,0 +1,11 @@
+.col-12.card
+  .row
+    .col-12.card-header
+      %h5.text-left= @field.name
+
+    .col-12.card-body
+      %p= markdown(@field.description)
+      - if can? :update, @field
+        = link_to 'Редактировать', edit_field_path(@field), class: "btn btn-outline-secondary btn-sm"
+
+

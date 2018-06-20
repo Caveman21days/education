@@ -14,4 +14,6 @@
 //= require popper
 //= require bootstrap
 //= require rails-ujs
+//= require select2
+//= require select2_locale_ru
 //= require_tree .
