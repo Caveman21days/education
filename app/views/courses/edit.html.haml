@@ -1,0 +1,12 @@
+.errors
+  = render 'shared/errors', object: @course
+
+.col-12.card.bg-light
+  .row
+    .col-12.card-header
+      .row
+        .col-12
+          %h3 Редактирование учебных материалов
+
+    .col-12.card-body
+      = render 'form'

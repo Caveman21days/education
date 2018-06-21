@@ -16,11 +16,14 @@
  *= require select2-bootstrap
  */
 
+@import "bootstrap";
 
-$green: rgba(1, 0, 255, 0.47);
 
 .bg-custom {
-  background-color: $green;
+  background-color: #0286a7;
 }
-@import "bootstrap";
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: #6bddde;
+}
 

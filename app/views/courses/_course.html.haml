@@ -1,0 +1,11 @@
+.col-12.card
+  .row
+    .col-12.card-header
+      %h5.text-left= course.name
+    .col-12.card-body
+      %p= markdown(course.description)
+
+      = link_to 'Перейти', course_path(course), class: "btn btn-outline-secondary btn-sm"
+
+      - if can? :update, course
+        = link_to 'Редактировать', edit_course_path(course), class: "btn btn-outline-secondary btn-sm"

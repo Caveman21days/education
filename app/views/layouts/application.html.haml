@@ -14,10 +14,12 @@
       %br
       .row.flex-xl-nowrap
         .col-2.left-panel
+          = yield :left_panel
 
-        .col-7
+        .col-7.center
           .flash
             = render 'shared/flash'
+          = yield :center
           = yield
 
         .col-3.right-panel
