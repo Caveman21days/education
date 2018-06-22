@@ -13,12 +13,11 @@ class UserAssignmentsController < ApplicationController
 
   def update
     @user_assignment.update(user_assignments_params)
-    redirect_to assignmentable_object
+    redirect_to @user_assignment.assignmentable
   end
 
   def destroy
-    user_assignment = set_user_assignment
-    user_assignment.destroy
+    @user_assignment.destroy
     redirect_to root_path
   end
 
