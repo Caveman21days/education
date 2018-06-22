@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :roles,    through: :user_assignments
 
 
-  validates :f_name, presence: true, length: { in: 1..20 }
+  # validates :f_name, presence: true, length: { in: 1..20 }
 
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
