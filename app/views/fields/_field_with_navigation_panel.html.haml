@@ -37,4 +37,18 @@
 
 
       .tab-pane.fade#v-pills-project{ role: "tabpanel", "aria-labelledby" => "v-pills-project-tab" }
-        = render @field.projects
+        .col-12.card
+          .row
+            .col-12.card-header
+              .row
+                .col-10
+                  %h5.text-left Проекты
+                .col-2
+                  - if can? :manage, @field
+                    = link_to "Добавить", new_field_project_path(@field), class: 'btn btn-sm btn-dark'
+
+            .col-12.card-body
+              .row
+                - @field.projects.each do |project|
+                  .col-6
+                    = render project
