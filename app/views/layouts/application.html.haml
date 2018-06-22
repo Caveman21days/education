@@ -10,9 +10,11 @@
     - if current_user
       = render 'layouts/header'
 
+
     .container-fluid
       %br
       .row.flex-xl-nowrap
+
         .col-2.left-panel
           = yield :left_panel
 
@@ -23,5 +25,4 @@
           = yield
 
         .col-3.right-panel
-          -#- if current_user
-          -#  = render 'layouts/right_panel'
+          = yield :right_panel
