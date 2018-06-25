@@ -5,5 +5,5 @@ class Field < ApplicationRecord
 
   validates :name, presence: true
 
-  belongs_to :curator, class_name: 'User', foreign_key: 'curator_id'
+  # belongs_to :curator, class_name: 'User', foreign_key: 'curator_id'
 end

@@ -1,0 +1,22 @@
+.col-12
+  = form_for issue, html: {class: "form-horizontal"} do |f|
+
+    .form-group.row
+      %label.col-2.col-form-label.text-right Наименование
+      .col-10
+        = f.text_field :name, placeholder: "Наименование", autofocus: true, class: "form-control"
+
+    .form-group.row
+      %label.col-2.col-form-label.text-right Описание
+      .col-10
+        = f.text_area :description, placeholder: "Описание", class: "form-control", rows: 7
+
+    .row
+      .col-6
+      .col-6
+        = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
+
+        - if @field.persisted? && can?(:manage, Field)
+          = link_to "Удалить", field_path(@field.id), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
+
+        %a.btn.btn-outline-secondary.btn-sm{ href: request.referer } Назад

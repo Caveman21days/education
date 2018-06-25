@@ -1,0 +1,20 @@
+.col-12.card.bg-light
+  .row
+    .col-12.card-header
+      .row
+        .col-10
+          %h5.text-left Участники
+        .col-2
+          - if can? :manage, UserAssignment
+            = link_to "Добавить", new_field_user_assignment_path(@assignmentable), class: 'btn btn-sm btn-dark'
+
+    .col-12.card-body
+      .row
+        - @user_assignments.each do |user_assignment|
+          %h5= user_assignment.user.l_name
+          -#- if can? :read, user_assignment
+          -#  = link_to 'Просмотр', user_assignment_path(user_assignment), class: "btn btn-outline-secondary btn-sm"
+          - if can? :update, user_assignment
+            = link_to 'Редактировать', edit_user_assignment_path(user_assignment), class: "btn btn-outline-secondary btn-sm"
+
+
