@@ -2,7 +2,11 @@ module ApplicationHelper
 
   class HTMLwithPygments < Redcarpet::Render::HTML
     def block_code(code, language)
-      Pygments.highlight(code, lexer: Pygments.lexers.has_key?(language.classify) ? language : "HTML")
+      if language.nil?
+        Pygments.highlight(code, lexer: "HTML")
+      else
+        Pygments.highlight(code, lexer: Pygments.lexers.has_key?(language.classify) ? language : "HTML")
+      end
     end
   end
 

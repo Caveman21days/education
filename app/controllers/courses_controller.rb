@@ -9,25 +9,30 @@ class CoursesController < ApplicationController
     respond_with @courses = @field.courses
   end
 
-  def show; end
-
-  def edit; end
-
   def new
     respond_with @course = @field.courses.new
   end
 
+  def show
+    respond_with @course
+  end
+
+  def edit; end
+
   def create
-    respond_with(@course = @field.courses.create(course_params))
+    @course = @field.courses.create(course_params)
+    redirect_to @field
   end
 
   def update
     @course.update(course_params)
-    respond_with @course
+    redirect_to @course.field
   end
 
   def destroy
-    respond_with @course.destroy
+    field = @course.field
+    @course.destroy
+    redirect_to field
   end
 
 

@@ -63,6 +63,9 @@ class Ability
   def pm_abilities
     common_abilities
     can :manage, Project, project_manager_id: user.id
+    can :manage, Issue do |issue|
+      issue.issuable.type == "Project" && issue.issuable.project_manager_id == user.id
+    end
   end
 
   def student_abilities

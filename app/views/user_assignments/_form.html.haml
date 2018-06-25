@@ -1,5 +1,5 @@
 .col-12
-  = form_for @field, html: {class: "form-horizontal"} do |f|
+  = form_for UserAssignment.new, html: {class: "form-horizontal"} do |f|
 
     .form-group.row
       %label.col-2.col-form-label.text-right Наименование
@@ -10,6 +10,13 @@
       %label.col-2.col-form-label.text-right Описание
       .col-10
         = f.text_area :description, placeholder: "Описание", class: "form-control", rows: 7
+
+    .form-group.row
+      %label.col-2.col-form-label.text-right Куратор
+      .col-3#curator
+        = f.select :curator_id, {}, {}, { class: "form-control" } do
+          - User.all.each do |u|
+            = content_tag(:option, "#{u.f_name} #{u.l_name}", value: u.id)
 
     .row
       .col-6

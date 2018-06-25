@@ -1,0 +1,11 @@
+.col-12.card
+  .row
+    .col-12.card-header
+      %h5.text-left= project.name
+    .col-12.card-body
+      %p= markdown(project.description)
+
+      = link_to 'Перейти', project_path(project), class: "btn btn-outline-secondary btn-sm"
+
+      - if can? :update, project
+        = link_to 'Редактировать', edit_project_path(project ), class: "btn btn-outline-secondary btn-sm"

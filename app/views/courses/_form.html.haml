@@ -1,5 +1,5 @@
 .col-12
-  = form_for @field, html: {class: "form-horizontal"} do |f|
+  = form_for [@field, @course], html: { class: "form-horizontal" } do |f|
 
     .form-group.row
       %label.col-2.col-form-label.text-right Наименование
@@ -16,7 +16,7 @@
       .col-6
         = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
 
-        - if @field.persisted? && can?(:manage, Field)
-          = link_to "Удалить", field_path(@field.id), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
+        - if @course.persisted? && can?(:manage, @course)
+          = link_to "Удалить", course_path(@course.id), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
 
         %a.btn.btn-outline-secondary.btn-sm{ href: request.referer } Назад

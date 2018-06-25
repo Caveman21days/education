@@ -1,5 +1,5 @@
 .col-12
-  = form_for @field, html: {class: "form-horizontal"} do |f|
+  = form_for [@field, @project], html: { class: "form-horizontal" } do |f|
 
     .form-group.row
       %label.col-2.col-form-label.text-right Наименование
@@ -11,12 +11,19 @@
       .col-10
         = f.text_area :description, placeholder: "Описание", class: "form-control", rows: 7
 
+    .form-group.row
+      %label.col-2.col-form-label.text-right Менеджер продукта
+      .col-3#curator
+        = f.select :project_manager_id, {}, {}, { class: "form-control" } do
+          - User.all.each do |u|
+            = content_tag(:option, "#{u.f_name} #{u.l_name}", value: u.id)
+
     .row
       .col-6
       .col-6
         = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
 
-        - if @field.persisted? && can?(:manage, Field)
-          = link_to "Удалить", field_path(@field.id), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
+        - if @project.persisted? && can?(:manage, @project)
+          = link_to "Удалить", course_path(@project.id), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
 
         %a.btn.btn-outline-secondary.btn-sm{ href: request.referer } Назад

@@ -7,7 +7,9 @@ class FieldsController < ApplicationController
     respond_with @fields = Field.all
   end
 
-  def show; end
+  def show
+    respond_with @field
+  end
 
   def edit; end
 
