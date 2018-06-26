@@ -6,15 +6,28 @@
           %h5.text-left Участники
         .col-2
           - if can? :manage, UserAssignment
-            = link_to "Добавить", new_field_user_assignment_path(@assignmentable), class: 'btn btn-sm btn-dark'
+            %a{ href: assignmentable_link(@assignmentable), class: "btn btn-sm btn-dark" } Добавить
+
 
     .col-12.card-body
       .row
-        - @user_assignments.each do |user_assignment|
-          %h5= user_assignment.user.l_name
-          -#- if can? :read, user_assignment
-          -#  = link_to 'Просмотр', user_assignment_path(user_assignment), class: "btn btn-outline-secondary btn-sm"
-          - if can? :update, user_assignment
-            = link_to 'Редактировать', edit_user_assignment_path(user_assignment), class: "btn btn-outline-secondary btn-sm"
+        .col-3
+          %h5 Участник
+        .col-3
+          %h5 Роль
+        .col-4
+          %h5 Дата участия
+        .col-2
+      %hr
+      - @user_assignments.each do |user_assignment|
+        .row
+          .col-3
+            =link_to "#{user_assignment.user.l_name} #{user_assignment.user.l_name}", user_path(user_assignment.user), class: "text-success"
+          .col-3
+            %p= user_assignment.role.name
+          .col-4
+            %p= "#{user_assignment.date_start.strftime("%d.%m")} - #{user_assignment.date_end.strftime("%d.%m.%Y")}"
 
-
+          .col-2
+            - if can? :update, user_assignment
+              = link_to 'Редактировать', edit_user_assignment_path(user_assignment), class: "btn btn-outline-secondary btn-sm"

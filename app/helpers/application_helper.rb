@@ -19,4 +19,14 @@ module ApplicationHelper
   def description_preview(text)
     "#{text[0..100]}..."
   end
+
+  def assignmentable_link(object)
+    object.class.name.downcase
+    "/#{object.class.name.downcase}s/#{object.id}/user_assignments/new"
+  end
+
+  def issuable_link(object)
+    object.class.name.downcase
+    "/#{object.class.name.downcase}s/#{object.id}/issues/new"
+  end
 end

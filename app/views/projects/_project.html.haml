@@ -9,3 +9,4 @@
 
       - if can? :update, project
         = link_to 'Редактировать', edit_project_path(project ), class: "btn btn-outline-secondary btn-sm"
+        = link_to 'Настроить', project_user_assignments_path(project), class: "btn btn-outline-secondary btn-sm"
