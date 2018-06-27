@@ -1,11 +1,11 @@
 .col-12.card
   .row
     .col-12.card-header
-      %h5.text-left= issue.name
+      %h5.text-left= issue.title
     .col-12.card-body
       %p= markdown(issue.body)
 
-      = link_to 'Перейти', issue_path(issue), class: "btn btn-outline-secondary btn-sm"
+      = link_to 'Перейти', issue_path(issue), class: "btn btn-outline-secondary btn-sm" if controller_name != 'issues'
 
       - if can? :update, issue
         = link_to 'Редактировать', edit_issue_path(issue), class: "btn btn-outline-secondary btn-sm"

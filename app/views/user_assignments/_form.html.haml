@@ -5,15 +5,19 @@
       %label.col-2.col-form-label.text-right Пользователь
       .col-4
         = f.select :user_id, {}, { include_blank: true }, { class: "form-control" } do
-          - User.all.each do |u|
-            = content_tag(:option, "#{u.f_name} #{u.l_name}", value: u.id)
+          - unless assignmentable_users(@assignmentable).empty?
+            - assignmentable_users(@assignmentable).each do |u|
+              = content_tag(:option, "#{u.f_name} #{u.l_name}", value: u.id)
+
 
     .form-group.row
       %label.col-2.col-form-label.text-right Роль
       .col-4
         = f.select :role_id, {}, { include_blank: true }, { class: "form-control" } do
-          - Role.all.each do |r|
-            = content_tag(:option, r.name, value: r.id)
+          - unless assignmentable_roles(@assignmentable).empty?
+            - assignmentable_roles(@assignmentable).each do |r|
+              = content_tag(:option, r.name, value: r.id)
+
 
     .form-group.row
       %label.col-2.col-form-label.text-right Дата начала
@@ -24,7 +28,6 @@
       %label.col-2.col-form-label.text-right Дата окончания
       .col-3
         = f.date_field :date_end, class: "form-control"
-
 
 
     .row
