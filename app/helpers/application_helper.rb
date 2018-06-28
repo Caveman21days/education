@@ -19,4 +19,34 @@ module ApplicationHelper
   def description_preview(text)
     "#{text[0..100]}..."
   end
+
+  def assignmentable_link(object)
+    object.class.name.downcase
+    "/#{object.class.name.downcase}s/#{object.id}/user_assignments/new"
+  end
+
+  def issuable_link(object)
+    object.class.name.downcase
+    "/#{object.class.name.downcase}s/#{object.id}/issues/new"
+  end
+
+  def assignmentable_users(object)
+    case object.class.name
+    when "Field"
+      User.all
+    when "Course", "Project"
+      object.field.users
+    when "Issue"
+      object.issuable.users
+    end
+  end
+
+  def assignmentable_roles(object)
+    case object.class.name
+    when "Field", "Course", "Project"
+      Role.all
+    when "Issue"
+      Role.where(name: ["Исполнитель", "Наблюдатель"])
+    end
+  end
 end

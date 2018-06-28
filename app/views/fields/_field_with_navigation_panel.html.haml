@@ -1,8 +1,8 @@
 - content_for :left_panel do
   .nav.flex-column.nav-pills#v-pills-tab{role: "tablist", "aria-orientation" => "vertical"}
-    %a.nav-link.active#v-pills-home-tab{ "data-toggle" => "pill", href: "#v-pills-home", role: "tab", "aria-controls" => "v-pills-home", "aria-selected" => "true" }Описание
-    %a.nav-link#v-pills-course-tab{ "data-toggle" => "pill", href: "#v-pills-course", role: "tab", "aria-controls" => "v-pills-course", "aria-selected" => "false" }Учебные материалы
-    %a.nav-link#v-pills-project-tab{ "data-toggle" => "pill", href: "#v-pills-project", role: "tab", "aria-controls" => "v-pills-project", "aria-selected" => "false" }Проекты
+    %a.nav-link.active.text-dark#v-pills-home-tab{ "data-toggle" => "pill", href: "#v-pills-home", role: "tab", "aria-controls" => "v-pills-home", "aria-selected" => "true" }Описание
+    %a.nav-link.text-dark#v-pills-course-tab{ "data-toggle" => "pill", href: "#v-pills-course", role: "tab", "aria-controls" => "v-pills-course", "aria-selected" => "false" }Учебные материалы
+    %a.nav-link.text-dark#v-pills-project-tab{ "data-toggle" => "pill", href: "#v-pills-project", role: "tab", "aria-controls" => "v-pills-project", "aria-selected" => "false" }Проекты
 
   - content_for :center do
     .tab-content#v-pills-tabContent
@@ -16,6 +16,7 @@
               %p= markdown(@field.description)
               - if can? :update, @field
                 = link_to 'Редактировать', edit_field_path(@field), class: "btn btn-outline-secondary btn-sm"
+                = link_to 'Настроить', field_user_assignments_path(@field), class: "btn btn-outline-secondary btn-sm"
 
 
       .tab-pane.fade#v-pills-course{ role: "tabpanel", "aria-labelledby" => "v-pills-course-tab" }

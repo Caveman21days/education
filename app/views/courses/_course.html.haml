@@ -4,8 +4,9 @@
       %h5.text-left= course.name
     .col-12.card-body
       %p= markdown(course.description)
-
       = link_to 'Перейти', course_path(course), class: "btn btn-outline-secondary btn-sm" if controller_name != 'courses'
 
-      - if can? :update, course
-        = link_to 'Редактировать', edit_course_path(course), class: "btn btn-outline-secondary btn-sm"
+      - if controller_name != "fields"
+        - if can? :update, course
+          = link_to 'Редактировать', edit_course_path(course), class: "btn btn-outline-secondary btn-sm"
+          = link_to 'Настроить', course_user_assignments_path(course), class: "btn btn-outline-secondary btn-sm"

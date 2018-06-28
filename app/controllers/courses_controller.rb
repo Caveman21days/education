@@ -14,6 +14,7 @@ class CoursesController < ApplicationController
   end
 
   def show
+    @issues = @course.issues
     respond_with @course
   end
 

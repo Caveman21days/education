@@ -1,29 +1,36 @@
 .col-12
-  = form_for UserAssignment.new, html: {class: "form-horizontal"} do |f|
+  = form_for [@assignmentable, @user_assignment], class: "form-horizontal" do |f|
 
     .form-group.row
-      %label.col-2.col-form-label.text-right Наименование
-      .col-10
-        = f.text_field :name, placeholder: "Наименование", autofocus: true, class: "form-control"
+      %label.col-2.col-form-label.text-right Пользователь
+      .col-4
+        = f.select :user_id, {}, { include_blank: true }, { class: "form-control" } do
+          - unless assignmentable_users(@assignmentable).empty?
+            - assignmentable_users(@assignmentable).each do |u|
+              = content_tag(:option, "#{u.f_name} #{u.l_name}", value: u.id)
+
 
     .form-group.row
-      %label.col-2.col-form-label.text-right Описание
-      .col-10
-        = f.text_area :description, placeholder: "Описание", class: "form-control", rows: 7
+      %label.col-2.col-form-label.text-right Роль
+      .col-4
+        = f.select :role_id, {}, { include_blank: true }, { class: "form-control" } do
+          - unless assignmentable_roles(@assignmentable).empty?
+            - assignmentable_roles(@assignmentable).each do |r|
+              = content_tag(:option, r.name, value: r.id)
+
 
     .form-group.row
-      %label.col-2.col-form-label.text-right Куратор
-      .col-3#curator
-        = f.select :curator_id, {}, {}, { class: "form-control" } do
-          - User.all.each do |u|
-            = content_tag(:option, "#{u.f_name} #{u.l_name}", value: u.id)
+      %label.col-2.col-form-label.text-right Дата начала
+      .col-3
+        = f.date_field :date_start, class: "form-control"
+
+    .form-group.row
+      %label.col-2.col-form-label.text-right Дата окончания
+      .col-3
+        = f.date_field :date_end, class: "form-control"
+
 
     .row
-      .col-6
-      .col-6
+      .col-12
         = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
-
-        - if @field.persisted? && can?(:manage, Field)
-          = link_to "Удалить", field_path(@field.id), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
-
         %a.btn.btn-outline-secondary.btn-sm{ href: request.referer } Назад
