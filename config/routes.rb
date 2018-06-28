@@ -20,6 +20,6 @@ Rails.application.routes.draw do
   end
 
   resources :users
-
+  
   root to: 'fields#index'
 end
