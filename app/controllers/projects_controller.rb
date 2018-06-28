@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+<<<<<<< HEAD
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   before_action :set_field, only: [:new, :create, :index]
 
@@ -34,3 +35,26 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:name, :description, :project_manager_id)
   end
 end
+=======
+
+  def index
+    @projects = Project.all
+  end
+
+  def show
+    @project = Project.find(params[:id])
+  end
+
+  def new
+    @project = Projects.new
+  end
+
+  def create; end
+
+  def edit; end
+
+  def update; end
+
+  def destroy; end
+end
+>>>>>>> c13ea4d0bf9df0463ee5f82d01255b642fb86b51

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180622134516) do
+=======
+ActiveRecord::Schema.define(version: 20180516151339) do
+>>>>>>> c13ea4d0bf9df0463ee5f82d01255b642fb86b51
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,13 +62,20 @@ ActiveRecord::Schema.define(version: 20180622134516) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "roles", force: :cascade do |t|
     t.string "name", null: false
     t.string "info", default: "", null: false
+=======
+  create_table "user_courses", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "course_id"
+>>>>>>> c13ea4d0bf9df0463ee5f82d01255b642fb86b51
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "user_answers", force: :cascade do |t|
     t.integer "user_id"
     t.integer "user_issue_id"
@@ -79,6 +90,28 @@ ActiveRecord::Schema.define(version: 20180622134516) do
     t.integer "role_id"
     t.datetime "date_start"
     t.datetime "date_end"
+=======
+  create_table "user_projects", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "course_id"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id", "student_id", "project_id"], name: "index_user_projects_on_course_id_and_student_id_and_project_id"
+  end
+
+  create_table "user_tasks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "task_id"], name: "index_user_tasks_on_user_id_and_task_id"
+  end
+
+  create_table "user_trainings", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "training_id"
+>>>>>>> c13ea4d0bf9df0463ee5f82d01255b642fb86b51
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "issue_state"

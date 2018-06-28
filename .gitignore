@@ -22,8 +22,14 @@
 
 .byebug_history
 
+<<<<<<< HEAD
 /.idea/*
 /Gemfile.lock
 config/database.yml
 *~
 musor
+=======
+/config/database.yml
+/.idea/*
+/Gemfile.lock
+>>>>>>> c13ea4d0bf9df0463ee5f82d01255b642fb86b51
