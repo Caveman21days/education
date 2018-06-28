@@ -1,0 +1,8 @@
+= link_to 'Новое задание', new_course_project_task_path
+
+%h1 Tasks
+%ul
+  - @tasks.each do |task|
+    %li
+      %h2 #{task.name}
+      %p #{task.description}

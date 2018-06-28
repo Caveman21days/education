@@ -1,0 +1,6 @@
+%h1 Курсы
+%ul
+- @courses.each do |course|
+  %li
+    %a{:href => "courses/#{course.id}/projects"}#{course.name}
+    %p1 #{course.description}

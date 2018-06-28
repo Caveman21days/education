@@ -14,6 +14,7 @@ class CoursesController < ApplicationController
   end
 
   def show
+<<<<<<< HEAD
     @issues = @course.issues
     respond_with @course
   end
@@ -51,3 +52,20 @@ class CoursesController < ApplicationController
     params.require(:course).permit(:name, :description, :teacher_id)
   end
 end
+=======
+    @course = Course.find(params[:id])
+  end
+
+  def new
+    @course = Course.new
+  end
+
+  def create; end
+
+  def edit; end
+
+  def update; end
+
+  def destroy; end
+end
+>>>>>>> c13ea4d0bf9df0463ee5f82d01255b642fb86b51
