@@ -1,0 +1,28 @@
+!!!
+%html
+  %head
+    %title Education
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  %body.body
+    - if current_user
+      = render 'layouts/header'
+
+
+    .container-fluid
+      %br
+      .row.flex-xl-nowrap
+
+        .col-2.left-panel
+          = yield :left_panel
+
+        .col-7.center
+          .flash
+            = render 'shared/flash'
+          = yield :center
+          = yield
+
+        .col-3.right-panel
+          = yield :right_panel
