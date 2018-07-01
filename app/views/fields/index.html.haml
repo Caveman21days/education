@@ -1,0 +1,23 @@
+.col-12.card.bg-light
+  .row
+    .col-12.card-header
+      .row
+        .col-10
+          %h5.text-left Направления
+        .col-2
+          - if can? :manage, Field
+            = link_to "Добавить", new_field_path, class: 'btn btn-sm btn-dark'
+
+    .col-12.card-body
+      .row
+        - @fields.each do |field|
+          .col-6
+            .col-12.card
+              .row
+                .col-12.card-header
+                  %h5= field.name
+
+                .col-12.card-body
+                  %p.card-text= description_preview(field.description)
+                  - if can? :read, field
+                    = link_to 'Просмотр', field_path(field), class: "btn btn-outline-secondary btn-sm"

@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180604114205) do
+ActiveRecord::Schema.define(version: 20180622134516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "courses", force: :cascade do |t|
     t.integer "field_id"
-    t.integer "teacher_id"
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
@@ -27,10 +26,8 @@ ActiveRecord::Schema.define(version: 20180604114205) do
   create_table "fields", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "curator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["curator_id"], name: "index_fields_on_curator_id"
   end
 
   create_table "forums", force: :cascade do |t|
@@ -56,11 +53,9 @@ ActiveRecord::Schema.define(version: 20180604114205) do
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "project_manager_id"
     t.integer "field_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_manager_id"], name: "index_projects_on_project_manager_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -72,8 +67,9 @@ ActiveRecord::Schema.define(version: 20180604114205) do
 
   create_table "user_answers", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "user_issue_id"
+    t.integer "issue_id"
     t.text "body"
+    t.integer "recipient"
   end
 
   create_table "user_assignments", force: :cascade do |t|
@@ -85,6 +81,7 @@ ActiveRecord::Schema.define(version: 20180604114205) do
     t.datetime "date_end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "issue_state"
     t.index ["assignmentable_id", "user_id"], name: "index_user_assignments_on_assignmentable_id_and_user_id"
   end
 

@@ -1,0 +1,36 @@
+.col-12.card
+  .row
+    .col-12.card-header
+      .row
+        .col-8
+          %h5.text-left Задачи
+        .col-4
+          %a{ href: issuable_link(issuable), class: "btn btn-sm btn-dark" } Добавить
+    .col-12.card-body
+      .row
+        .col-6
+          %b Задача
+        .col-6
+          %b Назначена
+      %hr
+
+      - issuable.issues.each do |issue|
+        .row
+          .col-6
+            - if can? :read, issue
+              = link_to issue.title, issue_path(issue)
+            - else
+              %p= issue.title
+          .col-6
+            - issue.users.each do |user|
+              %p= "#{user.f_name} #{user.l_name}"
+
+
+
+
+          -#.col-2
+          -#  - if can? :update, issue
+          -#    = link_to 'Настроить', issue_user_assignments_path(issue), class: "btn btn-outline-secondary btn-sm"
+              -#= link_to 'Редактировать', edit_issue_path(issue), class: "btn btn-outline-secondary btn-sm"
+          -#.col-2
+          -#  - if can? :update, issue

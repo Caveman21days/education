@@ -1,0 +1,13 @@
+.col-12.card
+  .row
+    .col-12.card-header
+      %h5.text-left Участники
+
+    .col-12.card-body
+      - issuable.users.each do |user|
+        .row
+          .col-6
+            -#- if can? :read, user
+            -#  = link_to "#{user.l_name} #{user.f_name}", user_path(user)
+            -#- else
+            %p= "#{user.l_name} #{user.f_name}"
