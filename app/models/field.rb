@@ -6,7 +6,7 @@ class Field < ApplicationRecord
   has_many :users, through: :user_assignments
 
 
-  validates :name, presence: true
+  validates :name, :short_description, :description, presence: true
 
   # belongs_to :curator, class_name: 'User', foreign_key: 'curator_id'
 end
