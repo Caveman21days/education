@@ -1,6 +1,6 @@
 .col-12
   = form_for [@assignmentable, @user_assignment], class: "form-horizontal" do |f|
-
+    - @assignmentable = @user_assignment.assignmentable if @assignmentable.nil?
     .form-group.row
       %label.col-2.col-form-label.text-right Пользователь
       .col-4
@@ -8,7 +8,6 @@
           - unless assignmentable_users(@assignmentable).empty?
             - assignmentable_users(@assignmentable).each do |u|
               = content_tag(:option, "#{u.f_name} #{u.l_name}", value: u.id)
-
 
     .form-group.row
       %label.col-2.col-form-label.text-right Роль
@@ -18,16 +17,15 @@
             - assignmentable_roles(@assignmentable).each do |r|
               = content_tag(:option, r.name, value: r.id)
 
-
     .form-group.row
       %label.col-2.col-form-label.text-right Дата начала
       .col-3
-        = f.date_field :date_start, class: "form-control"
+        = f.date_field :date_start, class: "form-control", value: Time.now.strftime('%Y-%m-%d')
 
     .form-group.row
       %label.col-2.col-form-label.text-right Дата окончания
       .col-3
-        = f.date_field :date_end, class: "form-control"
+        = f.date_field :date_end, class: "form-control", value: Time.now.strftime('%Y-%m-%d')
 
 
     .row
