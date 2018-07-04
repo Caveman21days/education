@@ -7,7 +7,11 @@ class Ability
     @user = user
 
     if user.roles.empty?
-      admin_abilities
+      if user.super_admin
+        admin_abilities
+      else
+        user_abilities
+      end
     else
       user.roles.each do |role|
         case role.name
@@ -26,11 +30,9 @@ class Ability
     end
   end
 
-
-
 # =======================================
-  def guest_abilities
-    can :read, :all
+  def user_abilities
+    can :read, Field
   end
 # =======================================
 

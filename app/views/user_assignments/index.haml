@@ -26,7 +26,10 @@
           .col-3
             %p= user_assignment.role.name
           .col-4
-            %p= "#{user_assignment.date_start.strftime("%d.%m")} - #{user_assignment.date_end.strftime("%d.%m.%Y")}"
+            - if user_assignment.date_end
+              %p= "#{user_assignment.date_start.strftime("%d.%m")} - #{user_assignment.date_end.strftime("%d.%m.%Y")}"
+            - else
+              %p= "#{user_assignment.date_start.strftime("%d.%m")} - ../../.."
 
           .col-2
             - if can? :update, user_assignment

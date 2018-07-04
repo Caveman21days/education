@@ -5,7 +5,5 @@ class Project < ApplicationRecord
   has_many :users,  through: :user_assignments
   has_many :issues, as: :issuable
 
-
-  # has_many :issues
-  # has_many :issues, through: :user_assignments, dependent: :destroy
+  validates :name, :short_description, :description, presence: true
 end

@@ -18,6 +18,6 @@
                   %h5= field.name
 
                 .col-12.card-body
-                  %p.card-text= description_preview(field.description)
+                  %p.card-text= field.short_description
                   - if can? :read, field
                     = link_to 'Просмотр', field_path(field), class: "btn btn-outline-secondary btn-sm"

@@ -38,6 +38,6 @@ class FieldsController < ApplicationController
   end
 
   def field_params
-    params.require(:field).permit(:name, :description, :curator_id)
+    params.require(:field).permit(:name, :short_description, :description, :curator_id)
   end
 end

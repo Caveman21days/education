@@ -6,4 +6,5 @@ class Course < ApplicationRecord
   has_many :users, through: :user_assignments
   has_many :issues, as: :issuable
 
+  validates :name, :short_description, :description, presence: true
 end
