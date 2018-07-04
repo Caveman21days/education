@@ -5,14 +5,14 @@
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         = devise_error_messages!
         .field.form-group
+          = f.label :l_name
+          = f.text_field :l_name, autofocus: true, autocomplete: "family-name", required: "", class: "form-control"
+        .field.form-group
           = f.label :f_name
-          = f.text_field :f_name, autofocus: true, autocomplete: "fname", required: "", class: "form-control"
+          = f.text_field :f_name, autofocus: true, autocomplete: "given-name", required: "", class: "form-control"
         .field.form-group
           = f.label :s_name
-          = f.text_field :email, autofocus: true, autocomplete: "sname", class: "form-control"
-        .field.form-group
-          = f.label :l_name
-          = f.text_field :email, autofocus: true, autocomplete: "lname", class: "form-control"
+          = f.text_field :s_name, autofocus: true, autocomplete: "additional-name", class: "form-control"
         .field.form-group
           = f.label :email
           = f.email_field :email, autofocus: true, autocomplete: "email", required: "", class: "form-control"
@@ -21,7 +21,7 @@
           - if @minimum_password_length
             %em="#{@minimum_password_length} characters minimum"
             %br
-          = f.password_field :password, autocomplete: "off", class: "form-control"
+          = f.password_field :password, autocomplete: "off", required: "", class: "form-control"
         .field.form-group
           = f.label :password_confirmation
           = f.password_field :password_confirmation, autocomplete: "off", required: "", class: "form-control"
