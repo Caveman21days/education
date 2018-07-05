@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :user_assignments, shallow: true
       resources :issues, shallow: true, except: [:index] do
         resources :user_assignments, shallow: true
+        resources :user_answers, shallow: true, only: [:create, :update, :destroy]
       end
     end
 
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
       resources :user_assignments, shallow: true
       resources :issues, shallow: true, except: [:index] do
         resources :user_assignments, shallow: true
+        resources :user_answers, shallow: true, only: [:create, :update, :destroy]
       end
     end
   end

@@ -11,9 +11,13 @@
 
 
     %ul.nav.navbar-nav.navbar-right
+      %li
+        %a{ class: "btn btn-secondary btn-sm", href: '#' } Notifications
+        %span{ class: "badge badge-light" }= "#{UserAnswer.where(status: 'На рассмотрении', recipient_id: current_user.id).count}"
+
+      %li
       %li.nav-item
         = link_to "#{current_user.l_name } #{current_user.f_name}", user_path(current_user.id), class: 'nav-link'
-
       - if current_user
         %li.nav-item
           = link_to 'Выйти', destroy_user_session_path, method: :delete, class: 'nav-link'

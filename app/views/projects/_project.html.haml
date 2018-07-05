@@ -3,7 +3,10 @@
     .col-12.card-header
       %h5.text-left= project.name
     .col-12.card-body
-      %p= project.short_description
+      - if controller_name == "projects"
+        %p= markdown(project.description)
+      - else
+        %p= project.short_description
       - if can? :read, project
         = link_to 'Перейти', project_path(project), class: "btn btn-outline-secondary btn-sm" if controller_name != 'projects'
 
