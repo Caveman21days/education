@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       end
     end
   end
+  patch '/user_answers/:id/accept_user_answer', to: 'user_answers#accept_user_answer'
+  patch '/user_answers/:id/reject_user_answer', to: 'user_answers#reject_user_answer'
 
   resources :users
 

@@ -8,7 +8,7 @@ class UserAnswersController < ApplicationController
   respond_to :js
 
   def create
-    respond_with(@user_answer = current_user.user_answers.create(user_answer_params.merge(recipient_id: @issue.author_id, issue_id: @issue.id)))
+    respond_with(@user_answer = current_user.user_answers.create(user_answer_params.merge(recipient_id: @issue.author_id, issue_id: @issue.id, status: "На рассмотрении")))
   end
 
   def update
@@ -18,6 +18,16 @@ class UserAnswersController < ApplicationController
 
   def destroy
     respond_with(@user_answer.destroy)
+  end
+
+  def accept_user_answer
+    @user_answer.update(status: "Принято")
+    redirect_to @user_answer.issue
+  end
+
+  def reject_user_answer
+    @user_answer.update(status: "Отклонено")
+    redirect_to @user_answer.issue
   end
 
 

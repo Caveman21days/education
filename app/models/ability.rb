@@ -53,6 +53,7 @@ class Ability
     can :manage, [Project, Course] do |obj|
       obj.field.curator_id == user.id
     end
+    can :update, UserAnswer, recipient_id: user.id
   end
 
   def teacher_abilities
@@ -60,6 +61,7 @@ class Ability
     can :manage, Issue do |issue|
       issue.issuable.type == "Course" && issue.issuable.teacher_id == user.id
     end
+    can :update, UserAnswer, recipient_id: user.id
   end
 
   def pm_abilities
@@ -68,11 +70,11 @@ class Ability
     can :manage, Issue do |issue|
       issue.issuable.type == "Project" && issue.issuable.project_manager_id == user.id
     end
+    can :update, UserAnswer, recipient_id: user.id
   end
 
   def student_abilities
     common_abilities
     can :create, UserAnswer
-    can :update, UserAnswer, user_id: user.id
   end
 end

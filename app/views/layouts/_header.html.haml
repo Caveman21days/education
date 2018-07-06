@@ -13,7 +13,7 @@
     %ul.nav.navbar-nav.navbar-right
       %li
         %a{ class: "btn btn-secondary btn-sm", href: '#' } Notifications
-        %span{ class: "badge badge-light" }= "#{UserAnswer.where(status: 'На рассмотрении', recipient_id: current_user.id).count}"
+        %span{ class: "badge badge-light" }= UserAnswer.where(status: 'На рассмотрении', recipient_id: current_user.id).count + UserAssignment.where(issue_state: 'Открыта', user_id: current_user.id).count
 
       %li
       %li.nav-item
