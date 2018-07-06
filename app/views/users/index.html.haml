@@ -7,12 +7,11 @@
   %ul.list-group.list-group-flush
     - @users.each do |user|
 
-      - full_name = user.f_name + ' ' + user.l_name
       %li.list-group-item.card
         .card-body
           %h5.card-title{:style => 'display: flex; justify-content: space-between;'}
             %div{:style => 'line-height: 38px;'}
-              = link_to full_name, user_path(user)
+              = link_to "#{user.f_name} #{user.l_name}", user_path(user)
             - if can? :edit, user
               = link_to 'Редактировать', edit_user_path(user), class: 'btn btn-outline-dark', style: 'max-width: 100%; max-height: 100%;'
           %p.card-text
