@@ -82,10 +82,20 @@ $notification-circle-size: 25px;
     font-weight: 100;
   }
 
+  form {
+    padding: 0;
+
+    .form-check-input {
+      position: relative;
+      margin-left: 0;
+    }
+  }
+
   .actions {
     height: 40px;
 
     a {
+      margin-right: 10px;
       line-height: 40px;
       color: $focus-color;
     }
