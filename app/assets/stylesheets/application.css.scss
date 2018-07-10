@@ -16,14 +16,46 @@
  *= require select2-bootstrap
  */
 
-@import "bootstrap";
+ @import "bootstrap";
+ @import "https://use.fontawesome.com/releases/v5.1.0/css/solid.css";
+ @import "https://use.fontawesome.com/releases/v5.1.0/css/fontawesome.css";
 
 
-.bg-custom {
-  background-color: #464646;
-}
+ $header-bg: #464646;
+ $header-text: rgba(255, 255, 255, 0.5);
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  background-color: #b1b1b1;
-}
+ $focus-color: #006064;
 
+ $notification-circle-size: 25px;
+
+
+ .bg-custom {
+   background-color: $header-bg;
+ }
+
+ .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+   background-color: #b1b1b1;
+ }
+
+ .nav > li {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+ }
+
+ .notifications-circle {
+   width: $notification-circle-size;
+   height: $notification-circle-size;
+   border-radius: 50%;
+   background: #fff;
+
+   text-align: center;
+   line-height: $notification-circle-size;
+   font-size: 0.9rem;
+   color: $header-bg;
+ }
+
+ .notifications-circle:hover {
+   text-decoration: none;
+   color: $focus-color;
+ }

@@ -9,11 +9,14 @@
       %li.nav-item
         %a.nav-link{ :href => fields_path } Направления
 
-
     %ul.nav.navbar-nav.navbar-right
       %li
-        %a{ class: "btn btn-secondary btn-sm", href: '#' } Notifications
-        %span{ class: "badge badge-light" }= UserAnswer.where(status: 'На рассмотрении', recipient_id: current_user.id).count + UserAssignment.where(issue_state: 'Открыта', user_id: current_user.id).count
+        - notifications_count = UserAnswer.where(status: 'На рассмотрении', recipient_id: current_user.id).count + UserAssignment.where(issue_state: 'Открыта', user_id: current_user.id).count
+        - if notifications_count == 0
+          %a{ class: "notifications-circle fas fa-bell", href: '#' }
+        - else
+          %a{ class: "notifications-circle", href: '#' }
+            = notifications_count
 
       %li
       %li.nav-item
