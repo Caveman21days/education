@@ -1,0 +1,6 @@
+<% if @user_answer.errors.any? %>
+  $('.errors').html('<%= j render 'shared/errors', object: @user_answer %>');
+<% else %>
+  $('.flash').html('<%= j render 'shared/flash' %>');
+  $('.user-answer-' + <%= @user_answer.id %>).html('<%= j render @user_answer %>');
+<% end %>

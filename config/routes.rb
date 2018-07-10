@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :user_assignments, shallow: true
       resources :issues, shallow: true, except: [:index] do
         resources :user_assignments, shallow: true
+        resources :user_answers, shallow: true, only: [:create, :update, :destroy]
       end
     end
 
@@ -15,9 +16,12 @@ Rails.application.routes.draw do
       resources :user_assignments, shallow: true
       resources :issues, shallow: true, except: [:index] do
         resources :user_assignments, shallow: true
+        resources :user_answers, shallow: true, only: [:create, :update, :destroy]
       end
     end
   end
+  patch '/user_answers/:id/accept_user_answer', to: 'user_answers#accept_user_answer'
+  patch '/user_answers/:id/reject_user_answer', to: 'user_answers#reject_user_answer'
 
   resources :users
 

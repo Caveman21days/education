@@ -1,0 +1,13 @@
+<% if @user_answer.errors.any? %>
+  $('.errors').html('<%= j render 'shared/errors', object: @user_answer %>');
+<% else %>
+  $('.flash').html('<%= j render 'shared/flash' %>');
+  $('.user-answers').append('<%= j render @user_answer %>');
+  $('.user-answer-create #user_answer_body').val('');
+  $('.edit-user-answer-link').click(function(e) {
+      e.preventDefault();
+      $(this).hide();
+      var user_answer_id = $(this).data('userAnswerId');
+      $('form#edit-user-answer-' + user_answer_id).show();
+});
+<% end %>

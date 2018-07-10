@@ -1,0 +1,27 @@
+- if user_answer.persisted?
+  %div{ class: "user-answer-#{user_answer.id}" }
+    .row
+      .col-4
+        %p= "#{user_answer.user.l_name} #{user_answer.user.l_name}"
+        - if user_answer.status == "На рассмотрении" || nil
+          - if can? :update, user_answer
+            = link_to '+', "/user_answers/#{user_answer.id}/accept_user_answer", method: :patch, class: "btn btn-outline-secondary btn-sm"
+            = link_to '-', "/user_answers/#{user_answer.id}/reject_user_answer", method: :patch, class: "btn btn-outline-secondary btn-sm"
+      .col-5
+      .col-3
+        = answer_color(user_answer)
+    .row
+      .col-2
+      .col-10
+        %p= user_answer.body
+        - if can?(:update, user_answer)
+          = link_to 'Изменить', '', class: 'edit-user-answer-link btn btn-outline-secondary btn-sm', data: { user_answer_id: user_answer.id }
+          = form_for user_answer, remote: true, html: { id: "edit-user-answer-#{user_answer.id}" } do |f|
+            .form-group.row
+              .col-10
+                = f.text_area :body, rows: 5, class: 'form-control'
+              .col-2
+                = f.submit 'Сохранить', class: 'btn btn-outline-secondary btn-sm'
+          = link_to 'Удалить', user_answer_path(user_answer), method: :delete, remote: true, class: 'btn btn-outline-secondary btn-sm'
+%hr
+%br

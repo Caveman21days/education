@@ -1,12 +1,34 @@
 .col-12.card
   .row
     .col-12.card-header
-      %h5.text-left= issue.title
+      .row
+        .col-8
+          %h5.text-left= issue.title
+        .col-4
+          = link_to 'Перейти', issue_path(issue), class: "btn btn-outline-secondary btn-sm" if controller_name != 'issues'
+
+          - if can? :update, issue
+            = link_to 'Edit', edit_issue_path(issue), class: "btn btn-outline-secondary btn-sm"
+            = link_to 'Settings', issue_user_assignments_path(issue), class: "btn btn-outline-secondary btn-sm"
+
     .col-12.card-body
+      %h5 Задание
+      %hr
       %p= markdown(issue.body)
+      %br
+      %hr
+      %h5 Ответы
+      %hr
 
-      = link_to 'Перейти', issue_path(issue), class: "btn btn-outline-secondary btn-sm" if controller_name != 'issues'
-
-      - if can? :update, issue
-        = link_to 'Редактировать', edit_issue_path(issue), class: "btn btn-outline-secondary btn-sm"
-        = link_to 'Настроить', issue_user_assignments_path(issue), class: "btn btn-outline-secondary btn-sm"
+      .user-answers
+        = render issue.user_answers
+      .user-answer-create
+        - if user_signed_in?
+          - if can? :create, issue.user_answers
+            = form_for [issue, @user_answer], remote: true do |f|
+              .form-group.row
+                %label.col-2.col-form-label.text-right Новый ответ
+                .col-6
+                  = f.text_area :body, class: 'form-control'
+                .col-2
+                  = f.submit 'Сохранить', class: 'btn btn-outline-secondary btn-sm'

@@ -3,7 +3,10 @@
     .col-12.card-header
       %h5.text-left= course.name
     .col-12.card-body
-      %p= course.short_description
+      - if controller_name == "courses"
+        %p= markdown(course.description)
+      - else
+        %p= course.short_description
       - if can? :read, course
         = link_to 'Перейти', course_path(course), class: "btn btn-outline-secondary btn-sm" if controller_name != 'courses'
 

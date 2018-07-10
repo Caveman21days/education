@@ -5,17 +5,12 @@ class IssuesController < ApplicationController
 
   authorize_resource
 
-
-  # def index
-  #   @issues = @issuable.issues
-  #   render '_issue_panel'
-  # end
-
   def new
     respond_with @issue = @issuable.issues.new
   end
 
   def show
+    @user_answer = @issue.user_answers.new
     respond_with @issue
   end
 
