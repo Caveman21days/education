@@ -1,30 +1,25 @@
-.container
-  .row
-    .col-4
-      %h2 Sign up
-      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-        = devise_error_messages!
-        .field.form-group
-          = f.label :l_name
-          = f.text_field :l_name, class: "form-control"
-        .field.form-group
-          = f.label :f_name
-          = f.text_field :f_name, class: "form-control"
-        .field.form-group
-          = f.label :s_name
-          = f.text_field :s_name, class: "form-control"
-        .field.form-group
-          = f.label :email
-          = f.email_field :email, autofocus: true, autocomplete: "email", required: "", class: "form-control"
-        .field.form-group
-          = f.label :password, required: ""
-          - if @minimum_password_length
-            %em="#{@minimum_password_length} characters minimum"
-            %br
-          = f.password_field :password, autocomplete: "off", required: "", class: "form-control"
-        .field.form-group
-          = f.label :password_confirmation
-          = f.password_field :password_confirmation, autocomplete: "off", required: "", class: "form-control"
-        .actions
-          = f.submit "Sign up", class: "btn btn-sm btn-outline-secondary"
+.container.mx-auto.login-card
+  %h1 Sign up
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = devise_error_messages!
+    .field.form-group
+      = f.text_field :l_name, autofocus: true, autocomplete: "family-name", placeholder: "Last name", required: "", class: "form-control"
+
+    .field.form-group
+      = f.text_field :f_name, autofocus: true, autocomplete: "given-name", placeholder: "First name", required: "", class: "form-control"
+
+    .field.form-group
+      = f.text_field :s_name, autofocus: true, autocomplete: "additional-name", placeholder: "Surname", class: "form-control"
+
+    .field.form-group
+      = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", required: "", class: "form-control"
+
+    .field.form-group
+      = f.password_field :password, autocomplete: "off", placeholder: "Password (#{@minimum_password_length} characters minimum)", equired: "", class: "form-control"
+
+    .field.form-group
+      = f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password confirmation", equired: "", class: "form-control"
+
+    .actions
       = render "devise/shared/links"
+      = f.submit "Sign up", class: "btn btn-dark float-right"
