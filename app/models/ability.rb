@@ -6,25 +6,25 @@ class Ability
   def initialize(user)
     @user = user
 
-    if user.roles.empty?
-      if user.super_admin
-        admin_abilities
-      else
-        user_abilities
-      end
+    if user.super_admin
+      admin_abilities
     else
-      user.roles.each do |role|
-        case role.name
-        when 'admin'
-          admin_abilities
-        when 'student'
-          student_abilities
-        when 'teacher'
-          teacher_abilities
-        when 'project_manager'
-          pm_abilities
-        when 'curator'
-          curator_abilities
+      if user.roles.empty? 
+        user_abilities
+      else
+        user.roles.each do |role|
+          case role.name
+          when 'admin'
+            admin_abilities
+          when 'student'
+            student_abilities
+          when 'teacher'
+            teacher_abilities
+          when 'project_manager'
+            pm_abilities
+          when 'curator'
+            curator_abilities
+          end
         end
       end
     end
@@ -41,8 +41,11 @@ class Ability
   end
 
   def common_abilities
-    can :read, [UserAssignment] do |obj|
-      obj.user_id == user.id
+    can :read, Field
+    UserAssignment.all.each do |user_assignment|
+      if user_assignment.user_id == user.id
+        can :read, user_assignment.assignmentable
+      end
     end
     can :read, Forum
   end

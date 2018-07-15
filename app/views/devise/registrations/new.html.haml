@@ -6,13 +6,13 @@
         = devise_error_messages!
         .field.form-group
           = f.label :l_name
-          = f.text_field :l_name, autofocus: true, autocomplete: "family-name", required: "", class: "form-control"
+          = f.text_field :l_name, class: "form-control"
         .field.form-group
           = f.label :f_name
-          = f.text_field :f_name, autofocus: true, autocomplete: "given-name", required: "", class: "form-control"
+          = f.text_field :f_name, class: "form-control"
         .field.form-group
           = f.label :s_name
-          = f.text_field :s_name, autofocus: true, autocomplete: "additional-name", class: "form-control"
+          = f.text_field :s_name, class: "form-control"
         .field.form-group
           = f.label :email
           = f.email_field :email, autofocus: true, autocomplete: "email", required: "", class: "form-control"
