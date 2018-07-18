@@ -32,7 +32,7 @@ class Ability
 
 # =======================================
   def user_abilities
-    can :read, Field
+    can :read, [Field, Wiki]
   end
 # =======================================
 
@@ -47,13 +47,13 @@ class Ability
         can :read, user_assignment.assignmentable
       end
     end
-    can :read, Forum, Wiki
+    can :read, [Forum, Wiki]
   end
 
   def curator_abilities
     common_abilities
     can :update, Field, curator_id: user.id
-    can :manage, [Project, Course] do |obj|
+    can :manage, [Project, Course, Wiki] do |obj|
       obj.field.curator_id == user.id
     end
     can :update, UserAnswer, recipient_id: user.id

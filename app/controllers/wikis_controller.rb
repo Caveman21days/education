@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   before_action :set_wiki, only: [:show, :edit, :update, :destroy]
-  before_action :set_fields, only: [:new, :edit]
+  before_action :set_fields, only: [:new, :create, :edit, :update]
   authorize_resource
 
   def index
