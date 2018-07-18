@@ -4,6 +4,7 @@
       %a.nav-link.active.text-dark#v-pills-home-tab{ "data-toggle" => "pill", href: "#v-pills-home", role: "tab", "aria-controls" => "v-pills-home", "aria-selected" => "true" }Описание
       %a.nav-link.text-dark#v-pills-course-tab{ "data-toggle" => "pill", href: "#v-pills-course", role: "tab", "aria-controls" => "v-pills-course", "aria-selected" => "false" }Учебные материалы
       %a.nav-link.text-dark#v-pills-project-tab{ "data-toggle" => "pill", href: "#v-pills-project", role: "tab", "aria-controls" => "v-pills-project", "aria-selected" => "false" }Проекты
+      %a.nav-link.text-dark#v-pills-wiki-tab{ "data-toggle" => "pill", href: "#v-pills-wiki", role: "tab", "aria-controls" => "v-pills-wiki", "aria-selected" => "false" }Wiki
 
     - content_for :center do
       .tab-content#v-pills-tabContent
@@ -53,3 +54,20 @@
                   - @field.projects.each do |project|
                     .col-6
                       = render project
+
+        .tab-pane.fade#v-pills-wiki{ role: "tabpanel", "aria-labelledby" => "v-pills-project-tab" }
+          .col-12.card
+            .row
+              .col-12.card-header
+                .row
+                  .col-10
+                    %h5.text-left Wiki
+                  .col-2
+                    - if can? :manage, @field
+                      = link_to "Добавить", new_wiki_path, class: 'btn btn-sm btn-dark'
+
+              .col-12.card-body
+                .row
+                  - @field.wikis.each do |wiki|
+                    .col-6
+                      = render wiki

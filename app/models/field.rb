@@ -3,6 +3,7 @@ class Field < ApplicationRecord
 
   has_many :projects
   has_many :courses
+  has_many :wikis
   has_many :users, through: :user_assignments
 
 

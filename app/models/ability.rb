@@ -47,7 +47,7 @@ class Ability
         can :read, user_assignment.assignmentable
       end
     end
-    can :read, Forum
+    can :read, Forum, Wiki
   end
 
   def curator_abilities
