@@ -34,7 +34,7 @@ module ApplicationHelper
     case object.class.name
     when "Field"
       User.all
-    when "Course", "Project"
+    when "Course", "Project", "Wiki"
       object.field.users
     when "Issue"
       object.issuable.users
@@ -43,7 +43,7 @@ module ApplicationHelper
 
   def assignmentable_roles(object)
     case object.class.name
-    when "Field", "Course", "Project"
+    when "Field", "Course", "Project", "Wiki"
       Role.all
     when "Issue"
       Role.where(name: ["Исполнитель", "Наблюдатель"])

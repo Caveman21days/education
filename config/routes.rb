@@ -21,7 +21,11 @@ Rails.application.routes.draw do
       end
     end
   end
-  
+
+  resources :wikis do
+    resources :user_assignments, shallow: true
+  end
+
   patch '/user_answers/:id/accept_user_answer', to: 'user_answers#accept_user_answer'
   patch '/user_answers/:id/reject_user_answer', to: 'user_answers#reject_user_answer'
 

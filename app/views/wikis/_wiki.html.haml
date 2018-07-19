@@ -1,0 +1,16 @@
+.col-12.card
+  .row
+    .col-12.card-header
+      %h5.text-left= wiki.name
+    .col-12.card-body
+      - if controller_name == "wikis"
+        %p= markdown(wiki.body)
+      - else
+        %p= wiki.body.truncate(75)
+      - if can? :read, wiki
+        = link_to 'Перейти', wiki_path(wiki), class: "btn btn-outline-secondary btn-sm" if controller_name != 'wikis'
+
+      - if controller_name != "fields"
+        - if can? :update, wiki
+          = link_to 'Редактировать', edit_wiki_path(wiki), class: "btn btn-outline-secondary btn-sm"
+          = link_to 'Настроить', wiki_user_assignments_path(wiki), class: "btn btn-outline-secondary btn-sm"
