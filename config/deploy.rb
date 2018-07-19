@@ -9,6 +9,8 @@ set :deploy_to, "/home/deployer/education"
 set :format, :pretty
 set :deploy_user, 'deployer'
 
+set :branch, ENV['BRANCH'] if ENV['BRANCH']
+
 append :linked_files, "config/database.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
