@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180704094647) do
+ActiveRecord::Schema.define(version: 20180718114337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.text "body"
+    t.integer "topic_id"
+    t.integer "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "courses", force: :cascade do |t|
     t.integer "field_id"
@@ -49,6 +57,8 @@ ActiveRecord::Schema.define(version: 20180704094647) do
     t.text "body", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "parent_id"
+    t.integer "progress", default: 0
     t.index ["issuable_id", "issuable_type"], name: "index_issues_on_issuable_id_and_issuable_type"
   end
 
@@ -68,12 +78,22 @@ ActiveRecord::Schema.define(version: 20180704094647) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "topics", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.string "section"
+    t.integer "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_answers", force: :cascade do |t|
     t.integer "user_id"
     t.integer "issue_id"
     t.text "body"
     t.integer "recipient_id"
     t.string "status"
+    t.integer "perfomance"
   end
 
   create_table "user_assignments", force: :cascade do |t|

@@ -1,0 +1,41 @@
+- if answer.persisted?
+  .row
+    .col-12.card-header
+      .row
+        .col-4
+          %p= "#{answer.author.l_name} #{answer.author.f_name}"
+        .col-4
+          %p= answer.author.email
+        .col-4
+          %p= answer.updated_at.strftime("%d.%m.%Y %H:%M")
+
+    .card-body
+      .row
+        .col-9
+          %p= answer.body
+        .col-3  
+          - if can?(:update, answer)
+            = link_to 'Edit', '', class: 'edit-answer-link btn btn-sm btn-outline-secondary', data: { answer_id: answer.id }
+            = link_to 'Delete', answer_path(answer), method: :delete, remote: true, class: "btn btn-sm btn-outline-secondary"
+
+      / - answer.attachments.each do |a|
+      /   %li
+      /     = link_to a.file.identifier, a.file.url
+      /     - if can?(:destroy, a)
+      /       = link_to 'delete file', attachment_path(a), method: :delete, remote: true
+
+      %hr
+      = form_for answer, remote: true, html: { id: "edit-answer-#{answer.id}" } do |f|
+        .form-group.row
+          .col-2
+            = f.label :body, 'Ваш ответ'
+          .col-8
+            = f.text_area :body, class: 'form-control'
+          .col-2
+            = f.submit 'Сохранить', class: 'btn btn-outline-secondary btn-sm'
+
+        / #attachments
+        /   = f.fields_for :attachments do |attachment|
+        /     = render 'shared/attachments', f: attachment
+        /   .links
+        /     = link_to_add_association 'add file', f, :attachments, partial: 'shared/attachments'
