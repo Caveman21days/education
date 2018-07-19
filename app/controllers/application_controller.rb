@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
 
   check_authorization unless: :devise_controller?
 
+  before_action :set_notification_count unless :devise_controller?
 
   rescue_from CanCan::AccessDenied do |e|
     respond_to do |format|
@@ -18,4 +19,9 @@ class ApplicationController < ActionController::Base
       format.js   { head :forbidden }
     end
   end
+
+  def set_notification_count
+      @notifications = UserAnswer.where(status: 'На рассмотрении', recipient_id: current_user.id).count + UserAssignment.where(issue_state: 'Открыта', user_id: current_user.id).count
+  end
+
 end

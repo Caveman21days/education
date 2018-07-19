@@ -1,6 +1,25 @@
-.card.border-dark.mb-3
-  .card-body.text-dark
-    %h5.card-title
-      = "#{@user.f_name} #{@user.l_name}"
-    %p.card-text
+.fancy-card.user-card
+  .controls
+    = link_to '', edit_user_path(current_user.id), class: 'fas fa-pen'
+  %img{alt: 'Profile picture', src: "https://orig00.deviantart.net/4355/f/2012/097/3/e/cs_go_avatar_by_k4d1ra-d4va8gu.jpg"}
+
+  %h1.main-heading
+    = "#{@user.f_name} #{@user.l_name} #{@user.s_name}"
+
+  .fields
+    .key
+      Регион
+    .value
+      Свердловская область
+    .key
+      Город
+    .value
+      = @user.city
+    .key
+      Дом
+    .value
+      12
+    .key
+      Emael
+    .value
       = @user.email

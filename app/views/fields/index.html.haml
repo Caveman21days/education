@@ -1,12 +1,10 @@
 .col-12.card.bg-light
   .row
     .col-12.card-header
-      .row
-        .col-10
-          %h5.text-left Направления
-        .col-2
-          - if can? :manage, Field
-            = link_to "Добавить", new_field_path, class: 'btn btn-sm btn-dark'
+      %h5.text-left Направления
+      .buttons
+        - if can? :manage, Field
+          = link_to "Добавить", new_field_path, class: 'btn btn-sm btn-dark'
 
     .col-12.card-body
       .row

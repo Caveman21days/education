@@ -16,6 +16,21 @@
       .col-10
         = f.text_area :description, placeholder: "Описание", class: "form-control", rows: 7
 
+    .form-group.row
+      %label.col-2.col-form-label.text-right Стадия разработки
+      .col-10
+        = f.select(:stage, Project.stages.collect { |s| [ s, Project.stages.index(s) ] }, {include_blank: false}, { :class => "form-control" })
+
+    .form-group.row
+      %label.col-2.col-form-label.text-right НТИ
+      .col-10
+        = f.select(:nti, Project.nti.collect { |nti| [ nti, Project.nti.index(nti) ] }, {include_blank: false}, { :class => "form-control" })
+
+    .form-group.row
+      %label.col-2.col-form-label.text-right Фонд бортник
+      .col-10
+        = f.select(:bortnik, Project.bortnik.collect { |nti| [ nti, Project.bortnik.index(nti) ] }, {include_blank: false}, { :class => "form-control" })
+
     .row
       .col-6
       .col-6

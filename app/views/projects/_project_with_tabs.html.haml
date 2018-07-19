@@ -1,0 +1,24 @@
+
+.card
+  .card-header{style: 'padding-bottom: 0;'}
+    %h1
+      = @project.name
+    .buttons{style: 'padding: 10px;'}
+      - if can? :update, @project
+        = link_to 'Редактировать', edit_project_path(@project), class: "btn btn-outline-secondary btn-sm float-right"
+    %nav.w-100
+      #nav-tab.nav.nav-tabs{:role => "tablist", :style => "border-bottom: 0;"}
+        %a#nav-home-tab.nav-item.nav-link.active{"aria-controls" => "nav-home", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-home", :role => "tab"} Home
+        %a#nav-profile-tab.nav-item.nav-link{"aria-controls" => "nav-members", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-profile", :role => "tab"} Members
+        %a#nav-contact-tab.nav-item.nav-link{"aria-controls" => "nav-issues", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-contact", :role => "tab"} Issues
+  #nav-tabContent.tab-content.card-body
+    #nav-home.tab-pane.fade.show.active{"aria-labelledby" => "nav-home-tab", :role => "tabpanel"}
+      %h2
+        = "#{@stage_name}"
+        = @nti_name
+        = @bortnik_name
+      = @project.description
+    #nav-profile.tab-pane.fade{"aria-labelledby" => "nav-profile-tab", :role => "tabpanel"}
+      = render 'users/users_tab', issuable: @project
+    #nav-contact.tab-pane.fade{"aria-labelledby" => "nav-contact-tab", :role => "tabpanel"}
+      = render 'issues/issue_tab', issuable: @project

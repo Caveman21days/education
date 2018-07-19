@@ -1,0 +1,18 @@
+%a{ href: issuable_link(issuable), class: "btn btn-sm btn-dark fas fa-plus" }
+.row
+  .col-6
+    %b Задача
+  .col-6
+    %b Назначена
+%hr
+
+- issuable.issues.each do |issue|
+  .row
+    .col-6
+      - if can? :read, issue
+        = link_to issue.title, issue_path(issue)
+      - else
+        %p= issue.title
+    .col-6
+      - issue.users.each do |user|
+        %p= "#{user.f_name} #{user.l_name}"

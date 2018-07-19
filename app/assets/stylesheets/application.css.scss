@@ -1,80 +1,119 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_self
- *= require_tree .
- *= require select2
- *= require select2-bootstrap
- */
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+* vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*= require_self
+*= require_tree .
+*= require select2
+*= require select2-bootstrap
+*/
 
- @import "bootstrap";
+@import "bootstrap";
 
 
- @import "https://use.fontawesome.com/releases/v5.1.0/css/solid.css";
- @import "https://use.fontawesome.com/releases/v5.1.0/css/fontawesome.css";
+@import "https://use.fontawesome.com/releases/v5.1.0/css/solid.css";
+@import "https://use.fontawesome.com/releases/v5.1.0/css/fontawesome.css";
 
- // variables that should be in a separate file called something like _variables.scss
- $header-bg: #464646;
- $header-text: rgba(255, 255, 255, 0.5);
+// variables that should be in a separate file called something like _variables.scss
+$header-bg: #464646;
+$header-text: rgba(255, 255, 255, 0.5);
 
- $focus-color: #1d2124;
+$focus-color: #1d2124;
 
- $notification-circle-size: 25px;
+$notification-circle-size: 25px;
 
- // makes all bootstrap input[type=text] darker
- .form-control:focus {
-   border-color: rgba(52, 58, 64, 0.5);
-   box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
- }
+/* Bootstrap Overrides */
 
- .bg-custom {
-   background-color: $header-bg;
- }
+// makes all bootstrap input[type=text] darker
+.form-control:focus {
+ border-color: rgba(52, 58, 64, 0.5);
+ box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
+}
 
- .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-   background-color: #b1b1b1;
- }
+.bg-custom {
+ background-color: $header-bg;
+}
 
- // center content vertically
- .nav > li {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
- }
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+ background-color: #b1b1b1;
+}
 
- // new notification bell
- .notifications-circle {
-   width: $notification-circle-size;
-   height: $notification-circle-size;
-   border-radius: 50%;
-   background: #fff;
+.card-header {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
 
-   text-align: center;
-   line-height: $notification-circle-size;
-   font-size: 0.9rem;
-   color: $header-bg;
- }
+}
 
- .notifications-circle:hover {
-   text-decoration: none;
-   color: $focus-color;
- }
+.card {
+  margin-bottom: 15px !important;
 
- // sign in and sign up
- .login-card {
-   width: 50%;
-   padding: 50px 45px;
-   border-radius: 8px;
-   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+  .btn {
+    float: right;
+    margin-left: 10px;
+  }
+}
+
+
+// center content vertically
+.nav > li {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+}
+
+// new notification bell
+.notifications-circle {
+ width: $notification-circle-size;
+ height: $notification-circle-size;
+ border-radius: 50%;
+ background: #fff;
+
+ text-align: center;
+ line-height: $notification-circle-size;
+ font-size: 0.9rem;
+ color: $header-bg;
+}
+
+.notifications-circle:hover {
+ text-decoration: none;
+ color: $focus-color;
+}
+
+/* Error */
+#error_explanation {
+
+  h2 {
+    display: none;
+  }
+
+  ul {
+    list-style: none;
+    margin-bottom: 0;
+    padding-left: 0;
+
+    li {
+
+    }
+  }
+}
+
+.fancy-card {
+ width: 50%;
+ margin: auto;
+ padding: 50px 45px;
+ border-radius: 8px;
+ box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+
 
    h1 {
      margin-bottom: 35px;
@@ -82,10 +121,21 @@
      font-weight: 100;
    }
 
+
+   form {
+     padding: 0;
+
+     .form-check-input {
+       position: relative;
+       margin-left: 0;
+     }
+   }
+
    .actions {
      height: 40px;
 
      a {
+       margin-right: 10px;
        line-height: 40px;
        color: $focus-color;
      }
@@ -94,4 +144,57 @@
        margin: 1px 0;
      }
    }
- }
+}
+
+.user-card {
+  padding: 25px 30px;
+
+  .controls {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 15px;
+    font-size: 1.25em;
+
+    a {
+      color: black;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+  }
+
+  img {
+    display: block;
+    height: 150px;
+    width: 150px;
+    margin: auto;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    /* border: 5px solid green; */
+
+  }
+
+  .main-heading {
+    text-align: center;
+    font-size: 3rem;
+  }
+
+  .fields {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 70%;
+    margin: auto;
+
+
+    .key {
+      width: 25%;
+      font-weight: bolder;
+    }
+
+    .value {
+      width: 65%;
+      margin-bottom: 8px;
+    }
+  }
+}

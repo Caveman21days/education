@@ -24,12 +24,10 @@
           .col-12.card
             .row
               .col-12.card-header
-                .row
-                  .col-10
-                    %h5.text-left Учебные материалы
-                  .col-2
-                    - if can? :manage, @field
-                      = link_to "Добавить", new_field_course_path(@field), class: 'btn btn-sm btn-dark'
+                %h5.text-left Учебные материалы
+                .buttons
+                  - if can? :manage, @field
+                    = link_to "Добавить", new_field_course_path(@field), class: 'btn btn-sm btn-dark'
 
               .col-12.card-body
                 .row
@@ -42,12 +40,10 @@
           .col-12.card
             .row
               .col-12.card-header
-                .row
-                  .col-10
-                    %h5.text-left Проекты
-                  .col-2
-                    - if can? :manage, @field
-                      = link_to "Добавить", new_field_project_path(@field), class: 'btn btn-sm btn-dark'
+                %h5.text-left Проекты
+                .butons
+                  - if can? :manage, @field
+                    = link_to "Добавить", new_field_project_path(@field), class: 'btn btn-sm btn-dark'
 
               .col-12.card-body
                 .row
