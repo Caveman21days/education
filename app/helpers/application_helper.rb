@@ -49,4 +49,8 @@ module ApplicationHelper
       Role.where(name: ["Исполнитель", "Наблюдатель"])
     end
   end
+
+  def field_topics
+    @field_with_names = Field.pluck(:id, :name)
+  end
 end

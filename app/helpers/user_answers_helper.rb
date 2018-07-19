@@ -8,4 +8,9 @@ module UserAnswersHelper
       "<p class='text-danger'> Ответ отклонен </p>".html_safe
     end
   end
+  
+
+  def user_answer_mark
+    [['Балл', 1], ['Балла', 2], ['Балла', 3], ['Балла', 4], ['Баллов', 5], ['Баллов', 6], ['Баллов', 7], ['Баллов', 8], ['Баллов', 9], ['Баллов', 10]]
+  end
 end
