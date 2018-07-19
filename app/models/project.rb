@@ -54,4 +54,16 @@ class Project < ApplicationRecord
   validates :bortnik, inclusion: { in: [*0..(Project.bortnik.length - 1)],
     message: 'Выбранный классификатор бортника не корректен' }, presence: true
 
+  def self.project_type
+    return [
+      'Школьный',
+      'Студенческий',
+      'Сложный',
+      'Профессиональный',
+    ]
+    end
+
+    validates :project_type, inclusion: { in: [*0..(Project.project_type.length - 1)],
+      message: 'Выбранный классификатор не корректен' }, presence: true
+
 end

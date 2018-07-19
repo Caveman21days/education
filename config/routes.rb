@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   patch '/user_answers/:id/reject_user_answer', to: 'user_answers#reject_user_answer'
 
   resources :users
+  resources :search
+
+  post 'search/projects/', to: 'search#search_projects'
 
   root to: 'fields#index'
 end

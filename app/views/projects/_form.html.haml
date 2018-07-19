@@ -27,9 +27,14 @@
         = f.select(:nti, Project.nti.collect { |nti| [ nti, Project.nti.index(nti) ] }, {include_blank: false}, { :class => "form-control" })
 
     .form-group.row
-      %label.col-2.col-form-label.text-right Фонд бортник
+      %label.col-2.col-form-label.text-right Фонд бортника
       .col-10
-        = f.select(:bortnik, Project.bortnik.collect { |nti| [ nti, Project.bortnik.index(nti) ] }, {include_blank: false}, { :class => "form-control" })
+        = f.select(:bortnik, Project.bortnik.collect { |bortnik| [ bortnik, Project.bortnik.index(bortnik) ] }, {include_blank: false}, { :class => "form-control" })
+
+    .form-group.row
+      %label.col-2.col-form-label.text-right Тип проекта
+      .col-10
+        = f.select(:project_type, Project.project_type.collect { |type| [ type, Project.project_type.index(type) ] }, {include_blank: false}, { :class => "form-control" })
 
     .row
       .col-6

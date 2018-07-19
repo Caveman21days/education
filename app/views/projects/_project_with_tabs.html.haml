@@ -1,4 +1,3 @@
-
 .card
   .card-header{style: 'padding-bottom: 0;'}
     %h1
@@ -17,7 +16,9 @@
         = "#{@stage_name}"
         = @nti_name
         = @bortnik_name
+        = @project_type_name
       = @project.description
+
     #nav-profile.tab-pane.fade{"aria-labelledby" => "nav-profile-tab", :role => "tabpanel"}
       = render 'users/users_tab', issuable: @project
     #nav-contact.tab-pane.fade{"aria-labelledby" => "nav-contact-tab", :role => "tabpanel"}

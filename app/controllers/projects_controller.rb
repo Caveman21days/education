@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, :set_stage_name, :set_nti_name, :set_bortnik_name, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, :set_stage_name, :set_nti_name, :set_bortnik_name, :set_project_type_name, only: [:show, :edit, :update, :destroy]
   before_action :set_field, only: [:new, :create, :index]
 
   authorize_resource
@@ -21,6 +21,10 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def set_project_type_name
+    @project_type_name = Project.project_type[@project.project_type]
+  end
 
   def set_bortnik_name
     @bortnik_name = Project.bortnik[@project.bortnik]
@@ -44,6 +48,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :short_description, :description, :project_manager_id, :stage, :nti, :bortnik)
+    params.require(:project).permit(:name, :short_description, :description, :project_manager_id, :stage, :nti, :bortnik, :project_type)
   end
 end
