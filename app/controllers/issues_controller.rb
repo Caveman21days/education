@@ -23,13 +23,18 @@ class IssuesController < ApplicationController
 
   def update
     @issue.update(issue_params)
-    redirect_to @issue.issuable
+    respond_with @issue
   end
 
   def destroy
     issuable = @issue.issuable
     @issue.destroy
     redirect_to issuable
+  end
+
+  def user_issues_list
+    issue = Issue.find(params[:issue_id])
+    @user_issues = UserAssignment.where(assignmentable_id: issue.id, assignmentable_type: issue.class.name)
   end
 
 
@@ -44,7 +49,7 @@ class IssuesController < ApplicationController
   end
 
   def issue_params
-    params.require(:issue).permit(:title, :body, :teacher_id)
+    params.require(:issue).permit(:title, :body, :teacher_id, :progress)
   end
 
   def issuable_object

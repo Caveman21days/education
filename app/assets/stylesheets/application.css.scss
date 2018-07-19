@@ -30,6 +30,7 @@ $focus-color: #1d2124;
 
 $notification-circle-size: 25px;
 
+<<<<<<< HEAD
 /* Bootstrap Overrides */
 
 // makes all bootstrap input[type=text] darker
@@ -40,6 +41,16 @@ $notification-circle-size: 25px;
 
 .bg-custom {
  background-color: $header-bg;
+=======
+// makes all bootstrap input[type=text] darker
+.form-control:focus {
+  border-color: rgba(52, 58, 64, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
+}
+
+.bg-custom {
+  background-color: $header-bg;
+>>>>>>> 802f140c13f8a5b09381aa96f8eab11086f992f3
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -89,6 +100,7 @@ $notification-circle-size: 25px;
  color: $focus-color;
 }
 
+<<<<<<< HEAD
 /* Error */
 #error_explanation {
 
@@ -198,3 +210,66 @@ $notification-circle-size: 25px;
     }
   }
 }
+=======
+// center content vertically
+.nav > li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+// new notification bell
+.notifications-circle {
+  width: $notification-circle-size;
+  height: $notification-circle-size;
+  border-radius: 50%;
+  background: #fff;
+
+  text-align: center;
+  line-height: $notification-circle-size;
+  font-size: 0.9rem;
+  color: $header-bg;
+}
+
+.notifications-circle:hover {
+  text-decoration: none;
+  color: $focus-color;
+}
+
+// sign in and sign up
+.login-card {
+  width: 50%;
+  padding: 50px 45px;
+  border-radius: 8px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+
+  h1 {
+    margin-bottom: 35px;
+    font-size: 2rem;
+    font-weight: 100;
+  }
+
+  form {
+    padding: 0;
+
+    .form-check-input {
+      position: relative;
+      margin-left: 0;
+    }
+  }
+
+  .actions {
+    height: 40px;
+
+    a {
+      margin-right: 10px;
+      line-height: 40px;
+      color: $focus-color;
+    }
+
+    input {
+      margin: 1px 0;
+    }
+  }
+}
+>>>>>>> 802f140c13f8a5b09381aa96f8eab11086f992f3

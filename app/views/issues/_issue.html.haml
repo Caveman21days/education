@@ -1,6 +1,7 @@
 .col-12.card
   .row
     .col-12.card-header
+<<<<<<< HEAD
       %h5.text-left
         = issue.title
       .buttons
@@ -8,21 +9,41 @@
         - if can? :update, issue
           = link_to 'Edit', edit_issue_path(issue), class: "btn btn-outline-secondary btn-sm"
           = link_to 'Settings', issue_user_assignments_path(issue), class: "btn btn-outline-secondary btn-sm"
+=======
+      .row
+        .col-8
+          %h5.text-left= issue.title
+        .col-4
+          = link_to 'Перейти', issue_path(issue), class: "btn btn-outline-secondary btn-sm" if controller_name != 'issues'
+
+          - if can? :update, issue
+            - if can? :manage, issue
+              = link_to 'Edit', issue_user_issues_list_path(issue), class: "btn btn-outline-secondary btn-sm"
+            - else
+              = link_to 'Edit', edit_issue_path(issue), class: "btn btn-outline-secondary btn-sm"
+          - if can? :manage, issue
+            = link_to 'Settings', issue_user_assignments_path(issue), class: "btn btn-outline-secondary btn-sm"
+>>>>>>> 802f140c13f8a5b09381aa96f8eab11086f992f3
 
     .col-12.card-body
-      %h5 Задание
+      %h4 Прогресс выполнения
+      .progress
+        .progress-bar.progress-bar-striped.progress-bar-animated{ role: "progressbar",  "aria-valuenow" => "#{issue.progress}", "aria-valuemin" => "0", "aria-valuemax" => "100", style: "width: #{issue.progress}%"}
+      
+      %hr
+      %br
+      %h4 Задание
       %hr
       %p= markdown(issue.body)
-      %br
       %hr
-      %h5 Ответы
+      %h4 Ответы
       %hr
 
       .user-answers
         = render issue.user_answers
       .user-answer-create
         - if user_signed_in?
-          - if can? :create, issue.user_answers
+          - if can? :create, UserAnswer
             = form_for [issue, @user_answer], remote: true do |f|
               .form-group.row
                 %label.col-2.col-form-label.text-right Новый ответ
