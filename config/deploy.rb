@@ -2,16 +2,20 @@
 lock "~> 3.11.0"
 
 set :application, "education"
-set :repo_url, "git@github.com:Caveman21days/education.git"
+
+# set :repo_url, "git@github.com:Caveman21days/education.git"
+set :repo_url, "https://github.com/Caveman21days/education.git"
 
 set :deploy_to, "/home/deployer/education"
 
 set :format, :pretty
+
 set :deploy_user, 'deployer'
 
-set :branch, ENV['BRANCH'] if ENV['BRANCH']
+set :branch, 'dev'
 
 append :linked_files, "config/database.yml"
+
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
 set :keep_releases, 10

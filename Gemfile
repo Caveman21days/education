@@ -29,8 +29,9 @@ gem 'cancancan', '~> 2.0'
 gem 'select2-rails'
 gem 'pygments.rb', '~> 0.6.0'
 gem 'redcarpet'
-
-
+gem 'carrierwave'
+gem 'remotipart'
+gem 'cocoon'
 
 # gem 'therubyracer', platforms: :ruby
 # gem 'redis', '~> 4.0'

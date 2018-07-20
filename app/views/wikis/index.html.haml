@@ -11,12 +11,11 @@
     .col-12.card-body
       - @wikis.each do |wiki|
         .row
-          .col-12
-            .col-12.card
-              .row
-                .col-12.card-header
-                  %h5
-                    = "#{wiki.name} (#{wiki.field.name})"
-                    - if can? :read, wiki
-                      = link_to 'Просмотр', wiki_path(wiki), class: "btn btn-outline-secondary btn-sm"
-        %br
+          .col-12.card
+            .row
+              .col-12.card-header
+                %h5
+                  = "#{wiki.name} (#{wiki.field.name})"
+                  - if can? :read, wiki
+                    = link_to 'Просмотр', wiki_path(wiki), class: "btn btn-outline-secondary btn-sm"
+          %br

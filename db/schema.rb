@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20180720180411) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "attachments", force: :cascade do |t|
+    t.string "file"
+    t.string "attachable_id"
+    t.string "attachable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.integer "field_id"
     t.string "name"
@@ -134,6 +143,7 @@ ActiveRecord::Schema.define(version: 20180720180411) do
     t.integer "field_id"
     t.string "name"
     t.text "body"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "wikiable_id"

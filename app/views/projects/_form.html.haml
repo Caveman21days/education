@@ -16,6 +16,9 @@
       .col-10
         = f.text_area :description, placeholder: "Описание", class: "form-control", rows: 7
 
+    .form-group.row
+      .col-5
+        = render 'shared/nested_form/attachments_form', f: f, attachable: @project
     .row
       .col-6
       .col-6

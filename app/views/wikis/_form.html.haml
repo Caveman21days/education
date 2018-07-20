@@ -2,7 +2,7 @@
   = form_for [@wikiable, @wiki], html: {class: "form-horizontal"} do |f|
 
     .form-group.row
-      %label.col-2.col-form-label.text-right Пользователь
+      %label.col-2.col-form-label.text-right Направление
       .col-4
         = f.select :field_id, {}, { include_blank: true }, { class: "form-control" } do
           - @fields.each do |field|
