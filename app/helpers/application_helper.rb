@@ -30,6 +30,11 @@ module ApplicationHelper
     "/#{object.class.name.downcase}s/#{object.id}/issues/new"
   end
 
+  def wikiable_link(object)
+    object.class.name.downcase
+    "/#{object.class.name.downcase}s/#{object.id}/wikis/new"
+  end
+
   def assignmentable_users(object)
     case object.class.name
     when "Field"

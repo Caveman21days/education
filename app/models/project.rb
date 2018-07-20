@@ -4,6 +4,7 @@ class Project < ApplicationRecord
   has_many :user_assignments, as: :assignmentable, dependent: :destroy
   has_many :users,  through: :user_assignments
   has_many :issues, as: :issuable
+  has_many :wikis, as: :wikiable
 
   has_many :attachments, as: :attachable, dependent: :destroy
   accepts_nested_attributes_for :attachments, reject_if: :all_blank
