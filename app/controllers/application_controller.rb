@@ -12,6 +12,9 @@ class ApplicationController < ActionController::Base
 
   check_authorization unless: :devise_controller?
 
+  before_action :set_notifications_count unless :devise_controller?
+
+
 
   rescue_from CanCan::AccessDenied do |e|
     respond_to do |format|
@@ -26,5 +29,9 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:f_name, :l_name, :s_name])
+  end
+
+  def set_notifications_count
+    @notifications_count = UserAnswer.where(status: 'На рассмотрении', recipient_id: current_user.id).count + UserAssignment.where(issue_state: 'Открыта', user_id: current_user.id).count
   end
 end

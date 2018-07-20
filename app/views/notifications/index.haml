@@ -1,0 +1,18 @@
+.col-12.card
+  .row
+    .col-12.card-header
+      %h5.text-left Все уведомления
+    .col-12.card-body
+      %h5 Задачи
+      - if @notifications[0].empty?
+        %p Нет активных задач
+      - else
+        - @notifications[0].each do |n|
+          = link_to n.title, issue_path(issue)
+      %hr
+      %h5 Ответы
+      - if @notifications[1].empty?
+        %p Нет непросмотренных ответов
+      - else
+        - @notifications[1].each do |ua|
+          = link_to "Новый ответ от #{ua.user.l_name} #{ua.user.f_name}", issue_path(ua.issue)

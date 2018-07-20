@@ -1,3 +1,0 @@
-class ForumsController < ApplicationController
-
-end

@@ -42,6 +42,6 @@ class UserAnswersController < ApplicationController
   end
 
   def user_answer_params
-    params.require(:user_answer).permit(:body)
+    params.require(:user_answer).permit(:body, :perfomance)
   end
 end

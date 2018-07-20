@@ -47,7 +47,13 @@ class Ability
         can :read, user_assignment.assignmentable
       end
     end
-    can :read, [Forum, Wiki]
+
+    can :update, [Topic, Answer] do |obj| 
+      obj.author_id == user.id
+    end
+    
+    can :create, [Topic, Answer]
+    can :read, [Topic, Answer, Wiki]
   end
 
   def curator_abilities
@@ -79,5 +85,8 @@ class Ability
   def student_abilities
     common_abilities
     can :create, UserAnswer
+    can :update, Issue do |issue|
+      issue.users.find(user.id)
+    end
   end
 end
