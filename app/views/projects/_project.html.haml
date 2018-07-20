@@ -4,7 +4,12 @@
       %h5.text-left= project.name
     .col-12.card-body
       - if controller_name == "projects"
-        %p= markdown(project.description)
+        - unless course.attachments.empty?
+          %p= markdown(project.description)
+          %hr
+          %p Файлы:
+          = render partial: 'shared/nested_form/attachments', locals: { obj: project }
+
       - else
         %p= project.short_description
       - if can? :read, project

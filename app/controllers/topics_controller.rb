@@ -39,6 +39,6 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:title, :body, :section) # Тут переписать на топик секшенс
+    params.require(:topic).permit(:title, :body, :section, attachments_attributes: [:file])
   end
 end

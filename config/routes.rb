@@ -37,5 +37,7 @@ Rails.application.routes.draw do
     resources :answers, only: [:create, :update, :destroy], shallow: true
   end
 
+  resources :attachments, only: [:destroy]
+
   root to: 'fields#index'
 end

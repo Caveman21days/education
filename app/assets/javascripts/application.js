@@ -14,6 +14,8 @@
 //= require popper
 //= require bootstrap
 //= require rails-ujs
+//= require jquery.remotipart
+//= require cocoon
 //= require select2
 //= require select2_locale_ru
 //= require_tree .
