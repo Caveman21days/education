@@ -1,6 +1,7 @@
 class WikisController < ApplicationController
   before_action :set_wiki, only: [:show, :edit, :update, :destroy]
   before_action :set_fields, only: [:new, :create, :edit, :update]
+  before_action :set_wikiable, only: [:new, :create, :edit, :update]
   authorize_resource
 
   def index
@@ -12,11 +13,11 @@ class WikisController < ApplicationController
   end
 
   def new
-    respond_with @wiki = Wiki.new
+    respond_with @wiki = @wikiable.wikis.new
   end
 
   def create
-    respond_with(@wiki = Wiki.create(wiki_params))
+    respond_with(@wiki = @wikiable.wikis.create(wiki_params))
   end
 
   def edit; end
@@ -36,11 +37,24 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
   end
 
+
+  def set_wikiable
+    @wikiable = wikiable_object
+  end
+
   def set_fields
     @fields = Field.all
   end
 
   def wiki_params
     params.require(:wiki).permit(:field_id, :name, :body)
+  end
+
+  def wikiable_object
+    if params[:project_id]
+      Project.find(params[:project_id])
+    elsif params[:course_id]
+      Course.find(params[:course_id])
+    end
   end
 end

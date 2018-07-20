@@ -1,5 +1,5 @@
 .col-12
-  = form_for @wiki, html: {class: "form-horizontal"} do |f|
+  = form_for [@wikiable, @wiki], html: {class: "form-horizontal"} do |f|
 
     .form-group.row
       %label.col-2.col-form-label.text-right Пользователь
