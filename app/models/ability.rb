@@ -43,7 +43,7 @@ class Ability
   def common_abilities
     can :read, Field
     UserAssignment.all.each do |user_assignment|
-      if user_assignment.user_id == user.id
+      if user_assignment.user_id == user.id && user_assignment.date_end > DateTime.now
         can :read, user_assignment.assignmentable
       end
     end

@@ -6,13 +6,8 @@
           %h5.text-left= issue.title
         .col-4
           = link_to 'Перейти', issue_path(issue), class: "btn btn-outline-secondary btn-sm" if controller_name != 'issues'
-
-          - if can? :update, issue
-            - if can? :manage, issue
-              = link_to 'Edit', issue_user_issues_list_path(issue), class: "btn btn-outline-secondary btn-sm"
-            - else
-              = link_to 'Edit', edit_issue_path(issue), class: "btn btn-outline-secondary btn-sm"
           - if can? :manage, issue
+            = link_to 'Edit', edit_issue_path(issue), class: "btn btn-outline-secondary btn-sm"
             = link_to 'Settings', issue_user_assignments_path(issue), class: "btn btn-outline-secondary btn-sm"
 
     .col-12.card-body
@@ -21,7 +16,6 @@
         .progress-bar.progress-bar-striped.progress-bar-animated{ role: "progressbar",  "aria-valuenow" => "#{issue.progress}", "aria-valuemin" => "0", "aria-valuemax" => "100", style: "width: #{issue.progress}%"}
       
       %hr
-      %br
       %h4 Задание
       %hr
       %p= markdown(issue.body)
@@ -29,9 +23,6 @@
         %hr
         %p Файлы:
         = render partial: 'shared/nested_form/attachments', locals: { obj: issue }
-      %hr
-      %h4 Ответы
-      %hr
 
       .user-answers
         = render issue.user_answers

@@ -4,7 +4,7 @@
       %h5.text-left= project.name
     .col-12.card-body
       - if controller_name == "projects"
-        - unless course.attachments.empty?
+        - unless project.attachments.empty?
           %p= markdown(project.description)
           %hr
           %p Файлы:
