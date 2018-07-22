@@ -167,7 +167,7 @@ GEM
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
-    pg (1.0.0)
+    pg (0.21.0)
     popper_js (1.12.9)
     posix-spawn (0.3.13)
     public_suffix (3.0.2)
@@ -317,7 +317,7 @@ DEPENDENCIES
   jquery-turbolinks
   launchy
   listen (>= 3.0.5, < 3.2)
-  pg (>= 0.18, < 2.0)
+  pg (~> 0.21)
   puma (~> 3.7)
   pygments.rb (~> 0.6.0)
   rails (~> 5.1.5)
