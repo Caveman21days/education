@@ -32,7 +32,7 @@ class Ability
 
 # =======================================
   def user_abilities
-    can :read, [Field, Wiki]
+    can :read, [Field, Wiki, User, Forum]
   end
 # =======================================
 
