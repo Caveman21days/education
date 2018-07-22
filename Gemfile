@@ -32,6 +32,8 @@ gem 'redcarpet'
 gem 'carrierwave'
 gem 'remotipart'
 gem 'cocoon'
+gem 'dotenv'
+gem 'dotenv-deployment', require: 'dotenv/deployment'
 
 # gem 'therubyracer', platforms: :ruby
 # gem 'redis', '~> 4.0'
