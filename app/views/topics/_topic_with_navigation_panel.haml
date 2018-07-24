@@ -1,6 +1,6 @@
 - content_for :left_panel do
   .border-right
-    .nav.flex-column.nav-pills#v-pills-tab{ role: "tablist", "aria-orientation" => "vertical" }  
+    .nav.flex-column.nav-pills#v-pills-tab{ role: "tablist", "aria-orientation" => "vertical" }
       / %a.nav-link.active.text-dark#v-pills-chavo-tab{ "data-toggle" => "pill", href: "#v-pills-chavo", role: "tab", "aria-controls" => "v-pills-chavo", "aria-selected" => "true" } ЧаВо
 
       - Topic.topic_sections.each do |t|

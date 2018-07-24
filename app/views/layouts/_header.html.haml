@@ -1,4 +1,4 @@
-%nav.navbar.navbar-expand-lg.navbar-dark.bg-custom
+%nav.navbar.navbar-expand-lg.navbar-dark
   %a.navbar-brand{:href => "/"} EDUCATION
 
   %button.navbar-toggler{ "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
@@ -14,17 +14,8 @@
 
     %ul.nav.navbar-nav.navbar-right
       %li
-<<<<<<< HEAD
-        - notifications_count = UserAnswer.where(status: 'На рассмотрении', recipient_id: current_user.id).count + UserAssignment.where(issue_state: 'Открыта', user_id: current_user.id).count
-        - if notifications_count == 0
-          %a{ class: "notifications-circle fas fa-bell", href: '#' }
-        - else
-          %a{ class: "notifications-circle", href: '#' }
-            = notifications_count
-=======
         %a{ class: "notifications-circle", href: '/notifications' }
           = @notifications_count
->>>>>>> 802f140c13f8a5b09381aa96f8eab11086f992f3
 
       %li.nav-item
         = link_to "#{current_user.l_name } #{current_user.f_name}", user_path(current_user.id), class: 'nav-link'

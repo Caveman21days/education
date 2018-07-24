@@ -3,6 +3,8 @@ class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
   before_action :set_issuable, only: [:new, :create, :index]
 
+  after_action :update_project_last_issue_date, only: [:create]
+
   authorize_resource
 
   def new
@@ -46,6 +48,13 @@ class IssuesController < ApplicationController
 
   def set_issuable
     @issuable = issuable_object
+  end
+
+  def update_project_last_issue_date
+    a_max_pidor = defined? @issuable.last_issue_date
+    unless a_max_pidor == nil
+      @issuable.update_attributes(last_issue_date: @issue.created_at)
+    end
   end
 
   def issue_params

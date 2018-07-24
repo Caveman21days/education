@@ -23,12 +23,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-<<<<<<< HEAD
-  def set_notification_count
-      @notifications = UserAnswer.where(status: 'На рассмотрении', recipient_id: current_user.id).count + UserAssignment.where(issue_state: 'Открыта', user_id: current_user.id).count
-  end
-
-=======
 
   protected
 
@@ -39,5 +33,4 @@ class ApplicationController < ActionController::Base
   def set_notifications_count
     @notifications_count = UserAnswer.where(status: 'На рассмотрении', recipient_id: current_user.id).count + UserAssignment.where(issue_state: 'Открыта', user_id: current_user.id).count
   end
->>>>>>> 802f140c13f8a5b09381aa96f8eab11086f992f3
 end

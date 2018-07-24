@@ -7,7 +7,7 @@
 
 - content_for :center do
   .tab-content#v-pills-tabContent
-    
+
     .tab-pane.fade.show.active#v-pills-home{ role: "tabpanel", "aria-labelledby" => "v-pills-home-tab" }
       .col-12.card
         .row
@@ -23,17 +23,8 @@
     .tab-pane.fade#v-pills-course{ role: "tabpanel", "aria-labelledby" => "v-pills-course-tab" }
       .col-12.card
         .row
-          .col-12.card-header
-            .row
-              .col-10
-                %h5.text-left Учебные материалы
-              .col-2
-                - if can? :manage, @field
-                  = link_to "Добавить", new_field_course_path(@field), class: 'btn btn-sm btn-dark'
-
           .col-12.card-body
             .row
-<<<<<<< HEAD
               .col-12.card-header
                 %h5.text-left Учебные материалы
                 .buttons
@@ -47,30 +38,16 @@
                       = render course
 
 
-        .tab-pane.fade#v-pills-project{ role: "tabpanel", "aria-labelledby" => "v-pills-project-tab" }
-          .col-12.card
+    .tab-pane.fade#v-pills-project{ role: "tabpanel", "aria-labelledby" => "v-pills-project-tab" }
+      .col-12.card
+        .row
+          .col-12.card-body
             .row
               .col-12.card-header
                 %h5.text-left Проекты
                 .butons
                   - if can? :manage, @field
                     = link_to "Добавить", new_field_project_path(@field), class: 'btn btn-sm btn-dark'
-=======
-              - @field.courses.each do |course|
-                .col-6
-                  = render course
-
-    .tab-pane.fade#v-pills-project{ role: "tabpanel", "aria-labelledby" => "v-pills-project-tab" }
-      .col-12.card
-        .row
-          .col-12.card-header
-            .row
-              .col-10
-                %h5.text-left Проекты
-              .col-2
-                - if can? :manage, @field
-                  = link_to "Добавить", new_field_project_path(@field), class: 'btn btn-sm btn-dark'
->>>>>>> 802f140c13f8a5b09381aa96f8eab11086f992f3
 
           .col-12.card-body
             .row

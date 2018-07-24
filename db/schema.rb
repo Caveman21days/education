@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20180719063104) do
-=======
-ActiveRecord::Schema.define(version: 20180718114337) do
->>>>>>> 802f140c13f8a5b09381aa96f8eab11086f992f3
+ActiveRecord::Schema.define(version: 20180722160036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +73,7 @@ ActiveRecord::Schema.define(version: 20180718114337) do
     t.integer "nti"
     t.integer "bortnik"
     t.integer "project_type"
+    t.datetime "last_issue_date"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -135,6 +132,17 @@ ActiveRecord::Schema.define(version: 20180718114337) do
     t.datetime "updated_at", null: false
     t.boolean "super_admin"
     t.string "city"
+    t.integer "region"
+    t.string "house"
+    t.string "street"
+    t.string "apartment"
+    t.string "phone_number"
+    t.string "school"
+    t.string "university"
+    t.date "birth_date"
+    t.string "second_language"
+    t.date "graduation_date"
+    t.string "award"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -1,0 +1,23 @@
+.form-group
+  = f.label "region"
+  = f.select(:region, User.region.collect { |tuple| [ tuple[1], tuple[0] ] }, {include_blank: false}, { :class => "form-control" })
+
+.form-group
+  = f.label "city"
+  = f.text_field :city, class: "form-control"
+
+.form-group
+  = f.label "street"
+  = f.text_field :street, class: "form-control"
+
+.form-group
+  = f.label "house"
+  = f.text_field :house, class: "form-control"
+
+.form-group
+  = f.label "apartment"
+  = f.text_field :apartment, class: "form-control"
+
+
+.form-group
+  = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"

@@ -39,7 +39,7 @@ class Project < ApplicationRecord
   validates :nti, inclusion: { in: [*0..(Project.nti.length - 1)],
     message: 'Выбранная НТИ не найдена' }, presence: true
 
-    def self.bortnik
+  def self.bortnik
     return[
       'Прочее',
       'Н1. Цифровые технологии',
@@ -49,7 +49,7 @@ class Project < ApplicationRecord
       'Н5. Биотехнологии',
       'Н6. Ресурсосберегающая энергетика',
     ]
-    end
+  end
 
   validates :bortnik, inclusion: { in: [*0..(Project.bortnik.length - 1)],
     message: 'Выбранный классификатор бортника не корректен' }, presence: true
@@ -61,7 +61,7 @@ class Project < ApplicationRecord
       'Сложный',
       'Профессиональный',
     ]
-    end
+  end
 
     validates :project_type, inclusion: { in: [*0..(Project.project_type.length - 1)],
       message: 'Выбранный классификатор не корректен' }, presence: true
