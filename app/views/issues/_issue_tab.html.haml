@@ -1,18 +1,22 @@
-%a{ href: issuable_link(issuable), class: "btn btn-sm btn-dark fas fa-plus" }
-.row
-  .col-6
-    %b Задача
-  .col-6
-    %b Назначена
-%hr
+- if can? :manage, @field
+  .actions
+    = link_to 'Создать задачу', issuable_link(issuable)
 
-- issuable.issues.each do |issue|
-  .row
-    .col-6
-      - if can? :read, issue
-        = link_to issue.title, issue_path(issue)
-      - else
-        %p= issue.title
-    .col-6
-      - issue.users.each do |user|
-        %p= "#{user.f_name} #{user.l_name}"
+.page-content
+  .fancy-table-container.issues-table
+    %table
+      %thead
+        %tr
+          %th.name Задача
+          %th.created-at Назначена
+      %tbody
+        - issuable.issues.each do |issue|
+          %tr
+            %th
+              - if can? :read, issue
+                = link_to issue.title, issue_path(issue)
+              - else
+                = issue.title
+            %td
+              - issue.users.each do |user|
+                %span= "#{user.f_name} #{user.l_name}"

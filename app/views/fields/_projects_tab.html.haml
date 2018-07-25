@@ -1,0 +1,32 @@
+- if can? :manage, @field
+  .actions
+    = link_to 'Добавить проект', new_field_project_path(@field)
+
+.page-content
+  .fancy-table-container.projects-table
+    %table
+      %thead
+        %tr
+          %th.name Название
+          %th.short-description Краткое описание
+          %th.cofield Область разработки
+          %th.stage Стадия разработки
+          %th.bortnik Бортник
+          %th.nti НТИ
+      %tbody
+        - @field.projects.each do |project|
+          %tr
+            %th
+              - if can? :read, project
+                = link_to project.name, project_path(project)
+              - else
+                = project.name
+            %td
+              = project.short_description
+            %td
+            %td
+              = stage_name(project)
+            %td
+              = bortnik_name(project)
+            %td
+              = nti_name(project)

@@ -1,34 +1,23 @@
-.card
-  .card-header{style: 'padding-bottom: 0;'}
-    %h1
+- content_for :main_container do
+  %header.page-header
+    %h1.page-title
       = @field.name
-    .buttons{style: 'padding: 10px;'}
-      - if can? :update, @field
-        = link_to 'Редактировать', edit_field_path(@field ), class: "btn btn-outline-secondary btn-sm float-right"
-    %nav.w-100
-      #nav-tab.nav.nav-tabs{:role => "tablist", :style => "border-bottom: 0;"}
-        %a#nav-home-tab.nav-item.nav-link.active{"aria-controls" => "nav-description", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-home", :role => "tab"} Описание
-        %a#nav-profile-tab.nav-item.nav-link{"aria-controls" => "nav-course", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-profile", :role => "tab"} Учебные материалы
-        %a#nav-contact-tab.nav-item.nav-link{"aria-controls" => "nav-project", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-contact", :role => "tab"} Проекты
-  #nav-tabContent.tab-content.card-body
-    #nav-home.tab-pane.fade.show.active{"aria-labelledby" => "nav-home-tab", :role => "tabpanel"}
-      = @field.description
-    #nav-profile.tab-pane.fade{"aria-labelledby" => "nav-profile-tab", :role => "tabpanel"}
-      - if can? :manage, @field
-        = link_to "Добавить", new_field_course_path(@field), class: 'btn btn-sm btn-dark'
-      = @field.courses.each do |course|
-        = render course
-    #nav-contact.tab-pane.fade{"aria-labelledby" => "nav-contact-tab", :role => "tabpanel"}
-      - if can? :manage, @field
-        = link_to "Добавить", new_field_project_path(@field), class: 'btn btn-sm btn-dark'
-      %table
-        %tr
-          %th Название
-          %th Краткое описание
-          %th Стадия разработки
-          %th Фонд Бротника
-          %th НТИ
-          %th Дата последней активности
-        - @field.projects.each do |project|
-          %tr
-            = render 'projects/project_row', project: project
+    .actions
+      - if can? :manage, Field
+        %a{href: edit_field_path(@field)}
+          %img.settings{src: image_path('settings.svg'), alt: 'Редактировать направление'}
+
+  %nav.page-nav
+    #nav-tab.nav.page-tabs{:role => "tablist"}
+      %a#nav-home-tab.tab.active{"aria-controls" => "nav-description", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-description", :role => "tab"} Описание
+      %a#nav-materials-tab.tab{"aria-controls" => "nav-materials", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-materials", :role => "tab"} Учебные материалы
+      %a#nav-projects-tab.tab{"aria-controls" => "nav-projects", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-projects", :role => "tab"} Проекты
+
+  .page-content
+    #nav-tabContent.tab-content
+      #nav-description.tab-pane.fade.show.active.tab-content{"aria-labelledby" => "nav-home-tab", :role => "tabpanel"}
+        = @field.description
+      #nav-materials.tab-pane.fade.tab-content{"aria-labelledby" => "nav-materials-tab", :role => "tabpanel"}
+        = render 'courses_tab', courses: @field.courses
+      #nav-projects.tab-pane.fade.tab-content{"aria-labelledby" => "nav-projects-tab", :role => "tabpanel"}
+        = render 'projects_tab', projects: @field.projects

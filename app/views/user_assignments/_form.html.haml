@@ -4,18 +4,12 @@
     .form-group.row
       %label.col-2.col-form-label.text-right Пользователь
       .col-4
-        = f.select :user_id, {}, { include_blank: true }, { class: "form-control" } do
-          - unless assignmentable_users(@assignmentable).empty?
-            - assignmentable_users(@assignmentable).each do |u|
-              = content_tag(:option, "#{u.f_name} #{u.l_name}", value: u.id)
+        = f.select(:user_id, assignmentable_users(@assignmentable).collect {|user| [user.full_name, user.id]}, { include_blank: true }, { class: "form-control" })
 
     .form-group.row
       %label.col-2.col-form-label.text-right Роль
       .col-4
-        = f.select :role_id, {}, { include_blank: true }, { class: "form-control" } do
-          - unless assignmentable_roles(@assignmentable).empty?
-            - assignmentable_roles(@assignmentable).each do |r|
-              = content_tag(:option, r.name, value: r.id)
+        = f.select(:role_id, assignmentable_roles(@assignmentable).collect { |role| [role.name, role.id]}, { include_blank: false }, { class: "form-control" })
 
     .form-group.row
       %label.col-2.col-form-label.text-right Дата начала

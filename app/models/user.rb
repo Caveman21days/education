@@ -17,6 +17,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  def full_name
+    return "#{f_name} #{l_name}"
+  end
+
   def self.region
     return {
       1	=> 'Республика Адыгея (Адыгея)',

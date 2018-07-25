@@ -23,7 +23,7 @@ class Project < ApplicationRecord
 
   def self.nti
     return [
-      'Прочее',
+      '—',
       'AeroNet',
       'AutoNet',
       'MariNet',
@@ -41,7 +41,7 @@ class Project < ApplicationRecord
 
   def self.bortnik
     return[
-      'Прочее',
+      '—',
       'Н1. Цифровые технологии',
       'Н2. Медицина и технологии здоровьесбережения',
       'Н3. Новые материалы и химические технологии',

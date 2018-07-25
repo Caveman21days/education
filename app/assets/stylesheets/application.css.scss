@@ -18,11 +18,16 @@
 
 @import "bootstrap";
 
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400&subset=cyrillic,cyrillic-ext');
+
 @import "theme";
 
 @import "components/header";
 @import "components/notification_circle";
 
+* {
+  font-family: 'Roboto', sans-serif !important;
+}
 
 // makes all bootstrap input[type=text] darker
 .form-control:focus {
@@ -77,8 +82,10 @@
 .main-container {
   display: flex;
   flex-direction: row;
-  width: 60%;
+  flex-wrap: wrap;
+  width: 85%;
   margin: auto;
+  padding-top: 10px;
 }
 
 /* Error */

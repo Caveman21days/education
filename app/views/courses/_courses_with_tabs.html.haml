@@ -1,19 +1,23 @@
-.card
-  .card-header{style: 'padding-bottom: 0;'}
-    %h1
+- content_for :main_container do
+  %header.page-header
+    %h1.page-title
       = @course.name
-    .buttons{style: 'padding: 10px;'}
+    .actions
       - if can? :update, @course
-        = link_to 'Редактировать', edit_course_path(@course ), class: "btn btn-outline-secondary btn-sm float-right"
-    %nav.w-100
-      #nav-tab.nav.nav-tabs{:role => "tablist", :style => "border-bottom: 0;"}
-        %a#nav-home-tab.nav-item.nav-link.active{"aria-controls" => "nav-home", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-home", :role => "tab"} Home
-        %a#nav-profile-tab.nav-item.nav-link{"aria-controls" => "nav-members", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-profile", :role => "tab"} Members
-        %a#nav-contact-tab.nav-item.nav-link{"aria-controls" => "nav-issues", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-contact", :role => "tab"} Issues
-  #nav-tabContent.tab-content.card-body
-    #nav-home.tab-pane.fade.show.active{"aria-labelledby" => "nav-home-tab", :role => "tabpanel"}
-      = @course.description
-    #nav-profile.tab-pane.fade{"aria-labelledby" => "nav-profile-tab", :role => "tabpanel"}
-      = render 'users/users_tab', issuable: @course
-    #nav-contact.tab-pane.fade{"aria-labelledby" => "nav-contact-tab", :role => "tabpanel"}
-      = render 'issues/issue_tab', issuable: @course
+        %a{href: edit_course_path(@course)}
+          %img.settings{src: image_path('settings.svg'), alt: 'Редактировать курс'}
+
+  %nav.page-nav
+    #nav-tab.nav.page-tabs{:role => "tablist"}
+      %a#nav-home-tab.tab.active{"aria-controls" => "nav-description", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-description", :role => "tab"} Описание
+      %a#nav-members-tab.tab{"aria-controls" => "nav-members", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-members", :role => "tab"} Участники
+      %a#nav-issues-tab.tab{"aria-controls" => "nav-issues", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-issues", :role => "tab"} Задачи
+
+  .page-content
+    #nav-tabContent.tab-content
+      #nav-description.tab-pane.fade.show.active.tab-content{"aria-labelledby" => "nav-home-tab", :role => "tabpanel"}
+        = @course.description
+      #nav-members.tab-pane.fade.tab-content{"aria-labelledby" => "nav-members-tab", :role => "tabpanel"}
+        = render 'users/users_tab', issuable: @course
+      #nav-issues.tab-pane.fade.tab-content{"aria-labelledby" => "nav-issues-tab", :role => "tabpanel"}
+        = render 'issues/issue_tab', issuable: @course

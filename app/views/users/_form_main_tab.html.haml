@@ -15,4 +15,12 @@
   = f.email_field :email, class: "form-control", required: ""
 
 .form-group
+  = f.label "Birth date"
+  = f.date_select :birth_date, {}, { class: "form-control" }
+
+.form-group
+  = f.label 'Второй язык'
+  = f.text_field :second_language, class: "form-control"
+
+.form-group
   = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"

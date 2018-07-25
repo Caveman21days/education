@@ -1,11 +1,18 @@
-- if controller_name == 'courses'
-  %a{ href: course_user_assignments_path(@course), class: "btn btn-sm btn-dark fas fa-plus" }
-- else
-  %a{ href: project_user_assignments_path(@project), class: "btn btn-sm btn-dark fas fa-plus" }
-- issuable.users.each do |user|
-  .row
-    .col-6
-      -#- if can? :read, user
-      -#  = link_to "#{user.l_name} #{user.f_name}", user_path(user)
-      -#- else
-      %p= "#{user.l_name} #{user.f_name}"
+.actions
+  = link_to '', situational_user_assigments_path
+
+
+.page-content
+  .fancy-table-container.issues-table
+    %table
+      %thead
+        %tr
+          %th.name Пользователь
+      %tbody
+        - issuable.users.each do |user|
+          %tr
+            %th
+              - if can? :read, user
+                = link_to user.full_name, user_path(user)
+              - else
+                = user.full_name

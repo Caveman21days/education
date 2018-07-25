@@ -3,8 +3,16 @@
   = f.text_field :school, class: "form-control"
 
 .form-group
+  = f.label "School graduation date"
+  = f.date_select :school_graduation_date, {}, { class: "form-control" }
+
+.form-group
   = f.label "University"
   = f.text_field :university, class: "form-control"
+
+.form-group
+  = f.label "University graduation date"
+  = f.date_select :university_graduation_date, {}, { class: "form-control" }
 
 .form-group
   = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"

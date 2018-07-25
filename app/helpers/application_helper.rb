@@ -35,7 +35,8 @@ module ApplicationHelper
     when "Field"
       User.all
     when "Course", "Project"
-      object.field.users
+      # object.field.users
+      User.all
     when "Issue"
       object.issuable.users
     end
