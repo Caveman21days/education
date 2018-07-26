@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :courses, through: :user_assignments, source: :assignmentable, source_type: 'Course'
   has_many :roles, through: :user_assignments
 
+  has_many :user_applications, through: :user_applications
+
   has_many :user_answers
   has_many :topics, foreign_key: :author_id
   has_many :answers, foreign_key: :author_id  # Forum answers

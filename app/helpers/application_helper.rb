@@ -30,6 +30,9 @@ module ApplicationHelper
     "/#{object.class.name.downcase}s/#{object.id}/issues/new"
   end
 
+  def application_reciever_link(object)
+  end
+
   def assignmentable_users(object)
     case object.class.name
     when "Field"
@@ -49,6 +52,10 @@ module ApplicationHelper
     when "Issue"
       Role.where(name: ["Исполнитель", "Наблюдатель"])
     end
+  end
+
+  def  roles_options_for_select(object)
+    assignmentable_roles(object).collect { |role| [role.name, role.id]}
   end
 
   def field_topics

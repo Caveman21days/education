@@ -12,6 +12,8 @@
       %a#nav-home-tab.tab.active{"aria-controls" => "nav-description", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-description", :role => "tab"} Описание
       %a#nav-members-tab.tab{"aria-controls" => "nav-members", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-members", :role => "tab"} Участники
       %a#nav-issues-tab.tab{"aria-controls" => "nav-issues", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-issues", :role => "tab"} Задачи
+      %a#nav-applications-tab.tab{"aria-controls" => "nav-applications", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-applications", :role => "tab"} Заявки
+
 
   .page-content
     #nav-tabContent.tab-content
@@ -21,3 +23,5 @@
         = render 'users/users_tab', issuable: @course
       #nav-issues.tab-pane.fade.tab-content{"aria-labelledby" => "nav-issues-tab", :role => "tabpanel"}
         = render 'issues/issue_tab', issuable: @course
+      #nav-applications.tab-pane.fade.tab-content{"aria-labelledby" => "nav-applications-tab", :role => "tabpanel"}
+        = render 'user_applications/applications_tab', application_receiver: @course

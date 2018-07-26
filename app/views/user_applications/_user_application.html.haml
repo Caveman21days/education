@@ -1,0 +1,14 @@
+.col-12.card
+  .row
+    .col-12.card-header
+      %h5.text-left
+        = @user_application.user.full_name
+    .col-12.card-body
+      %h3 Отклонить
+      = link_to 'Отклонить', user_application_reject_path(@user_application), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
+
+      %h3 Принять
+
+      = form_tag(user_application_accept_path(@user_application), method: "delete") do
+        = select_tag(:role_id, options_for_select(roles_options_for_select(@application_receiver)))
+        = submit_tag('Принять')

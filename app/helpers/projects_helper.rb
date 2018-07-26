@@ -1,6 +1,6 @@
 module ProjectsHelper
   def bortnik_name(project)
-    Project.bortnik[project.bortnik]
+    Project.bortnik[project.bortnik].split(' ')[0].chomp('.')
   end
 
   def nti_name(project)
@@ -11,5 +11,3 @@ module ProjectsHelper
     Project.stages[project.stage]
   end
 end
-
- 
