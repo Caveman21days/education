@@ -58,7 +58,7 @@ class IssuesController < ApplicationController
   end
 
   def issue_params
-    params.require(:issue).permit(:title, :body, :teacher_id, :progress)
+    params.require(:issue).permit(:title, :body, :teacher_id, :progress, attachments_attributes: [:file])
   end
 
   def issuable_object

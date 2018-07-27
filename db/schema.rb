@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180725135714) do
+=======
+ActiveRecord::Schema.define(version: 20180720200309) do
+>>>>>>> ff8458bdeedd7569bb337bcaeb7cd88deccbb2fd
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +25,15 @@ ActiveRecord::Schema.define(version: 20180725135714) do
     t.integer "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "attachments", force: :cascade do |t|
+    t.string "file"
+    t.string "attachable_id"
+    t.string "attachable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -59,6 +72,7 @@ ActiveRecord::Schema.define(version: 20180725135714) do
     t.datetime "updated_at", null: false
     t.integer "parent_id"
     t.integer "progress", default: 0
+    t.string "state"
     t.index ["issuable_id", "issuable_type"], name: "index_issues_on_issuable_id_and_issuable_type"
   end
 
@@ -157,6 +171,17 @@ ActiveRecord::Schema.define(version: 20180725135714) do
     t.string "telegram_profile"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "wikis", force: :cascade do |t|
+    t.integer "field_id"
+    t.string "name"
+    t.text "body"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "wikiable_id"
+    t.string "wikiable_type"
   end
 
 end

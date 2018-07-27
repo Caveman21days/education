@@ -55,6 +55,8 @@ class UserAssignmentsController < ApplicationController
       Course.find(params[:course_id])
     elsif params[:issue_id]
       Issue.find(params[:issue_id])
+    elsif params[:wiki_id]
+      Wiki.find(params[:wiki_id])
     end
   end
 

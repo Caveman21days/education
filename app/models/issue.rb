@@ -8,4 +8,9 @@ class Issue < ApplicationRecord
   belongs_to :parent, class_name: "Issue", foreign_key: 'parent_id', optional: true
 
   belongs_to :issuable, polymorphic: true, optional: true
+
+  has_many :attachments, as: :attachable, dependent: :destroy
+  accepts_nested_attributes_for :attachments, reject_if: :all_blank
+
+  belongs_to :author, class_name: "User", foreign_key: :author_id
 end

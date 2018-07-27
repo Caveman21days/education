@@ -18,6 +18,10 @@
           - Topic.topic_sections.each do |section|
             = content_tag(:option, section[1], value: section[1])
 
+    .form-group.row
+      .col-5
+        = render 'shared/nested_form/attachments_form', f: f, attachable: @topic
+
     .row
       .col-12
         = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"

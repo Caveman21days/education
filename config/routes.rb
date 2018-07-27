@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :user_assignments, shallow: true
 
     resources :projects, shallow: true do
+      resources :wikis, shallow: true
+
       resources :user_assignments, shallow: true
       resources :issues, shallow: true,except: [:index] do
         get 'user_issues_list', to: 'issues#user_issues_list'
@@ -18,6 +20,8 @@ Rails.application.routes.draw do
     end
 
     resources :courses, shallow: true do
+      resources :wikis, shallow: true
+
       resources :user_assignments, shallow: true
       resources :issues, shallow: true, except: [:index] do
         resources :user_assignments, shallow: true
@@ -29,6 +33,10 @@ Rails.application.routes.draw do
     end
   end
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ff8458bdeedd7569bb337bcaeb7cd88deccbb2fd
   patch '/user_answers/:id/accept_user_answer', to: 'user_answers#accept_user_answer'
   patch '/user_answers/:id/reject_user_answer', to: 'user_answers#reject_user_answer'
 
@@ -43,6 +51,10 @@ Rails.application.routes.draw do
     resources :answers, only: [:create, :update, :destroy], shallow: true
   end
 
+<<<<<<< HEAD
+=======
+  resources :attachments, only: [:destroy]
+>>>>>>> ff8458bdeedd7569bb337bcaeb7cd88deccbb2fd
 
   root to: 'fields#index'
 end

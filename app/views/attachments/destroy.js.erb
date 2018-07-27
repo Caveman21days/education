@@ -1,0 +1,6 @@
+<% if @attachment.errors.any? %>
+  $('.errors').html('<%= j render 'shared/errors', object: @attachment %>');
+<% else %>
+  $('.flash').html('<%= j render 'shared/flash' %>');
+  $('.attachment_' + <%= @attachment.id %>).remove();
+<% end %>

@@ -5,7 +5,13 @@
     .col-12.card-body
       - if controller_name == "courses"
         %p= markdown(course.description)
+        - unless course.attachments.empty?
+          %hr
+          %p Файлы:
+          = render partial: 'shared/nested_form/attachments', locals: { obj: course }
+
       - else
+      
         %p= course.short_description
       - if can? :read, course
         = link_to 'Перейти', course_path(course), class: "btn btn-outline-secondary btn-sm" if controller_name != 'courses'

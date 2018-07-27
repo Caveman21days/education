@@ -42,7 +42,7 @@ role :db,  %w{deployer@185.4.74.70}
 # Global options
 # --------------
  set :ssh_options, {
-   keys: %w(/home/vladimir/.ssh/id_rsa /home/kirill/.ssh/id_rsa),
+   keys: %w(/home/kirill/.ssh/id_rsa /home/vladimir/.ssh/id_rsa ),
    forward_agent: true,
    auth_methods: %w(publickey password),
    port: 4321

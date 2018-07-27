@@ -2,7 +2,11 @@
   %div{ class: "user-answer-#{user_answer.id}" }
     .row
       .col-3
-        %p= "#{user_answer.user.l_name} #{user_answer.user.l_name}"
+        - if user_answer.user.id == user_answer.issue.author_id 
+          %p.text-danger= "#{user_answer.user.l_name} #{user_answer.user.l_name}"
+        - else 
+          %p.text-success= "#{user_answer.user.l_name} #{user_answer.user.l_name}"
+
         - if user_answer.status == "На рассмотрении" || nil
           - if can? :update, user_answer
             = link_to '+', "/user_answers/#{user_answer.id}/accept_user_answer", method: :patch, class: "btn btn-outline-secondary btn-sm"
@@ -29,16 +33,24 @@
           %h5 Балл:
         .col-6
           %h5= user_answer.perfomance
+          
       .col-9
-        %p= user_answer.body
+        %p= markdown(user_answer.body)
+        - unless user_answer.attachments.empty?
+          %hr
+          %p Файлы:
+          = render partial: 'shared/nested_form/attachments', locals: { obj: project }
+
         - if can?(:update, user_answer)
           = link_to 'Изменить', '', class: 'edit-user-answer-link btn btn-outline-secondary btn-sm', data: { user_answer_id: user_answer.id }
+          
           = form_for user_answer, remote: true, html: { id: "edit-user-answer-#{user_answer.id}" } do |f|
             .form-group.row
               .col-8
                 = f.text_area :body, rows: 5, class: 'form-control'
               .col-2
                 = f.submit 'Сохранить', class: 'btn btn-outline-secondary btn-sm'
+          
           = link_to 'Удалить', user_answer_path(user_answer), method: :delete, remote: true, class: 'btn btn-outline-secondary btn-sm'
 %hr
 %br

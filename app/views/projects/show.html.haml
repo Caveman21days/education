@@ -1,2 +1,13 @@
+<<<<<<< HEAD
 - content_for :main_container do
   = render 'project_with_tabs'
+=======
+= render @project
+
+- content_for :right_panel do
+  = render 'issues/issue_panel', issuable: @project
+
+- content_for :left_panel do
+  = render 'users/users_panel', issuable: @project
+  = render 'wikis/wiki', wikiable: @project
+>>>>>>> ff8458bdeedd7569bb337bcaeb7cd88deccbb2fd

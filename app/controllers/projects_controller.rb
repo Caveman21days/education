@@ -37,6 +37,10 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
+<<<<<<< HEAD
     params.require(:project).permit(:name, :short_description, :description, :project_manager_id, :stage, :nti, :bortnik, :project_type)
+=======
+    params.require(:project).permit(:name, :short_description, :description, :project_manager_id, attachments_attributes: [:file])
+>>>>>>> ff8458bdeedd7569bb337bcaeb7cd88deccbb2fd
   end
 end
