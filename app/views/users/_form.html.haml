@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 - content_for :main_container do
   %nav.dropdown-nav
     #v-pills-tab.dropdown-menu#v-pills-tab.nav.flex-column{"aria-orientation" => "vertical", :role => "tablist"}
@@ -26,3 +27,28 @@
     .avatar-change
       %img{alt: 'Profile picture', src: "https://orig00.deviantart.net/4355/f/2012/097/3/e/cs_go_avatar_by_k4d1ra-d4va8gu.jpg"}
       %button.btn.btn-secondary{:type => "button"} Upload new photo
+=======
+= form_for @user do |f|
+    .form-group
+    = f.label :f_name
+    = f.text_field :f_name, class: "form-control", required: ""
+
+    .form-group
+    = f.label :l_name
+    = f.text_field :l_name, class: "form-control", required: ""
+
+    .form-group
+    = f.label :email
+    = f.email_field :email, class: "form-control", required: ""
+
+    .form-group
+    = f.label :password
+    = f.password_field :password, class: "form-control", required: ""
+
+    .field.form-group
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", required: ""
+
+    .form-group
+    = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
+>>>>>>> 7571333c601dd3016c2ee69a0538d7ed91824a96

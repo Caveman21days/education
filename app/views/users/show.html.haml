@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .fancy-card.user-card
   .controls
     = link_to 'Редактировать', edit_user_path(current_user.id)
@@ -27,3 +28,12 @@
       Регион
     .value
       = region_name(@user)
+=======
+-full_name = @user.f_name + ' ' + @user.l_name
+.card.border-dark.mb-3
+  .card-body.text-dark
+    %h5.card-title
+      = full_name
+    %p.card-text
+      = @user.email
+>>>>>>> 7571333c601dd3016c2ee69a0538d7ed91824a96
