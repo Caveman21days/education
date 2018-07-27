@@ -30,27 +30,18 @@ module ApplicationHelper
     "/#{object.class.name.downcase}s/#{object.id}/issues/new"
   end
 
-<<<<<<< HEAD
-  def application_reciever_link(object)
-=======
   def wikiable_link(object)
     object.class.name.downcase
     "/#{object.class.name.downcase}s/#{object.id}/wikis/new"
->>>>>>> ff8458bdeedd7569bb337bcaeb7cd88deccbb2fd
   end
 
   def assignmentable_users(object)
     case object.class.name
     when "Field"
       User.all
-<<<<<<< HEAD
-    when "Course", "Project"
+when "Course", "Project", "Wiki"
       # object.field.users
       User.all
-=======
-    when "Course", "Project", "Wiki"
-      object.field.users
->>>>>>> ff8458bdeedd7569bb337bcaeb7cd88deccbb2fd
     when "Issue"
       object.issuable.users
     end

@@ -17,7 +17,6 @@
         = f.text_area :description, placeholder: "Описание", class: "form-control", rows: 7
 
     .form-group.row
-<<<<<<< HEAD
       %label.col-2.col-form-label.text-right Стадия разработки
       .col-10
         = f.select(:stage, Project.stages.collect { |s| [ s, Project.stages.index(s) ] }, {include_blank: false}, { :class => "form-control" })
@@ -37,10 +36,9 @@
       .col-10
         = f.select(:project_type, Project.project_type.collect { |type| [ type, Project.project_type.index(type) ] }, {include_blank: false}, { :class => "form-control" })
 
-=======
-      .col-5
-        = render 'shared/nested_form/attachments_form', f: f, attachable: @project
->>>>>>> ff8458bdeedd7569bb337bcaeb7cd88deccbb2fd
+    .col-5
+      = render 'shared/nested_form/attachments_form', f: f, attachable: @project
+
     .row
       .col-6
       .col-6

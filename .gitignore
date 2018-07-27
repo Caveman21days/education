@@ -23,12 +23,8 @@
 .byebug_history
 
 /.idea/*
-<<<<<<< HEAD
 /Gemfile.lock
 /config/database.yml
-=======
-config/database.yml
->>>>>>> ff8458bdeedd7569bb337bcaeb7cd88deccbb2fd
 *~
 musor
 public/uploads

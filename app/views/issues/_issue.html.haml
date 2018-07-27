@@ -1,19 +1,6 @@
 .col-12.card
   .row
     .col-12.card-header
-<<<<<<< HEAD
-      %h5.text-left
-        = issue.title
-      .buttons
-        = link_to 'Перейти', issue_path(issue), class: "btn btn-outline-secondary btn-sm" if controller_name != 'issues'
-        - if can? :update, issue
-          - if can? :manage, issue
-            = link_to 'Edit', issue_user_issues_list_path(issue), class: "btn btn-outline-secondary btn-sm"
-          - else
-            = link_to 'Edit', edit_issue_path(issue), class: "btn btn-outline-secondary btn-sm"
-        - if can? :manage, issue
-          = link_to 'Settings', issue_user_assignments_path(issue), class: "btn btn-outline-secondary btn-sm"
-=======
       .row
         .col-8
           %h5.text-left= issue.title
@@ -22,7 +9,6 @@
           - if can? :manage, issue
             = link_to 'Edit', edit_issue_path(issue), class: "btn btn-outline-secondary btn-sm"
             = link_to 'Settings', issue_user_assignments_path(issue), class: "btn btn-outline-secondary btn-sm"
->>>>>>> ff8458bdeedd7569bb337bcaeb7cd88deccbb2fd
 
     .col-12.card-body
       %h4 Прогресс выполнения

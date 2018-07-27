@@ -11,29 +11,10 @@
         .col-10
           = f.text_area :body, placeholder: "Описание", class: "form-control", rows: 7
 
-<<<<<<< HEAD
-    .form-group.row
-      %label.col-2.col-form-label.text-right Прогресс выполнения
-      .col-3
-        = f.select :progress, {}, {}, { class: "form-control" } do
-          - progress.each do |c|
-            = content_tag(:option, c.first, value: c.last)
-      .col-5
-        = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
-
-  %br
-  - if @issue.persisted?
-    - if can? :manage, @issue
-      = form_for user_issue, html: { class: "form-horizontal" } do |f|
-        .form-group.row
-          %label.col-2.col-form-label.text-right Состояние
-          .col-4
-            = f.select :issue_state, {}, {}, { class: "form-control" } do
-=======
       .form-group.row
         .col-5
           = render 'shared/nested_form/attachments_form', f: f, attachable: @issue
-          
+
       .form-group.row
         %label.col-2.col-form-label.text-right Прогресс выполнения
         .col-3
@@ -42,7 +23,7 @@
               = content_tag(:option, c.first, value: c.last)
         .col-5
           = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
-  
+
   %br
   - if @issue.persisted?
     - if can? :manage, @issue
@@ -51,7 +32,6 @@
           %label.col-2.col-form-label.text-right Состояние
           .col-4
             = f.select :state, {}, {}, { class: "form-control" } do
->>>>>>> ff8458bdeedd7569bb337bcaeb7cd88deccbb2fd
               - state.each do |c|
                 = content_tag(:option, c, value: c)
           .col-4
@@ -59,12 +39,5 @@
 
   .row
     .col-9
-<<<<<<< HEAD
     .col-3
       %a.btn.btn-outline-secondary.btn-sm{ href: request.referer } Назад
-  / - if @field.persisted? && can?(:manage, Field)
-  /   = link_to "Удалить", field_path(@field.id), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
-=======
-    .col-3  
-      %a.btn.btn-outline-secondary.btn-sm{ href: request.referer } Назад
->>>>>>> ff8458bdeedd7569bb337bcaeb7cd88deccbb2fd
