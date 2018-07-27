@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .container.mx-auto.fancy-card
   %h1 Sign up
   = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
@@ -22,33 +21,5 @@
       = f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password confirmation", equired: "", class: "form-control"
 
     .actions
-=======
-.container
-  .row
-    .col-4
-      %h2 Sign up
-      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-        = devise_error_messages!
-        .field.form-group
-          = f.label :f_name
-          = f.text_field :f_name, autofocus: true, autocomplete: "f_name", class: "form-control", required: ""
-        .field.form-group
-          = f.label :l_name
-          = f.text_field :l_name, autofocus: true, autocomplete: "l_name", class: "form-control", required: ""
-        .field.form-group
-          = f.label :email
-          = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: ""
-        .field.form-group
-          = f.label :password
-          - if @minimum_password_length
-            %em="#{@minimum_password_length} characters minimum"
-            %br
-          = f.password_field :password, autocomplete: "off", class: "form-control", required: ""
-        .field.form-group
-          = f.label :password_confirmation
-          = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", required: ""
-        .actions
-          = f.submit "Sign up", class: "btn btn-sm btn-outline-secondary"
->>>>>>> 7571333c601dd3016c2ee69a0538d7ed91824a96
       = render "devise/shared/links"
       = f.submit "Sign up", class: "btn btn-dark float-right"
