@@ -16,8 +16,19 @@ class UserApplicationsController < ApplicationController
   end
 
   def create
-    @user_application = @application_receiver.user_applications.create(
+
+    members_ids = @application_receiver.users.ids
+    applicants_ids = @application_receiver.user_applications.collect { |application| application.user_id }
+
+    if members_ids.include? current_user.id or applicants_ids.include? current_user.id
+      redirect_to @application_receiver
+      return
+    end
+    params_with_user_id = {
       user_id: current_user.id
+    }
+    @user_application = @application_receiver.user_applications.create(
+      user_application_params.merge(params_with_user_id)
     )
     redirect_to @application_receiver
   end
@@ -73,5 +84,9 @@ class UserApplicationsController < ApplicationController
     when 'Course'
       return Course.find(@user_application.application_receiver_id)
     end
+  end
+
+  def user_application_params
+    params.require(:user_application).permit(:body)
   end
 end

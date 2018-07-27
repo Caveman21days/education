@@ -1,9 +1,6 @@
-.col-12.card.bg-light
-  .row
-    .col-12.card-header
-      .row
-        .col-12
-          %h3 Создание заявки
-
-    .col-12.card-body
-      = render 'form'
+- content_for :main_container do
+  %header.page-header
+    %h1.page-title
+      Создание заявки
+  .page-content
+    = render 'form'

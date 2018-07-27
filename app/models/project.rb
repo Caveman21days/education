@@ -13,6 +13,14 @@ class Project < ApplicationRecord
 
   validates :name, :short_description, :description, presence: true
 
+  def cofield
+    if cofield_id.nil?
+      return nil
+    else
+      return Field.find(cofield_id)
+    end
+  end
+
   def self.stages
     return [
       'Идея',

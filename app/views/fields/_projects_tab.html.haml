@@ -9,7 +9,7 @@
         %tr
           %th.name Название
           %th.short-description Краткое описание
-          %th.cofield Область разработки
+          %th.cofield Область применения
           %th.stage Стадия разработки
           %th.bortnik Бортник
           %th.nti НТИ
@@ -24,6 +24,10 @@
             %td
               = project.short_description
             %td
+              - if project.cofield.nil?
+                = '—'
+              - else
+                = project.cofield.name
             %td
               = stage_name(project)
             %td

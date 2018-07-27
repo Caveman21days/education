@@ -18,6 +18,6 @@
 
             %td
               = application.created_at
-            %td
+            %td.table-actions
               = link_to 'Принять', user_application_accept_path(application), method: :delete
               = link_to 'Отклонить', user_application_reject_path(application), method: :delete
