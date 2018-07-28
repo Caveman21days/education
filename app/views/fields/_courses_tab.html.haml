@@ -2,13 +2,4 @@
   .actions
     = link_to 'Добавить учебный материал', new_field_course_path(@field)
 
-.cards
-  = courses.each do |course|
-    .card.li-card
-      .card-body
-        %h5.card-title
-          = course.name
-        %p.card-text
-          = course.short_description
-        - if can? :read, course
-          = link_to 'Просмотр', course_path(course), class: "btn btn-outline-secondary btn-sm"
+= render 'courses/courses_list', courses: @field.courses
