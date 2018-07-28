@@ -27,3 +27,6 @@
 *~
 musor
 public/uploads
+
+# Ignore my vscode things
+/.vscode
