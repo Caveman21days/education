@@ -16,14 +16,12 @@ class UserApplicationsController < ApplicationController
   end
 
   def create
-
-    members_ids = @application_receiver.users.ids
-    applicants_ids = @application_receiver.user_applications.collect { |application| application.user_id }
-
-    if members_ids.include? current_user.id or applicants_ids.include? current_user.id
+    unless UserApplication.can_be_created(current_user, @application_receiver)
+      print('=============Couldnt create an application =================')
       redirect_to @application_receiver
       return
     end
+
     params_with_user_id = {
       user_id: current_user.id
     }
