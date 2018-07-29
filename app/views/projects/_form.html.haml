@@ -49,4 +49,4 @@
       = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
 
       - if @project.persisted? && can?(:manage, @project)
-        = link_to "Удалить", course_path(@project.id), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
+        = link_to "Удалить", project_path(@project.id), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
