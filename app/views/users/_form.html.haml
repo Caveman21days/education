@@ -6,7 +6,7 @@
       %a#v-pills-residence-info-tab.dropdown-item.nav-link{"aria-controls" => "v-pills-residence-info", "aria-selected" => "false", "data-toggle" => "pill", :href => "#v-pills-residence-info", :role => "tab"}
         Место жительства
       %a#v-pills-study-info-tab.dropdown-item.nav-link{"aria-controls" => "v-pills-study-info", "aria-selected" => "false", "data-toggle" => "pill", :href => "#v-pills-study-info", :role => "tab"}
-        Учебы
+        Учеба
       %a#v-pills-additional-info-tab.dropdown-item.nav-link{"aria-controls" => "v-pills-additional-info", "aria-selected" => "false", "data-toggle" => "pill", :href => "#v-pills-additional-info", :role => "tab"}
         Контакты
 
@@ -16,6 +16,9 @@
       #v-pills-tabContent.tab-content
         #v-pills-main.tab-pane.fade.show.active{"aria-labelledby" => "v-pills-main-tab", :role => "tabpanel"}
           = render 'form_main_tab', f: f
+
+          .form-group
+            = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
         #v-pills-residence-info.tab-pane.fade{"aria-labelledby" => "v-pills-residence-info-tab", :role => "tabpanel"}
           = render 'form_residence_tab', f: f
         #v-pills-study-info.tab-pane.fade{"aria-labelledby" => "v-pills-study-info-tab", :role => "tabpanel"}
@@ -24,5 +27,5 @@
           = render 'form_social_tab', f: f
   .right
     .avatar-change
-      %img{alt: 'Profile picture', src: "https://orig00.deviantart.net/4355/f/2012/097/3/e/cs_go_avatar_by_k4d1ra-d4va8gu.jpg"}
+      %img{alt: 'Profile picture', src: "https://www.standardmedia.co.ke/evewoman/assets/img/avatar.jpg"}
       %button.btn.btn-secondary{:type => "button"} Upload new photo

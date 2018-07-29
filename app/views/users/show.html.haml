@@ -1,29 +1,33 @@
 .fancy-card.user-card
   .controls
     = link_to 'Редактировать', edit_user_path(current_user.id)
-  %img{alt: 'Profile picture', src: "https://orig00.deviantart.net/4355/f/2012/097/3/e/cs_go_avatar_by_k4d1ra-d4va8gu.jpg"}
+  %img{alt: 'Profile picture', src: "https://www.standardmedia.co.ke/evewoman/assets/img/avatar.jpg"}
 
   %h1.main-heading
     = "#{@user.f_name} #{@user.l_name} #{@user.s_name}"
 
   .fields
     .key
-      Регион
-    .value
-      Свердловская область
-    .key
-      Город
-    .value
-      = @user.city
-    .key
-      Дом
-    .value
-      12
-    .key
       Email
     .value
       = @user.email
     .key
-      Регион
+      Адрес
     .value
-      = region_name(@user)
+      = "#{@user.region} #{@user.city} #{@user.street} #{@user.house} #{@user.apartment}"
+    .key
+      Школа
+    .value
+      = @user.school
+    .key
+      Университет
+    .value
+      = @user.university
+    .key
+      Профиль вк
+    .value
+      = @user.vk_profile
+    .key
+      Профиль телеграм
+    .value
+      = @user.telegram_profile
