@@ -61,7 +61,7 @@ class UserAssignmentsController < ApplicationController
   end
 
   def user_assignments_params
-    params.require(:user_assignment).permit(:user_id, :role_id, :date_start, :date_end, :issue_state)
+    params.require(:user_assignment).permit(:user_id, :role_id, :issue_state)
   end
 end
 
