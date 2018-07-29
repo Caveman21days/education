@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def update
     respond_with @user
-    @user.update_attributes(user_params)
+    @user.update(user_params)
   end
 
   private

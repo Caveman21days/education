@@ -17,7 +17,6 @@ class UserApplicationsController < ApplicationController
 
   def create
     unless UserApplication.can_be_created(current_user, @application_receiver)
-      print('=============Couldnt create an application =================')
       redirect_to @application_receiver
       return
     end
@@ -38,7 +37,6 @@ class UserApplicationsController < ApplicationController
       user_id: @user_application.user_id,
       role_id: Role.where(name: 'student')[0].id
     }
-    print('PENIS', assignmentable_params)
     UserAssignment.create(assignmentable_params)
     @user_application.destroy
     redirect_to @application_receiver
@@ -52,6 +50,7 @@ class UserApplicationsController < ApplicationController
   private
 
   def set_user_application
+    print('===========================', params[:user_application_id], '====================')
     @user_application = UserApplication.find(params[:id])
   end
 
