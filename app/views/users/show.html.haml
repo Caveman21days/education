@@ -1,6 +1,6 @@
 .fancy-card.user-card
   .controls
-    = link_to 'Редактировать', edit_user_path(current_user.id)
+    = link_to 'Редактировать', edit_user_path(@user.id)
   %img{alt: 'Profile picture', src: "https://www.standardmedia.co.ke/evewoman/assets/img/avatar.jpg"}
 
   %h1.main-heading

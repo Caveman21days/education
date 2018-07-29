@@ -51,7 +51,7 @@ class IssuesController < ApplicationController
   end
 
   def update_project_last_issue_date
-    unless defined? @issuable.last_issue_date == nil
+    unless (defined? @issuable.last_issue_date) == nil
       @issuable.update(last_issue_date: @issue.created_at)
     end
   end
