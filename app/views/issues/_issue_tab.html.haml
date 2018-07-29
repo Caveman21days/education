@@ -1,0 +1,22 @@
+- if can? :manage, @field
+  .actions
+    = link_to 'Создать задачу', issuable_link(issuable)
+
+.page-content
+  .fancy-table-container.issues-table
+    %table
+      %thead
+        %tr
+          %th.name Задача
+          %th.created-at Назначена
+      %tbody
+        - issuable.issues.each do |issue|
+          %tr
+            %th
+              - if can? :read, issue
+                = link_to issue.title, issue_path(issue)
+              - else
+                = issue.title
+            %td
+              - issue.users.each do |user|
+                %span= "#{user.f_name} #{user.l_name}"

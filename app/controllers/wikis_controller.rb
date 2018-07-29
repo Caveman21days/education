@@ -19,7 +19,9 @@ class WikisController < ApplicationController
   end
 
   def create
-    respond_with(@wiki = @wikiable.wikis.create(wiki_params))
+    respond_with(@wiki = @wikiable.wikis.create(
+      wiki_params.merge(field_id: @wikiable.field_id)
+      ))
   end
 
   def edit; end

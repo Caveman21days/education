@@ -1,0 +1,46 @@
+.fancy-table-container {
+
+  table {
+    width: 100%;
+    margin-top: 30px;
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    tr {
+      border-bottom: 1px solid #f2f2f2;
+    }
+
+    th, td {
+      padding-right: 10px;
+      padding-left: 30px;
+    }
+
+    thead {
+      background: #fafafa;
+
+      th {
+        padding-top: 21px;
+        padding-bottom: 21px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.914rem;
+      }
+    }
+
+    tbody {
+
+      th, td {
+        padding-top: 16px;
+        padding-bottom: 16px;
+
+      }
+
+      .table-actions {
+        
+         a {
+           margin-right: 10px;
+         }
+      }
+    }
+  }
+}

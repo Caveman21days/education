@@ -1,11 +1,12 @@
-.container
-  %h2 Forgot your password?
-
-  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+- unless (devise_error_messages!).to_s.empty?
+  .alert.alert-danger{:role => "alert"}
     = devise_error_messages!
+
+.container.fancy-card
+  %h1 Forgot your password?
+  = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
     .field.form-group
-      = f.label :email
-      = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+      = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: :email,  class: "form-control"
     .actions
-      = f.submit "Send me reset password instructions", class: "btn btn-primary"
-  = render "devise/shared/links"
+      = render "devise/shared/links"
+      = f.submit "Send me reset password instructions", class: "btn btn-dark float-right"

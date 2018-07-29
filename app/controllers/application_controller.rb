@@ -12,8 +12,7 @@ class ApplicationController < ActionController::Base
 
   check_authorization unless: :devise_controller?
 
-  before_action :set_notifications_count unless :devise_controller?
-
+  before_action :set_notification_count unless :devise_controller?
 
 
   rescue_from CanCan::AccessDenied do |e|

@@ -1,0 +1,55 @@
+%form{action: '/search', method: 'get'}
+  .input-group.mb-2
+    %input.form-control#search-query{type: 'text', name: 'name', placeholder: 'Type somehitng here...'}
+    .input-group-append
+      %input.btn.btn-outline-dark#search-button{type: 'submit', value: 'Search'}
+
+  %h2
+    Model
+  .selector#model-selector
+    %input#contactChoice1{:name => 'model_name', :type => "radio", :value => "Project", :checked => 'true'}
+    %label{:for => "contactChoice1"} Project
+    %input#contactChoice2{:name => 'model_name', :type => "radio", :value => "Field"}
+    %label{:for => "contactChoice2"} Field
+    %input#contactChoice3{:name => 'model_name', :type => "radio", :value => "Course"}
+    %label{:for => "contactChoice3"} Course
+
+  %h2
+    Bortnik
+  .selector#bortnik-selector
+    - Project.bortnik.each_with_index do |bortnik_name, bortnik_value|
+      %label
+        %input{type: 'checkbox', name: 'bortnik', value: bortnik_value}
+        = bortnik_name
+  %h2
+    Stage
+  .selector#stage-selector
+    - Project.stages.each_with_index do |stage_name, stage_value|
+      %label
+        %input{type: 'checkbox', name: 'stage', value: stage_value}
+        = stage_name
+  %h2
+    NTI
+  .selector#bortnik-selector
+    - Project.nti.each_with_index do |nti_name, nti_value|
+      %label
+        %input{type: 'checkbox', name: 'nti', value: nti_value}
+        = nti_name
+
+  %h2
+    Project type
+  .selector#project-type-selector
+    - Project.project_type.each_with_index do |project_type_name, project_type_value|
+      %label
+        %input{type: 'checkbox', name: 'project_type', value: project_type_value}
+        = project_type_name
+
+    %h2
+      Results
+
+    - @search_results.each do |result|
+      %p
+        %h3
+          = result.name
+        %p
+          = result.description

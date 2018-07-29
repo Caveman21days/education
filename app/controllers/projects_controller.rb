@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :set_field, only: [:new, :create, :index]
+
+  after_action :set_last_issue_date, only: [:create]
 
   authorize_resource
 
@@ -22,7 +24,11 @@ class ProjectsController < ApplicationController
 
   private
 
-  def set_course
+  def set_last_issue_date
+    @project.update(last_issue_date: @project.created_at)
+  end
+
+  def set_project
     @project = Project.find(params[:id])
   end
 
@@ -31,6 +37,10 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :short_description, :description, :project_manager_id, attachments_attributes: [:file])
+    params.require(:project).permit(
+      :name, :short_description, :description,
+      :project_manager_id, :cofield_id, :stage, :nti, :bortnik, :project_type,
+      attachments_attributes: [:file]
+    )
   end
 end

@@ -1,0 +1,23 @@
+- content_for :main_container do
+  %header.page-header
+    %h1.page-title
+      = @field.name
+    .actions
+      - if can? :manage, Field
+        %a{href: edit_field_path(@field)}
+          %img.settings{src: image_path('settings.svg'), alt: 'Редактировать направление'}
+
+  %nav.page-nav
+    #nav-tab.nav.page-tabs{:role => "tablist"}
+      %a#nav-home-tab.tab.active{"aria-controls" => "nav-description", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-description", :role => "tab"} Описание
+      %a#nav-materials-tab.tab{"aria-controls" => "nav-materials", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-materials", :role => "tab"} Учебные материалы
+      %a#nav-projects-tab.tab{"aria-controls" => "nav-projects", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-projects", :role => "tab"} Проекты
+
+  .page-content
+    #nav-tabContent.tab-content
+      #nav-description.tab-pane.fade.show.active.tab-content{"aria-labelledby" => "nav-home-tab", :role => "tabpanel"}
+        = @field.description
+      #nav-materials.tab-pane.fade.tab-content{"aria-labelledby" => "nav-materials-tab", :role => "tabpanel"}
+        = render 'courses_tab', courses: @field.courses
+      #nav-projects.tab-pane.fade.tab-content{"aria-labelledby" => "nav-projects-tab", :role => "tabpanel"}
+        = render 'projects_tab', projects: @field.projects

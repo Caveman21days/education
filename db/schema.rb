@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180720200309) do
+ActiveRecord::Schema.define(version: 20180727073707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,12 @@ ActiveRecord::Schema.define(version: 20180720200309) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "short_description", default: "", null: false
+    t.integer "stage"
+    t.integer "nti"
+    t.integer "bortnik"
+    t.integer "project_type"
+    t.datetime "last_issue_date"
+    t.integer "cofield_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -104,6 +110,16 @@ ActiveRecord::Schema.define(version: 20180720200309) do
     t.integer "recipient_id"
     t.string "status"
     t.integer "perfomance"
+  end
+
+  create_table "user_applications", force: :cascade do |t|
+    t.integer "application_receiver_id"
+    t.string "application_receiver_type"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "body"
+    t.index ["application_receiver_id", "user_id"], name: "index_user_applications_on_application_receiver_id_and_user_id"
   end
 
   create_table "user_assignments", force: :cascade do |t|
@@ -136,6 +152,21 @@ ActiveRecord::Schema.define(version: 20180720200309) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "super_admin"
+    t.string "city"
+    t.integer "region"
+    t.string "house"
+    t.string "street"
+    t.string "apartment"
+    t.string "phone_number"
+    t.string "school"
+    t.date "school_graduation_date"
+    t.string "university"
+    t.date "university_graduation_date"
+    t.date "birth_date"
+    t.string "second_language"
+    t.string "award"
+    t.string "vk_profile"
+    t.string "telegram_profile"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

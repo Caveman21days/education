@@ -39,8 +39,9 @@ module ApplicationHelper
     case object.class.name
     when "Field"
       User.all
-    when "Course", "Project", "Wiki"
-      object.field.users
+when "Course", "Project", "Wiki"
+      # object.field.users
+      User.all
     when "Issue"
       object.issuable.users
     end
@@ -53,6 +54,10 @@ module ApplicationHelper
     when "Issue"
       Role.where(name: ["Исполнитель", "Наблюдатель"])
     end
+  end
+
+  def  roles_options_for_select(object)
+    assignmentable_roles(object).collect { |role| [role.name, role.id]}
   end
 
   def field_topics

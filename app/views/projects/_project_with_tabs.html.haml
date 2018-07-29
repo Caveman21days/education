@@ -1,0 +1,36 @@
+- content_for :main_container do
+  %header.page-header
+    %h1.page-title
+      = @project.name
+    .actions
+      - if can? :update, @course
+        %a{href: edit_project_path(@project)}
+          %img.settings{src: image_path('settings.svg'), alt: 'Редактировать проект'}
+
+  %nav.page-nav
+    #nav-tab.nav.page-tabs{:role => "tablist"}
+      %a#nav-home-tab.tab.active{"aria-controls" => "nav-description", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-description", :role => "tab"} Описание
+      %a#nav-members-tab.tab{"aria-controls" => "nav-members", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-members", :role => "tab"} Участники
+      %a#nav-issues-tab.tab{"aria-controls" => "nav-issues", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-issues", :role => "tab"} Задачи
+      %a#nav-applications-tab.tab{"aria-controls" => "nav-applications", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-applications", :role => "tab"} Заявки
+
+  .page-content
+    #nav-tabContent.tab-content
+      #nav-description.tab-pane.fade.show.active.tab-content{"aria-labelledby" => "nav-home-tab", :role => "tabpanel"}
+        .actions
+          = link_to 'Подать заявку', new_project_user_application_path(@project)
+        = @project.name
+        = @project.short_description
+        = stage_name(@project)
+        = bortnik_name(@project)
+        = nti_name(@project)
+        = @project.last_issue_date
+        = @project.description
+
+
+      #nav-members.tab-pane.fade.tab-content{"aria-labelledby" => "nav-members-tab", :role => "tabpanel"}
+        = render 'users/users_tab', issuable: @project
+      #nav-issues.tab-pane.fade.tab-content{"aria-labelledby" => "nav-issues-tab", :role => "tabpanel"}
+        = render 'issues/issue_tab', issuable: @project
+      #nav-applications.tab-pane.fade.tab-content{"aria-labelledby" => "nav-applications-tab", :role => "tabpanel"}
+        = render 'user_applications/applications_tab', application_receiver: @project

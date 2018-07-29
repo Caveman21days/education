@@ -1,0 +1,10 @@
+@import "theme";
+
+.navbar {
+  background: $primary_color;
+  color: $text_on_primary;
+
+  .nav-link {
+    color: $text_on_primary !important;
+  }
+}

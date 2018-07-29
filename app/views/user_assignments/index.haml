@@ -1,12 +1,10 @@
 .col-12.card.bg-light
   .row
     .col-12.card-header
-      .row
-        .col-10
-          %h5.text-left Участники
-        .col-2
-          - if can? :manage, UserAssignment
-            %a{ href: assignmentable_link(@assignmentable), class: "btn btn-sm btn-dark" } Добавить
+      %h5.text-left Участники
+      .buttons
+        - if can? :manage, UserAssignment
+          %a{ href: assignmentable_link(@assignmentable), class: "btn btn-sm btn-dark" } Добавить
 
 
     .col-12.card-body

@@ -1,27 +1,28 @@
-= form_for @user do |f|
-    .form-group
-    = f.label :f_name
-    = f.text_field :f_name, class: "form-control", required: ""
+- content_for :main_container do
+  %nav.dropdown-nav
+    #v-pills-tab.dropdown-menu#v-pills-tab.nav.flex-column{"aria-orientation" => "vertical", :role => "tablist"}
+      %a#v-pills-main-tab.dropdown-item.nav-link.active{"aria-controls" => "v-pills-main", "aria-selected" => "true", "data-toggle" => "pill", :href => "#v-pills-main", :role => "tab"}
+        Основное
+      %a#v-pills-residence-info-tab.dropdown-item.nav-link{"aria-controls" => "v-pills-residence-info", "aria-selected" => "false", "data-toggle" => "pill", :href => "#v-pills-residence-info", :role => "tab"}
+        Место жительства
+      %a#v-pills-study-info-tab.dropdown-item.nav-link{"aria-controls" => "v-pills-study-info", "aria-selected" => "false", "data-toggle" => "pill", :href => "#v-pills-study-info", :role => "tab"}
+        Учебы
+      %a#v-pills-additional-info-tab.dropdown-item.nav-link{"aria-controls" => "v-pills-additional-info", "aria-selected" => "false", "data-toggle" => "pill", :href => "#v-pills-additional-info", :role => "tab"}
+        Контакты
 
-    .form-group
-    = f.label :l_name
-    = f.text_field :l_name, class: "form-control", required: ""
 
-    .form-group
-    = f.label :s_name
-    = f.text_field :s_name, class: "form-control"
-
-    .form-group
-    = f.label :email
-    = f.email_field :email, class: "form-control", required: ""
-
-    .form-group
-    = f.label :password
-    = f.password_field :password, class: "form-control", required: ""
-
-    .field.form-group
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", required: ""
-
-    .form-group
-    = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
+  %main
+    = form_for @user do |f|
+      #v-pills-tabContent.tab-content
+        #v-pills-main.tab-pane.fade.show.active{"aria-labelledby" => "v-pills-main-tab", :role => "tabpanel"}
+          = render 'form_main_tab', f: f
+        #v-pills-residence-info.tab-pane.fade{"aria-labelledby" => "v-pills-residence-info-tab", :role => "tabpanel"}
+          = render 'form_residence_tab', f: f
+        #v-pills-study-info.tab-pane.fade{"aria-labelledby" => "v-pills-study-info-tab", :role => "tabpanel"}
+          = render 'form_study_tab', f: f
+        #v-pills-additional-info.tab-pane.fade{"aria-labelledby" => "v-pills-additional-info-tab", :role => "tabpanel"}
+          = render 'form_social_tab', f: f
+  .right
+    .avatar-change
+      %img{alt: 'Profile picture', src: "https://orig00.deviantart.net/4355/f/2012/097/3/e/cs_go_avatar_by_k4d1ra-d4va8gu.jpg"}
+      %button.btn.btn-secondary{:type => "button"} Upload new photo

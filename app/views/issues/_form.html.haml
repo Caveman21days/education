@@ -14,7 +14,7 @@
       .form-group.row
         .col-5
           = render 'shared/nested_form/attachments_form', f: f, attachable: @issue
-          
+
       .form-group.row
         %label.col-2.col-form-label.text-right Прогресс выполнения
         .col-3
@@ -23,7 +23,7 @@
               = content_tag(:option, c.first, value: c.last)
         .col-5
           = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
-  
+
   %br
   - if @issue.persisted?
     - if can? :manage, @issue
@@ -39,5 +39,5 @@
 
   .row
     .col-9
-    .col-3  
+    .col-3
       %a.btn.btn-outline-secondary.btn-sm{ href: request.referer } Назад
