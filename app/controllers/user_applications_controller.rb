@@ -37,6 +37,10 @@ class UserApplicationsController < ApplicationController
       user_id: @user_application.user_id,
       role_id: Role.where(name: 'student')[0].id
     }
+<<<<<<< HEAD
+=======
+    print('PENIS', assignmentable_params)
+>>>>>>> 1b78faa8660a5a886fcc73583dbe20ee12de1084
     UserAssignment.create(assignmentable_params)
     @user_application.destroy
     redirect_to @application_receiver
@@ -50,7 +54,10 @@ class UserApplicationsController < ApplicationController
   private
 
   def set_user_application
+<<<<<<< HEAD
     print('===========================', params[:user_application_id], '====================')
+=======
+>>>>>>> 1b78faa8660a5a886fcc73583dbe20ee12de1084
     @user_application = UserApplication.find(params[:id])
   end
 
