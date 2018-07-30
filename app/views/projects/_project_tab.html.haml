@@ -1,0 +1,29 @@
+- if UserApplication.can_be_created(current_user, project)
+  .actions
+    = link_to 'Подать заявку', new_project_user_application_path(project)
+
+.page-content
+  .fancy-table-container.project-info-table
+    %table
+      %thead
+        %tr
+          %th.cofield Область применения
+          %th.stage Стадия разработки
+          %th.bortnik Бортник
+          %th.nti НТИ
+      %tbody
+        %tr
+          %td
+            - if project.cofield.nil?
+              = '—'
+            - else
+              = project.cofield.name
+          %td
+            = stage_name(project)
+          %td
+            = bortnik_name(project)
+          %td
+            = nti_name(project)
+  
+.page-content
+  = project.description

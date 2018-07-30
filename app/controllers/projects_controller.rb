@@ -22,6 +22,12 @@ class ProjectsController < ApplicationController
     redirect_to @project.field
   end
 
+  def destroy
+    field = @project.field
+    @project.destroy
+    redirect_to field
+  end
+
   private
 
   def set_last_issue_date

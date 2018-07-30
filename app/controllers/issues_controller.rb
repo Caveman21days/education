@@ -51,14 +51,13 @@ class IssuesController < ApplicationController
   end
 
   def update_project_last_issue_date
-    a_max_pidor = defined? @issuable.last_issue_date
-    unless a_max_pidor == nil
-      @issuable.update_attributes(last_issue_date: @issue.created_at)
+    unless (defined? @issuable.last_issue_date) == nil
+      @issuable.update(last_issue_date: @issue.created_at)
     end
   end
 
   def issue_params
-    params.require(:issue).permit(:title, :body, :teacher_id, :progress, attachments_attributes: [:file])
+    params.require(:issue).permit(:title, :body, :teacher_id, :progress, :state, attachments_attributes: [:file])
   end
 
   def issuable_object

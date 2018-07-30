@@ -59,6 +59,13 @@
   flex-direction: row;
   justify-content: space-between;
 
+  .back-button {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    z-index: 1000;
+  }
+
 }
 
 .card {

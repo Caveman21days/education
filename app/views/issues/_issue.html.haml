@@ -1,14 +1,12 @@
 .col-12.card
   .row
     .col-12.card-header
-      .row
-        .col-8
-          %h5.text-left= issue.title
-        .col-4
-          = link_to 'Перейти', issue_path(issue), class: "btn btn-outline-secondary btn-sm" if controller_name != 'issues'
-          - if can? :manage, issue
-            = link_to 'Edit', edit_issue_path(issue), class: "btn btn-outline-secondary btn-sm"
-            = link_to 'Settings', issue_user_assignments_path(issue), class: "btn btn-outline-secondary btn-sm"
+      %h5.text-left= issue.title
+      .kirill-styles-quick-fix
+        = link_to 'Перейти', issue_path(issue), class: "btn btn-outline-secondary btn-sm" if controller_name != 'issues'
+        - if can? :manage, issue
+          = link_to 'Edit', edit_issue_path(issue), class: "btn btn-outline-secondary btn-sm"
+          = link_to 'Settings', issue_user_assignments_path(issue), class: "btn btn-outline-secondary btn-sm"
 
     .col-12.card-body
       %h4 Прогресс выполнения

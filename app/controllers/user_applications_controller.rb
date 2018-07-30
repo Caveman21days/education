@@ -16,14 +16,11 @@ class UserApplicationsController < ApplicationController
   end
 
   def create
-
-    members_ids = @application_receiver.users.ids
-    applicants_ids = @application_receiver.user_applications.collect { |application| application.user_id }
-
-    if members_ids.include? current_user.id or applicants_ids.include? current_user.id
+    unless UserApplication.can_be_created(current_user, @application_receiver)
       redirect_to @application_receiver
       return
     end
+
     params_with_user_id = {
       user_id: current_user.id
     }
@@ -40,7 +37,6 @@ class UserApplicationsController < ApplicationController
       user_id: @user_application.user_id,
       role_id: Role.where(name: 'student')[0].id
     }
-    print('PENIS', assignmentable_params)
     UserAssignment.create(assignmentable_params)
     @user_application.destroy
     redirect_to @application_receiver
@@ -54,6 +50,7 @@ class UserApplicationsController < ApplicationController
   private
 
   def set_user_application
+    print('===========================', params[:user_application_id], '====================')
     @user_application = UserApplication.find(params[:id])
   end
 

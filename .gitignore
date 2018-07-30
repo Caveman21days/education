@@ -27,3 +27,6 @@ config/database.yml
 *~
 musor
 public/uploads
+
+# Ignore my vscode stuff
+/.vscode/
