@@ -4,9 +4,9 @@
 .col-12.card.bg-light
   .row
     .col-12.card-header
-      .row
-        .col-12
-          %h3 Редактирование проекта
+      %a.btn.btn-outline-secondary.btn-sm.back-button{ href: request.referer } Назад
+      .col-12
+        %h3 Редактирование проекта
 
     .col-12.card-body
       = render 'form'

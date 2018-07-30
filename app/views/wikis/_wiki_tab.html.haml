@@ -1,0 +1,15 @@
+.actions
+  = link_to 'Добавить wiki', wikiable_link(wikiable)
+
+.page-content
+  .fancy-table-container.wikis-table
+    %table
+      %thead
+        %tr
+          %th.name Название
+      %tbody
+        - wikiable.wikis.each do |wiki|
+          %tr
+            %th
+              = link_to wiki.name, wiki_path(wiki)
+          

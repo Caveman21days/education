@@ -45,12 +45,8 @@
     .col-5
       = render 'shared/nested_form/attachments_form', f: f, attachable: @project
 
-    .row
-      .col-6
-      .col-6
-        = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
+    .float-right
+      = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
 
-        - if @project.persisted? && can?(:manage, @project)
-          = link_to "Удалить", course_path(@project.id), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
-
-        %a.btn.btn-outline-secondary.btn-sm{ href: request.referer } Назад
+      - if @project.persisted? && can?(:manage, @project)
+        = link_to "Удалить", project_path(@project.id), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }

@@ -114,11 +114,11 @@ class User < ApplicationRecord
     }
   end
 
-  validates :region, inclusion: { in: [*1..(User.region.length)],
-    message: 'Выбранный регион не найден' }
+  # validates :region, inclusion: { in: [*1..(User.region.length)],
+  #   message: 'Выбранный регион не найден' }
 
-  validates :city, presence: true
+  # validates :city, presence: true
 
-  validates :birth_date, presence: true
+  # validates :birth_date, presence: true
 
 end

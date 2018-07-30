@@ -8,13 +8,4 @@
           %img{src: image_path('add.svg'), alt: 'Добавить направление'}
 
   .page-content
-    .cards
-      - @fields.each do |field|
-        .card.li-card
-          .card-body
-            %h5.card-title
-              = field.name
-            %p.card-text
-              = field.short_description
-            - if can? :read, field
-              = link_to 'Просмотр', field_path(field), class: "btn btn-outline-secondary btn-sm"
+    = render 'fields/fields_list', fields: @fields
