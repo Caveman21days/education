@@ -15,9 +15,18 @@ class User < ApplicationRecord
 
   # validates :f_name, presence: true, length: { in: 1..20 }
 
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+         # :confirmable, :lockable, :timeoutable and :omniauthable
+
+
+  # validates :region, inclusion: { in: [*1..(User.region.length)],
+  #   message: 'Выбранный регион не найден' }
+
+  # validates :city, presence: true
+
+  # validates :birth_date, presence: true       
+  
 
   def full_name
     return "#{f_name} #{l_name}"
@@ -113,12 +122,4 @@ class User < ApplicationRecord
       99 =>	'Иные территории, включая город и космодром Байконур'
     }
   end
-
-  validates :region, inclusion: { in: [*1..(User.region.length)],
-    message: 'Выбранный регион не найден' }
-
-  validates :city, presence: true
-
-  validates :birth_date, presence: true
-
 end

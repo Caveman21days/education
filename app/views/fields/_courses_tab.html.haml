@@ -3,7 +3,7 @@
     = link_to 'Добавить учебный материал', new_field_course_path(@field)
 
 .cards
-  = courses.each do |course|
+  - @field.courses.each do |course|
     .card.li-card
       .card-body
         %h5.card-title

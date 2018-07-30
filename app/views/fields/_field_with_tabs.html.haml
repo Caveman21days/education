@@ -18,6 +18,6 @@
       #nav-description.tab-pane.fade.show.active.tab-content{"aria-labelledby" => "nav-home-tab", :role => "tabpanel"}
         = @field.description
       #nav-materials.tab-pane.fade.tab-content{"aria-labelledby" => "nav-materials-tab", :role => "tabpanel"}
-        = render 'courses_tab', courses: @field.courses
+        = render 'courses_tab'
       #nav-projects.tab-pane.fade.tab-content{"aria-labelledby" => "nav-projects-tab", :role => "tabpanel"}
-        = render 'projects_tab', projects: @field.projects
+        = render 'projects_tab'

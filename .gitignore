@@ -23,7 +23,7 @@
 .byebug_history
 
 /.idea/*
-/config/database.yml
+config/database.yml
 *~
 musor
 public/uploads
