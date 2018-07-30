@@ -39,7 +39,7 @@ module ApplicationHelper
     case object.class.name
     when "Field"
       User.all
-when "Course", "Project", "Wiki"
+    when "Course", "Project", "Wiki"
       # object.field.users
       User.all
     when "Issue"
@@ -56,7 +56,7 @@ when "Course", "Project", "Wiki"
     end
   end
 
-  def  roles_options_for_select(object)
+  def roles_options_for_select(object)
     assignmentable_roles(object).collect { |role| [role.name, role.id]}
   end
 
