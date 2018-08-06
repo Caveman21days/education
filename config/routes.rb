@@ -25,5 +25,7 @@ Rails.application.routes.draw do
 
   resources :users
 
+  get '/notifications', to: 'notifications#index'
+
   root to: 'fields#index'
 end
