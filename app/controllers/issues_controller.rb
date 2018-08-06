@@ -3,6 +3,8 @@ class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
   before_action :set_issuable, only: [:new, :create, :index]
 
+  after_action :update_project_last_issue_date, only: [:create]
+
   authorize_resource
 
   def new
@@ -23,13 +25,18 @@ class IssuesController < ApplicationController
 
   def update
     @issue.update(issue_params)
-    redirect_to @issue.issuable
+    respond_with @issue
   end
 
   def destroy
     issuable = @issue.issuable
     @issue.destroy
     redirect_to issuable
+  end
+
+  def user_issues_list
+    issue = Issue.find(params[:issue_id])
+    @user_issues = UserAssignment.where(assignmentable_id: issue.id, assignmentable_type: issue.class.name)
   end
 
 
@@ -43,8 +50,14 @@ class IssuesController < ApplicationController
     @issuable = issuable_object
   end
 
+  def update_project_last_issue_date
+    unless (defined? @issuable.last_issue_date) == nil
+      @issuable.update(last_issue_date: @issue.created_at)
+    end
+  end
+
   def issue_params
-    params.require(:issue).permit(:title, :body, :teacher_id)
+    params.require(:issue).permit(:title, :body, :teacher_id, :progress, :state, attachments_attributes: [:file])
   end
 
   def issuable_object

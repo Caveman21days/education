@@ -1,30 +1,32 @@
 .col-12.card
   .row
     .col-12.card-header
-      .row
-        .col-8
-          %h5.text-left= issue.title
-        .col-4
-          = link_to 'Перейти', issue_path(issue), class: "btn btn-outline-secondary btn-sm" if controller_name != 'issues'
-
-          - if can? :update, issue
-            = link_to 'Edit', edit_issue_path(issue), class: "btn btn-outline-secondary btn-sm"
-            = link_to 'Settings', issue_user_assignments_path(issue), class: "btn btn-outline-secondary btn-sm"
+      %h5.text-left= issue.title
+      .kirill-styles-quick-fix
+        = link_to 'Перейти', issue_path(issue), class: "btn btn-outline-secondary btn-sm" if controller_name != 'issues'
+        - if can? :manage, issue
+          = link_to 'Edit', edit_issue_path(issue), class: "btn btn-outline-secondary btn-sm"
+          = link_to 'Settings', issue_user_assignments_path(issue), class: "btn btn-outline-secondary btn-sm"
 
     .col-12.card-body
-      %h5 Задание
+      %h4 Прогресс выполнения
+      .progress
+        .progress-bar.progress-bar-striped.progress-bar-animated{ role: "progressbar",  "aria-valuenow" => "#{issue.progress}", "aria-valuemin" => "0", "aria-valuemax" => "100", style: "width: #{issue.progress}%"}
+
+      %hr
+      %h4 Задание
       %hr
       %p= markdown(issue.body)
-      %br
-      %hr
-      %h5 Ответы
-      %hr
+      - unless issue.attachments.empty?
+        %hr
+        %p Файлы:
+        = render partial: 'shared/nested_form/attachments', locals: { obj: issue }
 
       .user-answers
         = render issue.user_answers
       .user-answer-create
         - if user_signed_in?
-          - if can? :create, issue.user_answers
+          - if can? :create, UserAnswer
             = form_for [issue, @user_answer], remote: true do |f|
               .form-group.row
                 %label.col-2.col-form-label.text-right Новый ответ

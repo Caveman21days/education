@@ -1,23 +1,11 @@
-.col-12.card.bg-light
-  .row
-    .col-12.card-header
-      .row
-        .col-10
-          %h5.text-left Направления
-        .col-2
-          - if can? :manage, Field
-            = link_to "Добавить", new_field_path, class: 'btn btn-sm btn-dark'
+- content_for :main_container do
+  %header.page-header
+    %h1.page-title
+      Направления
+    .actions
+      - if can? :manage, Field
+        %a{href: new_field_path}
+          %img{src: image_path('add.svg'), alt: 'Добавить направление'}
 
-    .col-12.card-body
-      .row
-        - @fields.each do |field|
-          .col-6
-            .col-12.card
-              .row
-                .col-12.card-header
-                  %h5= field.name
-
-                .col-12.card-body
-                  %p.card-text= field.short_description
-                  - if can? :read, field
-                    = link_to 'Просмотр', field_path(field), class: "btn btn-outline-secondary btn-sm"
+  .page-content
+    = render 'fields/fields_list', fields: @fields

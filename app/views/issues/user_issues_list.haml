@@ -1,0 +1,19 @@
+.col-12.card.bg-light
+  .row
+    .col-12.card-header
+      .row
+        .col-12
+          %h5.text-left Ответы пользователей
+
+    .col-12.card-body
+      .row
+        .col-3
+          %h5 Участник
+        .col-3
+          %h5 Задача
+      - @user_issues.each do |ui|
+        .row
+          .col-3
+            %p= ui.user.f_name
+          .col-3
+            %p= ui.assignmentable.body

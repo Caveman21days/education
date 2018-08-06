@@ -1,5 +1,5 @@
 .row
-  .col-4
+  .w-100
     - flash.each do |type, message|
       - if type == 'notice'
         = content_tag(:div, message, class: "alert alert-success")

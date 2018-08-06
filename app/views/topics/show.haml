@@ -1,0 +1,47 @@
+.col-12.card
+  .row
+    .col-12.card-header
+      .row
+        .col-10
+          %h5.text-left= @topic.title
+        .col-2
+          - if can? :update, @topic
+            = link_to "Изменить", edit_topic_path(@topic), class: 'btn btn-sm btn-dark'
+
+    .col-12.card-body
+      .col-12
+        %p= markdown(@topic.body)
+        - unless @topic.attachments.empty?
+          %hr
+          %p Файлы:
+          = render partial: 'shared/nested_form/attachments', locals: { obj: @topic }
+        %hr
+
+      .answers.col-12
+        - @topic.answers.each do |answer|
+          %div{ class: "answer-#{answer.id} card col-12 bg-light" }
+            = render answer
+          %br
+        %div{ class: "new-answer card col-12 bg-light" }
+
+      %br
+      .answer-create.col-12
+        - if user_signed_in?
+          = form_for [@topic, @answer], remote: true do |f|
+            .form-group.row
+              .col-2
+                = f.label :body, 'Новый ответ'
+              .col-8
+                = f.text_area :body, class: 'form-control'
+              .col-2
+                = f.submit 'Сохранить', class: 'btn btn-outline-secondary btn-sm'
+
+
+              / %
+            / %p Attachments:
+
+            / #attachments
+            /   = f.fields_for :attachments do |attachment|
+            /     = render 'shared/attachments', f: attachment
+            /   .links
+            /     = link_to_add_association 'add file', f, :attachments, partial: 'shared/attachments'

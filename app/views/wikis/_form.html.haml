@@ -1,0 +1,23 @@
+.col-12
+  = form_for [@wikiable, @wiki], html: {class: "form-horizontal"} do |f|
+
+  
+    .form-group.row
+      %label.col-2.col-form-label.text-right Наименование
+      .col-10
+        = f.text_field :name, placeholder: "Наименование", autofocus: true, class: "form-control"
+
+    .form-group.row
+      %label.col-2.col-form-label.text-right Содержание wiki страницы
+      .col-10
+        = f.text_area :body, placeholder: "Содержание", class: "form-control", rows: 7
+
+    .row
+      .col-6
+      .col-6
+        = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
+
+        - if @wiki.persisted? && can?(:manage, Wiki)
+          = link_to "Удалить", wiki_path(@wiki.id), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
+
+        %a.btn.btn-outline-secondary.btn-sm{ href: request.referer } Назад

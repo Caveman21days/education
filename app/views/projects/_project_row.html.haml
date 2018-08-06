@@ -1,0 +1,15 @@
+%td
+  - if can? :read, project
+    = link_to project.name, project_path(project)
+  - else
+    = project.name
+%td
+  = project.short_description
+%td
+  = stage_name(project)
+%td
+  = bortnik_name(project)
+%td
+  = nti_name(project)
+%td.last-issue-date
+  = project.last_issue_date

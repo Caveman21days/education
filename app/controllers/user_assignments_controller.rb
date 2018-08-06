@@ -55,11 +55,13 @@ class UserAssignmentsController < ApplicationController
       Course.find(params[:course_id])
     elsif params[:issue_id]
       Issue.find(params[:issue_id])
+    elsif params[:wiki_id]
+      Wiki.find(params[:wiki_id])
     end
   end
 
   def user_assignments_params
-    params.require(:user_assignment).permit(:user_id, :role_id, :date_start, :date_end, :issue_state)
+    params.require(:user_assignment).permit(:user_id, :role_id, :issue_state)
   end
 end
 

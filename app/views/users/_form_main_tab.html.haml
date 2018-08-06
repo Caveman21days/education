@@ -1,0 +1,23 @@
+.form-group
+  = f.label :f_name
+  = f.text_field :f_name, class: "form-control", required: ""
+
+.form-group
+  = f.label :l_name
+  = f.text_field :l_name, class: "form-control", required: ""
+
+.form-group
+  = f.label :s_name
+  = f.text_field :s_name, class: "form-control"
+
+.form-group
+  = f.label :email
+  = f.email_field :email, class: "form-control", required: ""
+
+.form-group
+  = f.label "Birth date"
+  = f.date_select :birth_date, {}, { class: "form-control" }
+
+.form-group
+  = f.label 'Второй язык'
+  = f.text_field :second_language, class: "form-control"

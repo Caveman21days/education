@@ -1,0 +1,12 @@
+.col-12.card
+  .row
+    .col-12.card-header
+      %h5.text-left
+        Wiki
+        %a{ href: wikiable_link(wikiable), class: "btn btn-sm btn-dark" } Добавить
+
+    .col-12.card-body
+      - wikiable.wikis.each do |wiki|
+        .row
+          .col-12
+            %p= link_to wiki.name, wiki_path(wiki)

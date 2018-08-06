@@ -1,21 +1,35 @@
 .col-12
   = form_for [@issuable, @issue], html: { class: "form-horizontal" } do |f|
-    .form-group.row
-      %label.col-2.col-form-label.text-right Наименование
-      .col-10
-        = f.text_field :title, placeholder: "Наименование", autofocus: true, class: "form-control"
+    - if can? :create, Issue
+      .form-group.row
+        %label.col-2.col-form-label.text-right Наименование
+        .col-10
+          = f.text_field :title, placeholder: "Наименование", autofocus: true, class: "form-control"
 
-    .form-group.row
-      %label.col-2.col-form-label.text-right Описание
-      .col-10
-        = f.text_area :body, placeholder: "Описание", class: "form-control", rows: 7
+      .form-group.row
+        %label.col-2.col-form-label.text-right Описание
+        .col-10
+          = f.text_area :body, placeholder: "Описание", class: "form-control", rows: 7
 
-    .row
-      .col-6
-      .col-6
-        = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
+      .form-group.row
+        %label.col-2.col-form-label.text-right Прогресс выполнения
+        .col-3
+          = f.select :progress, {}, {}, { class: "form-control" } do
+            - progress.each do |c|
+              = content_tag(:option, c.first, value: c.last)
+      .form-group.row
+        .col-5
+          = render 'shared/nested_form/attachments_form', f: f, attachable: @issue
 
-        -#- if @field.persisted? && can?(:manage, Field)
-        -#  = link_to "Удалить", field_path(@field.id), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
+    = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
 
-        %a.btn.btn-outline-secondary.btn-sm{ href: request.referer } Назад
+  - if @issue.persisted? and 1 == 0 # this crap does not work so we decided to turn it off for the presentation
+    - if can? :manage, @issue
+      = form_for @issue, html: { class: "form-horizontal" } do |f|
+        .form-group.row
+          %label.col-2.col-form-label.text-right Состояние
+          .col-4
+            = f.select :state, {}, {}, { class: "form-control" } do
+              - state.each do |c|
+                = content_tag(:option, c, value: c)
+          = f.submit "Сохранить состояние", class: "btn btn-outline-secondary btn-sm"

@@ -30,12 +30,18 @@ module ApplicationHelper
     "/#{object.class.name.downcase}s/#{object.id}/issues/new"
   end
 
+  def wikiable_link(object)
+    object.class.name.downcase
+    "/#{object.class.name.downcase}s/#{object.id}/wikis/new"
+  end
+
   def assignmentable_users(object)
     case object.class.name
     when "Field"
       User.all
-    when "Course", "Project"
-      object.field.users
+    when "Course", "Project", "Wiki"
+      # object.field.users
+      User.all
     when "Issue"
       object.issuable.users
     end
@@ -43,10 +49,18 @@ module ApplicationHelper
 
   def assignmentable_roles(object)
     case object.class.name
-    when "Field", "Course", "Project"
+    when "Field", "Course", "Project", "Wiki"
       Role.all
     when "Issue"
       Role.where(name: ["Исполнитель", "Наблюдатель"])
     end
+  end
+
+  def roles_options_for_select(object)
+    assignmentable_roles(object).collect { |role| [role.name, role.id]}
+  end
+
+  def field_topics
+    @field_with_names = Field.pluck(:id, :name)
   end
 end

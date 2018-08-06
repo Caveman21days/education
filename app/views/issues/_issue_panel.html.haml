@@ -1,11 +1,9 @@
 .col-12.card
   .row
     .col-12.card-header
-      .row
-        .col-8
-          %h5.text-left Задачи
-        .col-4
-          %a{ href: issuable_link(issuable), class: "btn btn-sm btn-dark" } Добавить
+      %h5.text-left Задачи
+      .buttons
+        %a{ href: issuable_link(issuable), class: "btn btn-sm btn-dark" }
     .col-12.card-body
       .row
         .col-6

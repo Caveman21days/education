@@ -1,0 +1,21 @@
+.col-12.card.bg-light
+  .row
+    .col-12.card-header
+      .row
+        .col-10
+          %h5.text-left База знаний
+        .col-2
+          - if can? :manage, Wiki
+            = link_to "Добавить", new_wiki_path, class: 'btn btn-sm btn-dark'
+
+    .col-12.card-body
+      - @wikis.each do |wiki|
+        .row
+          .col-12.card
+            .row
+              .col-12.card-header
+                %h5
+                  = "#{wiki.name} (#{wiki.field.name})"
+                  - if can? :read, wiki
+                    = link_to 'Просмотр', wiki_path(wiki), class: "btn btn-outline-secondary btn-sm"
+          %br

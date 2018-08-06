@@ -1,7 +1,1 @@
-= render @course
-
-- content_for :right_panel do
-  = render 'issues/issue_panel', issuable: @course
-
-- content_for :left_panel do
-  = render 'users/users_panel', issuable: @course
+= render 'courses/course_with_tabs'

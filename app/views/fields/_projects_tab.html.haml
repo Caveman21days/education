@@ -1,0 +1,5 @@
+- if can? :manage, @field
+  .actions
+    = link_to 'Добавить проект', new_field_project_path(@field)
+
+= render 'projects/projects_table', projects: @field.projects

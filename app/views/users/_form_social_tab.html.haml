@@ -1,0 +1,14 @@
+.form-group
+  = f.label "Phone number"
+  = f.telephone_field :phone_number
+
+.form-group
+  = f.label 'Профиль VK'
+  = f.text_field :vk_profile, class: "form-control"
+
+.form-group
+  = f.label 'Профиль Telegram'
+  = f.text_field :telegram_profile, class: "form-control"
+
+.form-group
+  = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"

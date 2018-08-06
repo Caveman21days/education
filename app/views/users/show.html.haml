@@ -1,6 +1,33 @@
-.card.border-dark.mb-3
-  .card-body.text-dark
-    %h5.card-title
-      = "#{@user.f_name} #{@user.l_name}"
-    %p.card-text
+.fancy-card.user-card
+  .controls
+    = link_to 'Редактировать', edit_user_path(@user.id)
+  %img{alt: 'Profile picture', src: "https://www.standardmedia.co.ke/evewoman/assets/img/avatar.jpg"}
+
+  %h1.main-heading
+    = "#{@user.f_name} #{@user.l_name} #{@user.s_name}"
+
+  .fields
+    .key
+      Email
+    .value
       = @user.email
+    .key
+      Адрес
+    .value
+      = "#{@user.region} #{@user.city} #{@user.street} #{@user.house} #{@user.apartment}"
+    .key
+      Школа
+    .value
+      = @user.school
+    .key
+      Университет
+    .value
+      = @user.university
+    .key
+      Профиль вк
+    .value
+      = @user.vk_profile
+    .key
+      Профиль телеграм
+    .value
+      = @user.telegram_profile

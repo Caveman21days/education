@@ -1,0 +1,7 @@
+%p Attachments:
+
+.attachment_form_fields
+  = f.fields_for :attachments, attachable.attachments.build do |attachment|
+    = render 'shared/nested_form/attachments_form_fields', f: attachment
+  .links
+    = link_to_add_association 'add file', f, :attachments, partial: 'shared/nested_form/attachments_form_fields', class: "btn btn-outline-secondary btn-sm"

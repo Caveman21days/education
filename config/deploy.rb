@@ -1,0 +1,33 @@
+# config valid for current version and patch releases of Capistrano
+lock "~> 3.11.0"
+
+set :application, "education"
+
+# set :repo_url, "git@github.com:Caveman21days/education.git"
+set :repo_url, "https://github.com/Caveman21days/education.git"
+
+set :deploy_to, "/home/deployer/education"
+
+set :format, :pretty
+
+set :deploy_user, 'deployer'
+
+set :branch, 'dev'
+
+append :linked_files, "config/database.yml", ".env"
+
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads"
+
+set :keep_releases, 10
+
+namespace :deploy do
+
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :touch, release_path.join('tmp/restart.txt')
+    end
+  end
+
+  after :publishing, :restart
+end

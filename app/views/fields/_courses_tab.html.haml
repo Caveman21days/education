@@ -1,0 +1,5 @@
+- if can? :manage, @field
+  .actions
+    = link_to 'Добавить учебный материал', new_field_course_path(@field)
+    
+= render 'courses/courses_list', courses: @field.courses

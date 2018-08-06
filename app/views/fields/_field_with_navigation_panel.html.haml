@@ -1,35 +1,35 @@
 - content_for :left_panel do
   .border-right
     .nav.flex-column.nav-pills#v-pills-tab{role: "tablist", "aria-orientation" => "vertical"}
-      %a.nav-link.active.text-dark#v-pills-home-tab{ "data-toggle" => "pill", href: "#v-pills-home", role: "tab", "aria-controls" => "v-pills-home", "aria-selected" => "true" }Описание
-      %a.nav-link.text-dark#v-pills-course-tab{ "data-toggle" => "pill", href: "#v-pills-course", role: "tab", "aria-controls" => "v-pills-course", "aria-selected" => "false" }Учебные материалы
-      %a.nav-link.text-dark#v-pills-project-tab{ "data-toggle" => "pill", href: "#v-pills-project", role: "tab", "aria-controls" => "v-pills-project", "aria-selected" => "false" }Проекты
+      %a.nav-link.active.text-dark#v-pills-home-tab{ "data-toggle" => "pill", href: "#v-pills-home", role: "tab", "aria-controls" => "v-pills-home", "aria-selected" => "true" } Описание
+      %a.nav-link.text-dark#v-pills-course-tab{ "data-toggle" => "pill", href: "#v-pills-course", role: "tab", "aria-controls" => "v-pills-course", "aria-selected" => "false" } Учебные материалы
+      %a.nav-link.text-dark#v-pills-project-tab{ "data-toggle" => "pill", href: "#v-pills-project", role: "tab", "aria-controls" => "v-pills-project", "aria-selected" => "false" } Проекты
 
-    - content_for :center do
-      .tab-content#v-pills-tabContent
-        .tab-pane.fade.show.active#v-pills-home{ role: "tabpanel", "aria-labelledby" => "v-pills-home-tab" }
+- content_for :center do
+  .tab-content#v-pills-tabContent
 
-          .col-12.card
+    .tab-pane.fade.show.active#v-pills-home{ role: "tabpanel", "aria-labelledby" => "v-pills-home-tab" }
+      .col-12.card
+        .row
+          .col-12.card-header
+            %h5.text-left= @field.name
+          .col-12.card-body
+            %p= markdown(@field.description)
+            - if can? :update, @field
+              = link_to 'Редактировать', edit_field_path(@field), class: "btn btn-outline-secondary btn-sm"
+              = link_to 'Настроить', field_user_assignments_path(@field), class: "btn btn-outline-secondary btn-sm"
+
+
+    .tab-pane.fade#v-pills-course{ role: "tabpanel", "aria-labelledby" => "v-pills-course-tab" }
+      .col-12.card
+        .row
+          .col-12.card-body
             .row
               .col-12.card-header
-                %h5.text-left= @field.name
-              .col-12.card-body
-                %p= markdown(@field.description)
-                - if can? :update, @field
-                  = link_to 'Редактировать', edit_field_path(@field), class: "btn btn-outline-secondary btn-sm"
-                  = link_to 'Настроить', field_user_assignments_path(@field), class: "btn btn-outline-secondary btn-sm"
-
-
-        .tab-pane.fade#v-pills-course{ role: "tabpanel", "aria-labelledby" => "v-pills-course-tab" }
-          .col-12.card
-            .row
-              .col-12.card-header
-                .row
-                  .col-10
-                    %h5.text-left Учебные материалы
-                  .col-2
-                    - if can? :manage, @field
-                      = link_to "Добавить", new_field_course_path(@field), class: 'btn btn-sm btn-dark'
+                %h5.text-left Учебные материалы
+                .buttons
+                  - if can? :manage, @field
+                    = link_to "Добавить", new_field_course_path(@field), class: 'btn btn-sm btn-dark'
 
               .col-12.card-body
                 .row
@@ -38,19 +38,19 @@
                       = render course
 
 
-        .tab-pane.fade#v-pills-project{ role: "tabpanel", "aria-labelledby" => "v-pills-project-tab" }
-          .col-12.card
+    .tab-pane.fade#v-pills-project{ role: "tabpanel", "aria-labelledby" => "v-pills-project-tab" }
+      .col-12.card
+        .row
+          .col-12.card-body
             .row
               .col-12.card-header
-                .row
-                  .col-10
-                    %h5.text-left Проекты
-                  .col-2
-                    - if can? :manage, @field
-                      = link_to "Добавить", new_field_project_path(@field), class: 'btn btn-sm btn-dark'
+                %h5.text-left Проекты
+                .butons
+                  - if can? :manage, @field
+                    = link_to "Добавить", new_field_project_path(@field), class: 'btn btn-sm btn-dark'
 
-              .col-12.card-body
-                .row
-                  - @field.projects.each do |project|
-                    .col-6
-                      = render project
+          .col-12.card-body
+            .row
+              - @field.projects.each do |project|
+                .col-6
+                  = render project

@@ -1,12 +1,10 @@
 .col-12.card.bg-light
   .row
     .col-12.card-header
-      .row
-        .col-10
-          %h5.text-left Участники
-        .col-2
-          - if can? :manage, UserAssignment
-            %a{ href: assignmentable_link(@assignmentable), class: "btn btn-sm btn-dark" } Добавить
+      %h5.text-left Участники
+      .buttons
+        - if can? :manage, UserAssignment
+          %a{ href: assignmentable_link(@assignmentable), class: "btn btn-sm btn-dark" } Добавить
 
 
     .col-12.card-body
@@ -26,10 +24,10 @@
           .col-3
             %p= user_assignment.role.name
           .col-4
-            - if user_assignment.date_end
-              %p= "#{user_assignment.date_start.strftime("%d.%m")} - #{user_assignment.date_end.strftime("%d.%m.%Y")}"
-            - else
-              %p= "#{user_assignment.date_start.strftime("%d.%m")} - ../../.."
+            -# - if user_assignment.date_end
+            -#   %p= "#{user_assignment.date_start.strftime("%d.%m")} - #{user_assignment.date_end.strftime("%d.%m.%Y")}"
+            -# - else
+            -#   %p= "#{user_assignment.date_start.strftime("%d.%m")} - ../../.."
 
           .col-2
             - if can? :update, user_assignment

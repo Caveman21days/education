@@ -1,0 +1,19 @@
+.cards {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  font-weight: 400;
+
+  .li-card {
+    width: calc(33.3% - 30px);
+    margin: 15px;
+
+    .card-text {
+      height: 200px;
+      text-overflow: ellipsis;
+      overflow-y: hidden;
+    }
+  }
+}

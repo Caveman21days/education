@@ -1,0 +1,40 @@
+- if answer.persisted?
+  .row
+    .col-12.card-header
+      .row
+        .col-4
+          %p= "#{answer.author.l_name} #{answer.author.f_name}"
+        .col-4
+          %p= answer.author.email
+        .col-4
+          %p= answer.updated_at.strftime("%d.%m.%Y %H:%M")
+
+    .card-body
+      .row
+        .col-9
+          %p= markdown(answer.body)
+          - unless answer.attachments.empty?
+            %hr
+            %p Файлы:
+            = render partial: 'shared/nested_form/attachments', locals: { obj: answer }
+        .col-3  
+          - if can?(:update, answer)
+            = link_to 'Edit', '', class: 'edit-answer-link btn btn-sm btn-outline-secondary', data: { answer_id: answer.id }
+            = link_to 'Delete', answer_path(answer), method: :delete, remote: true, class: "btn btn-sm btn-outline-secondary"
+
+      %hr
+      = form_for answer, remote: true, html: { id: "edit-answer-#{answer.id}" } do |f|
+        .form-group.row
+          .col-2
+            = f.label :body, 'Ваш ответ'
+          .col-8
+            = f.text_area :body, class: 'form-control'
+            = render 'shared/nested_form/attachments_form', f: f, attachable: answer
+          .col-2
+            = f.submit 'Сохранить', class: 'btn btn-outline-secondary btn-sm'
+
+        / #attachments
+        /   = f.fields_for :attachments do |attachment|
+        /     = render 'shared/attachments', f: attachment
+        /   .links
+        /     = link_to_add_association 'add file', f, :attachments, partial: 'shared/attachments'
