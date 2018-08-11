@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180730093729) do
+ActiveRecord::Schema.define(version: 20180811154045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20180730093729) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "short_description", default: "", null: false
+    t.string "application_area"
+    t.string "technology"
   end
 
   create_table "fields", force: :cascade do |t|
@@ -72,6 +74,14 @@ ActiveRecord::Schema.define(version: 20180730093729) do
     t.index ["issuable_id", "issuable_type"], name: "index_issues_on_issuable_id_and_issuable_type"
   end
 
+  create_table "main_fields", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "curator_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -85,6 +95,8 @@ ActiveRecord::Schema.define(version: 20180730093729) do
     t.integer "project_type"
     t.datetime "last_issue_date"
     t.integer "cofield_id"
+    t.string "application_area"
+    t.string "technology"
   end
 
   create_table "roles", force: :cascade do |t|

@@ -45,6 +45,7 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(
       :name, :short_description, :description,
+      :application_area, :technology,
       :project_manager_id, :cofield_id, :stage, :nti, :bortnik, :project_type,
       attachments_attributes: [:file]
     )

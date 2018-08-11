@@ -48,6 +48,8 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:name, :short_description, :description, :teacher_id, attachments_attributes: [:file])
+    params.require(:course).permit(
+      :name, :short_description, :description, :teacher_id,
+      :application_area, :technology, attachments_attributes: [:file])
   end
 end

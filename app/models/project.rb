@@ -78,7 +78,6 @@ class Project < ApplicationRecord
     ]
   end
 
-    validates :project_type, inclusion: { in: [*0..(Project.project_type.length - 1)],
-      message: 'Выбранный классификатор не корректен' }, presence: true
-
+  validates :project_type, inclusion: { in: [*0..(Project.project_type.length - 1)],
+    message: 'Выбранный классификатор не корректен' }, presence: true
 end
