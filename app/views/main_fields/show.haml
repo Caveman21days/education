@@ -4,8 +4,8 @@
       Субнаправления
     .actions
       - if can? :manage, Field
-        %a{href: new_main_field_field_path}
+        %a{href: new_main_field_field_path(@main_field)}
           %img{src: image_path('add.svg'), alt: 'Добавить направление'}
 
   .page-content
-    = render 'fields/fields_list', fields: @fields
+    = render 'fields/fields_list', fields: @main_field.fields

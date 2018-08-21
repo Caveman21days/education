@@ -1,3 +1,3 @@
 class MainField < ApplicationRecord
-  has_many
+  has_many :fields
 end

@@ -3,11 +3,11 @@ module UsersHelper
     User.region[user.region]
   end
 
-  def situational_user_assigments_path
+  def situational_user_assignments_path
     if controller_name == 'courses'
-      return course_user_assignments_path(@course)
+      return new_course_user_assignment_path(@course)
     else
-      return project_user_assignments_path(@project)
+      return new_project_user_assignment_path(@project)
     end
   end
 end

@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180811154045) do
+ActiveRecord::Schema.define(version: 20180821142948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "advanced_abilities", force: :cascade do |t|
+    t.integer "objectable_id"
+    t.string "objectable_type"
+    t.string "role_id"
+    t.string "ability_name"
+    t.string "access"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["objectable_id", "objectable_type"], name: "index_advanced_abilities_on_objectable_id_and_objectable_type"
+  end
 
   create_table "answers", force: :cascade do |t|
     t.text "body"
@@ -41,6 +52,7 @@ ActiveRecord::Schema.define(version: 20180811154045) do
     t.string "short_description", default: "", null: false
     t.string "application_area"
     t.string "technology"
+    t.boolean "access"
   end
 
   create_table "fields", force: :cascade do |t|
@@ -49,6 +61,7 @@ ActiveRecord::Schema.define(version: 20180811154045) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "short_description", default: "", null: false
+    t.integer "main_field_id"
   end
 
   create_table "forums", force: :cascade do |t|
@@ -76,8 +89,8 @@ ActiveRecord::Schema.define(version: 20180811154045) do
 
   create_table "main_fields", force: :cascade do |t|
     t.string "name"
+    t.string "short_description"
     t.text "description"
-    t.integer "curator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

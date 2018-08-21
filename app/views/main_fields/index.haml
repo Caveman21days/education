@@ -1,11 +1,11 @@
 - content_for :main_container do
   %header.page-header
     %h1.page-title
-      Субнаправления
+      Основные направления
     .actions
-      - if can? :manage, Field
-        %a{href: new_main_field_field_path}
+      - if can? :manage, MainField
+        %a{href: new_main_field_path}
           %img{src: image_path('add.svg'), alt: 'Добавить направление'}
 
   .page-content
-    = render 'fields/fields_list', fields: @fields
+    = render 'main_fields/main_fields_list', main_fields: @main_fields

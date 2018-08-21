@@ -1,0 +1,12 @@
+.cards
+  - main_fields.each do |main_field|
+    .card.li-card
+      .card-body
+        %h5.card-title
+          = main_field.name
+        %p.card-text
+          = main_field.short_description
+        - if can? :read, main_field
+          = link_to 'Просмотр', main_field_path(main_field), class: "btn btn-outline-secondary btn-sm"
+        - if can? :manage, main_field
+          = link_to 'Редактирование',  edit_main_field_path(main_field), class: "btn btn-outline-secondary btn-sm"

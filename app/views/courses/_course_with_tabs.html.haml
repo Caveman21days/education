@@ -22,7 +22,7 @@
           .actions
             = link_to 'Подать заявку', new_course_user_application_path(@course)
     
-        = @course.description
+        = markdown @course.description
       #nav-members.tab-pane.fade.tab-content{"aria-labelledby" => "nav-members-tab", :role => "tabpanel"}
         = render 'users/users_tab', issuable: @course
       #nav-issues.tab-pane.fade.tab-content{"aria-labelledby" => "nav-issues-tab", :role => "tabpanel"}
