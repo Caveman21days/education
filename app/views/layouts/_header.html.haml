@@ -7,7 +7,7 @@
   .collapse.navbar-collapse#navbarSupportedContent.nav-content-left
     %ul.navbar-nav.mr-auto
       %li.nav-item
-        %a.nav-link{ :href => fields_path } Направления
+        %a.nav-link{ :href => main_fields_path } Направления
       %li.nav-item
         %a.nav-link{ :href => topics_path } Форум
       %li.nav-item
@@ -17,7 +17,6 @@
       %li
         %a{ class: "notifications-circle", href: '/notifications' }
           = @notifications_count
-
       %li.nav-item
         = link_to "#{current_user.l_name } #{current_user.f_name}", user_path(current_user.id), class: 'nav-link'
       - if current_user

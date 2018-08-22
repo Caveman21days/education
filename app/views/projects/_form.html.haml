@@ -1,52 +1,60 @@
-.col-12
-  = form_for [@field, @project], html: { class: "form-horizontal" } do |f|
+= form_for [@field, @project], html: { class: "form-horizontal" } do |f|
+  .form-group.row
+    %label.col-2.col-form-label.text-right Наименование
+    .col-10
+      = f.text_field :name, placeholder: "Наименование", autofocus: true, class: "form-control", required: ''
 
-    .form-group.row
-      %label.col-2.col-form-label.text-right Наименование
-      .col-10
-        = f.text_field :name, placeholder: "Наименование", autofocus: true, class: "form-control", required: ''
+  .form-group.row
+    %label.col-2.col-form-label.text-right Краткое описание
+    .col-10
+      = f.text_area :short_description, placeholder: "Краткое описание", class: "form-control", rows: 2, required: ""
 
-    .form-group.row
-      %label.col-2.col-form-label.text-right Краткое описание
-      .col-10
-        = f.text_area :short_description, placeholder: "Краткое описание", class: "form-control", rows: 2, required: ""
+  .form-group.row
+    %label.col-2.col-form-label.text-right Описание
+    .col-10
+      = f.text_area :description, placeholder: "Описание", class: "form-control", rows: 7, required: ""
 
-    .form-group.row
-      %label.col-2.col-form-label.text-right Описание
-      .col-10
-        = f.text_area :description, placeholder: "Описание", class: "form-control", rows: 7, required: ""
+  .form-group.row
+    %label.col-2.col-form-label.text-right Область применения
+    .col-10
+      = f.select(:cofield_id, MainField.all.collect { |field| [ field.name, field.id ] }, {include_blank: true}, { :class => "form-control" })
 
-    .form-group.row
-      %label.col-2.col-form-label.text-right Область применения
-      .col-10
-        = f.select(:cofield_id, Field.all.collect { |field| [ field.name, field.id ] }, {include_blank: true}, { :class => "form-control" })
+  .form-group.row
+    %label.col-2.col-form-label.text-right Технология
+    .col-10
+      = f.text_field :technology, placeholder: "Технология", class: "form-control"
 
+  .form-group.row
+    %label.col-2.col-form-label.text-right Стадия разработки
+    .col-10
+      = f.select(:stage, Project.stages.collect { |s| [ s, Project.stages.index(s) ] }, {include_blank: false}, { :class => "form-control" })
 
-    .form-group.row
-      %label.col-2.col-form-label.text-right Стадия разработки
-      .col-10
-        = f.select(:stage, Project.stages.collect { |s| [ s, Project.stages.index(s) ] }, {include_blank: false}, { :class => "form-control" })
+  .form-group.row
+    %label.col-2.col-form-label.text-right НТИ
+    .col-10
+      = f.select(:nti, Project.nti.collect { |nti| [ nti, Project.nti.index(nti) ] }, {include_blank: false}, { :class => "form-control" })
 
-    .form-group.row
-      %label.col-2.col-form-label.text-right НТИ
-      .col-10
-        = f.select(:nti, Project.nti.collect { |nti| [ nti, Project.nti.index(nti) ] }, {include_blank: false}, { :class => "form-control" })
+  .form-group.row
+    %label.col-2.col-form-label.text-right Фонд бортника
+    .col-10
+      = f.select(:bortnik, Project.bortnik.collect { |bortnik| [ bortnik, Project.bortnik.index(bortnik) ] }, {include_blank: false}, { :class => "form-control" })
 
-    .form-group.row
-      %label.col-2.col-form-label.text-right Фонд бортника
-      .col-10
-        = f.select(:bortnik, Project.bortnik.collect { |bortnik| [ bortnik, Project.bortnik.index(bortnik) ] }, {include_blank: false}, { :class => "form-control" })
+  .form-group.row
+    %label.col-2.col-form-label.text-right Тип проекта
+    .col-10
+      = f.select(:project_type, Project.project_type.collect { |type| [ type, Project.project_type.index(type) ] }, {include_blank: false}, { :class => "form-control" })
 
-    .form-group.row
-      %label.col-2.col-form-label.text-right Тип проекта
-      .col-10
-        = f.select(:project_type, Project.project_type.collect { |type| [ type, Project.project_type.index(type) ] }, {include_blank: false}, { :class => "form-control" })
-
+  .form-group.row
     .col-5
       = render 'shared/nested_form/attachments_form', f: f, attachable: @project
 
-    .float-right
-      = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
+  .col-12
+    = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
 
-      - if @project.persisted? && can?(:manage, @project)
-        = link_to "Удалить", project_path(@project.id), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
+    - if @project.persisted? && can?(:manage, @project)
+      = link_to "Удалить", project_path(@project.id), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
+
+
+%br
+- if @project.persisted?
+  = render 'advanced_abilities/form_project', object: @project

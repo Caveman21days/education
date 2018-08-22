@@ -1,0 +1,19 @@
+%br
+.col-12
+  %form{ enctype: "multipart/form-data", "action": "/advanced_abilities", method: "post", "accept-charset" => "UTF-8", authenticity_token: true }
+    = hidden_field_tag :authenticity_token, form_authenticity_token
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Роль
+          %th Карточка
+          %th Задания
+      %tbody
+        - Role.where(name: ["curator", "mentor", "sponsor", "field_sponsor"]).each do |role|
+          %tr
+            %td= role.name
+            %td
+              %input{ name: "advanced_abilities[#{object.class.name}_#{object.id}_#{role.id}_card]", type: "checkbox", value: "1" }
+            %td
+              %input{ name: "advanced_abilities[#{object.class.name}_#{object.id}_#{role.id}_issues]", type: "checkbox", value: "1" }
+    %input{ type: "submit" }

@@ -4,7 +4,6 @@ class CoursesController < ApplicationController
 
   authorize_resource
 
-
   def index
     respond_with @courses = @field.courses
   end
@@ -22,12 +21,12 @@ class CoursesController < ApplicationController
 
   def create
     @course = @field.courses.create(course_params)
-    redirect_to @field
+    respond_with @course
   end
 
   def update
     @course.update(course_params)
-    redirect_to @course.field
+    respond_with @course
   end
 
   def destroy
@@ -48,6 +47,8 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:name, :short_description, :description, :teacher_id, attachments_attributes: [:file])
+    params.require(:course).permit(
+      :name, :short_description, :description, :teacher_id,
+      :application_area, :access, :technology, attachments_attributes: [:file])
   end
 end

@@ -3,7 +3,7 @@
     .col-12.card-header
       %h5.text-left Участники
       .buttons
-        - if can? :manage, UserAssignment
+        - if can? :create, UserAssignment
           %a{ href: assignmentable_link(@assignmentable), class: "btn btn-sm btn-dark" } Добавить
 
 

@@ -3,7 +3,7 @@
     %h1.page-title
       = @project.name
     .actions
-      - if can? :update, @course
+      - if can? :update, @project
         %a{href: edit_project_path(@project)}
           %img.settings{src: image_path('settings.svg'), alt: 'Редактировать проект'}
 
@@ -12,9 +12,9 @@
       %a#nav-home-tab.tab.active{"aria-controls" => "nav-description", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-description", :role => "tab"} Описание проекта
       %a#nav-members-tab.tab{"aria-controls" => "nav-wiki", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-wiki", :role => "tab"} Wiki
       %a#nav-members-tab.tab{"aria-controls" => "nav-members", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-members", :role => "tab"} Участники
-      %a#nav-issues-tab.tab{"aria-controls" => "nav-issues", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-issues", :role => "tab"} Задачи
+      - if @project.check_access("issue", current_user)
+        %a#nav-issues-tab.tab{"aria-controls" => "nav-issues", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-issues", :role => "tab"} Задачи
       %a#nav-role-applications-tab.tab{"aria-controls" => "nav-role-applications", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-role-applications", :role => "tab"} Заявки на роли
-      
 
   .page-content
     #nav-tabContent.tab-content
@@ -24,8 +24,9 @@
         = render 'wikis/wiki_tab', wikiable: @project
       #nav-members.tab-pane.fade.tab-content{"aria-labelledby" => "nav-members-tab", :role => "tabpanel"}
         = render 'users/users_tab', issuable: @project
-      #nav-issues.tab-pane.fade.tab-content{"aria-labelledby" => "nav-issues-tab", :role => "tabpanel"}
-        = render 'issues/issue_tab', issuable: @project
+      - if @project.check_access("issue", current_user)
+        #nav-issues.tab-pane.fade.tab-content{"aria-labelledby" => "nav-issues-tab", :role => "tabpanel"}
+          = render 'issues/issue_tab', issuable: @project
       #nav-role-applications.tab-pane.fade.tab-content{"aria-labelledby" => "nav-role-applications-tab", :role => "tabpanel"}
         = render 'role_applications/role_applications_tab', role_applications: @project.role_applications.select { |application| application.required_reviewer_role == Role.by_name('project_manager')}
 

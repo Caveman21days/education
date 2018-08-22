@@ -9,6 +9,7 @@ class Project < ApplicationRecord
   has_many :role_applications, as: :role_applicable
 
   has_many :wikis, as: :wikiable
+  has_many :advanced_abilities, as: :objectable, dependent: :destroy
 
   has_many :attachments, as: :attachable, dependent: :destroy
   accepts_nested_attributes_for :attachments, reject_if: :all_blank
@@ -96,7 +97,23 @@ class Project < ApplicationRecord
     ]
   end
 
-    validates :project_type, inclusion: { in: [*0..(Project.project_type.length - 1)],
-      message: 'Выбранный классификатор не корректен' }, presence: true
+  validates :project_type, inclusion: { in: [*0..(Project.project_type.length - 1)],
+    message: 'Выбранный классификатор не корректен' }, presence: true
 
+
+  def check_access(attribute, current_user)
+    ua = UserAssignment.where(assignmentable: self, user_id: current_user.id).first
+    if !ua.nil?
+      user_role = ua.role if !ua.nil?
+      if ["sponsor", "field_sponsor", "mentor", "curator"].include?(user_role.name)
+        true if user.role.name == 'mentor' && attribute == 'card'
+        typo_access = AdvancedAbility.where(objectable: self, ability_name: attribute, role_id: user_role.id)
+        typo_access.empty? ? false : true
+      else
+        true
+      end
+    else
+      true
+    end
+  end
 end

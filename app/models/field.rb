@@ -1,4 +1,6 @@
 class Field < ApplicationRecord
+  belongs_to :main_field
+
   has_many :user_assignments, as: :assignmentable
 
   has_many :projects
@@ -13,7 +15,6 @@ class Field < ApplicationRecord
 
 
   validates :name, :short_description, :description, presence: true
-
   # belongs_to :curator, class_name: 'User', foreign_key: 'curator_id'
 
 

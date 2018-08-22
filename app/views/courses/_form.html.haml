@@ -15,18 +15,32 @@
       %label.col-2.col-form-label.text-right Описание
       .col-10
         = f.text_area :description, placeholder: "Описание", class: "form-control", rows: 7
-    
+
+    .form-group.row
+      %label.col-2.col-form-label.text-right Область применения
+      .col-5
+        = f.select :application_area, {}, {include_blank: true}, { class: "form-control" } do
+          - MainField.all.each do |c|
+            = content_tag(:option, c.name, value: c.id)
+
+    .form-group.row
+      %label.col-2.col-form-label.text-right Технология
+      .col-5
+        = f.text_field :technology, placeholder: "Технология", class: "form-control"
+
+    .form-group.row
+      %label.col-2.col-form-label.text-right Открыть доступ
+      .col-5
+        = f.check_box :access
+
     .form-group.row
       .col-5
         = render 'shared/nested_form/attachments_form', f: f, attachable: @course
 
 
     .row
-      .col-6
-      .col-6
+      .col-12
         = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
-
         - if @course.persisted? && can?(:manage, @course)
           = link_to "Удалить", course_path(@course.id), method: :delete, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
-
         %a.btn.btn-outline-secondary.btn-sm{ href: request.referer } Назад

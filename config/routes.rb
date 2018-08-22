@@ -1,38 +1,39 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :fields do
-    resources :user_assignments, shallow: true
-
-    resources :projects, shallow: true do
-      resources :wikis, shallow: true
-
+  resources :main_fields do
+    resources :fields, shallow: true do
       resources :user_assignments, shallow: true
-      resources :issues, shallow: true,except: [:index] do
-        get 'user_issues_list', to: 'issues#user_issues_list'
-        resources :user_assignments, shallow: true
-        resources :user_answers, shallow: true, only: [:create, :update, :destroy]
-      end
-      resources :role_applications, only: [:new, :create, :show, :destroy] do
-        patch '/accept', to: 'role_applications#accept', as: :accept
-        patch '/reject', to: 'role_applications#reject', as: :reject
-      end
-    end
 
-    resources :creation_applications, only: [:new, :create] do
+      resources :projects, shallow: true do
+        resources :wikis, shallow: true
+
+        resources :user_assignments, shallow: true
+        resources :issues, shallow: true,except: [:index] do
+          get 'user_issues_list', to: 'issues#user_issues_list'
+          resources :user_assignments, shallow: true
+          resources :user_answers, shallow: true, only: [:create, :update, :destroy]
+        end
+        resources :role_applications, only: [:new, :create, :show, :destroy] do
+          patch '/accept', to: 'role_applications#accept', as: :accept
+          patch '/reject', to: 'role_applications#reject', as: :reject
+        end
+      end
       
-    end
 
-    resources :courses, shallow: true do
-      resources :wikis, shallow: true
-
-      resources :user_assignments, shallow: true
-      resources :issues, shallow: true, except: [:index] do
+      resources :courses, shallow: true do
+        resources :wikis, shallow: true
         resources :user_assignments, shallow: true
-        resources :user_answers, shallow: true, only: [:create, :update, :destroy]
+        resources :issues, shallow: true, except: [:index] do
+          resources :user_assignments, shallow: true
+          resources :user_answers, shallow: true, only: [:create, :update, :destroy]
+        end
+        resources :role_applications, only: [:new, :create, :show, :destroy] do
+        end
       end
-      resources :role_applications, only: [:new, :create, :show, :destroy] do
 
+      resources :creation_applications, only: [:new, :create] do
+      
       end
     end
   end
@@ -58,5 +59,11 @@ Rails.application.routes.draw do
 
   resources :attachments, only: [:destroy]
 
-  root to: 'fields#index'
+  get '/notifications', to: 'notifications#index'
+
+###########
+  resources :advanced_abilities, only: [:create]
+###########
+
+  root to: 'main_fields#index'
 end
