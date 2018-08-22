@@ -135,7 +135,7 @@ class RoleApplication < ApplicationRecord
   # application can be sent if user had not already sent one or is not already a member
   def self.can_be_sent(user, role_applicable)
     members_ids = role_applicable.users.ids
-    applicants_ids = role_applicable.role_applications.collect { |application| application.user_id }
+    applicants_ids = role_applicable.role_applications.select{ |application| application.status == 'pending'}.collect { |application| application.user_id }
     # i dont know how to use NOT in ruby
     if members_ids.include? user.id or applicants_ids.include? user.id
       return false
