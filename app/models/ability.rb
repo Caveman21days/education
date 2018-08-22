@@ -43,7 +43,7 @@ class Ability
   def common_abilities
     can :read, Field
     UserAssignment.all.each do |user_assignment|
-      if user_assignment.user_id == user.id && user_assignment.date_end > DateTime.now
+      if user_assignment.user_id == user.id # && user_assignment.date_end > DateTime.now
         can :read, user_assignment.assignmentable
       end
     end
@@ -60,7 +60,7 @@ class Ability
     common_abilities
     can :update, Field, curator_id: user.id
     can :manage, [Project, Course, Wiki] do |obj|
-      obj.field.curator_id == user.id
+      obj.field.users.collect{ |user| user.id}.include?(user.id)
     end
     can :update, UserAnswer, recipient_id: user.id
   end

@@ -1,0 +1,86 @@
+.page-content
+
+  %h2 В ожидании
+  .fancy-table-container.role-applications-table
+    %table
+      %thead
+        %tr
+          %th.name Заявка
+          %th.user Пользователь
+          %th.role_applicable Где
+          %th.role Роль
+          %th.application-actions Действия
+
+      %tbody
+        - role_applications.select { |application| application.status == 'pending' }.each do |application|
+          %tr
+            %th
+              = link_to application.id, role_application_path(application)
+            %td
+              = link_to application.user.full_name, user_path(application.user)
+            %td
+              - if application.role_applicable_type == 'Project'
+                = link_to "#{application.role_applicable_type}: #{application.role_applicable.name}", project_path(application.role_applicable)
+              - elsif application.role_applicable_type == 'Course'
+                = link_to "#{application.role_applicable_type}: #{application.role_applicable.name}", course_path(application.role_applicable)
+              - elsif application.role_applicable == 'Field'
+                = link_to "#{application.role_applicable_type}: #{application.role_applicable.name}", field_path(application.role_application)
+            %td
+              = application.proposed_role.name
+            %td.table-actions
+              = link_to 'Принять', role_application_accept_path(application), method: :patch
+              = link_to 'Отклонить', role_application_reject_path(application), method: :patch
+
+  %h2 Принятые
+  .fancy-table-container.role-applications-table
+    %table
+      %thead
+        %tr
+          %th.name Заявка
+          %th.user Пользователь
+          %th.role_applicable Где
+          %th.role Роль
+
+      %tbody
+        - role_applications.select { |application| application.status == 'accepted' }.each do |application|
+          %tr
+            %th
+              = application.id
+            %td
+              = link_to application.user.full_name, user_path(application.user)
+            %td
+              - if application.role_applicable_type == 'Project'
+                = link_to "#{application.role_applicable_type}: #{application.role_applicable.name}", project_path(application.role_applicable)
+              - elsif application.role_applicable_type == 'Course'
+                = link_to "#{application.role_applicable_type}: #{application.role_applicable.name}", course_path(application.role_applicable)
+              - elsif application.role_applicable == 'Field'
+                = link_to "#{application.role_applicable_type}: #{application.role_applicable.name}", field_path(application.role_application)
+            %td
+              = application.proposed_role.name
+
+  %h2 Отклоненные
+  .fancy-table-container.role-applications-table
+    %table
+      %thead
+        %tr
+          %th.name Заявка
+          %th.user Пользователь
+          %th.role_applicable Где
+          %th.role Роль
+
+      %tbody
+        - role_applications.select { |application| application.status == 'rejected' }.each do |application|
+          %tr
+            %th
+              = application.id
+            %td
+              = link_to application.user.full_name, user_path(application.user)
+            %td
+              - if application.role_applicable_type == 'Project'
+                = link_to "#{application.role_applicable_type}: #{application.role_applicable.name}", project_path(application.role_applicable)
+              - elsif application.role_applicable_type == 'Course'
+                = link_to "#{application.role_applicable_type}: #{application.role_applicable.name}", course_path(application.role_applicable)
+              - elsif application.role_applicable == 'Field'
+                = link_to "#{application.role_applicable_type}: #{application.role_applicable.name}", field_path(application.role_application)
+            %td
+              = application.proposed_role.name

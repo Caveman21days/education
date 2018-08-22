@@ -1,0 +1,24 @@
+= form_for [@creation_applicable, @creation_application], html: { class: "page-form" } do |f|
+  .form-body
+    .form-group
+      %label{for: 'application-body'}
+        Тип объекта
+      = f.select(:object_type, object_types_select_options, { include_blank: false }, { id: "object-type-select", class: "form-control" })
+    .form-group
+      %label{for: 'application-body'}
+        Тело заявки
+      = f.text_area :body, class: 'form-control', rows: 9
+
+    %h2 Поля объекта
+    = f.fields_for :object_details do |fields|
+      - if params[:object_types] == 'Project'
+        = render 'project_fields', fields: fields
+      - elsif params[:object_type] == 'Course'
+        = render 'course_fields', fields: fields
+      - else
+        = render 'project_fields', fields: fields
+
+    
+  .form-actions
+    %a.btn.btn-outline-secondary.btn-sm{ href: request.referer } Назад
+    = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"

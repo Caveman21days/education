@@ -9,11 +9,12 @@
 
   %nav.page-nav
     #nav-tab.nav.page-tabs{:role => "tablist"}
-      %a#nav-home-tab.tab.active{"aria-controls" => "nav-description", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-description", :role => "tab"} Описание
+      %a#nav-home-tab.tab.active{"aria-controls" => "nav-description", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-description", :role => "tab"} Описание проекта
       %a#nav-members-tab.tab{"aria-controls" => "nav-wiki", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-wiki", :role => "tab"} Wiki
       %a#nav-members-tab.tab{"aria-controls" => "nav-members", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-members", :role => "tab"} Участники
       %a#nav-issues-tab.tab{"aria-controls" => "nav-issues", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-issues", :role => "tab"} Задачи
-      %a#nav-applications-tab.tab{"aria-controls" => "nav-applications", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-applications", :role => "tab"} Заявки
+      %a#nav-role-applications-tab.tab{"aria-controls" => "nav-role-applications", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-role-applications", :role => "tab"} Заявки на роли
+      
 
   .page-content
     #nav-tabContent.tab-content
@@ -25,5 +26,6 @@
         = render 'users/users_tab', issuable: @project
       #nav-issues.tab-pane.fade.tab-content{"aria-labelledby" => "nav-issues-tab", :role => "tabpanel"}
         = render 'issues/issue_tab', issuable: @project
-      #nav-applications.tab-pane.fade.tab-content{"aria-labelledby" => "nav-applications-tab", :role => "tabpanel"}
-        = render 'user_applications/applications_tab', application_receiver: @project
+      #nav-role-applications.tab-pane.fade.tab-content{"aria-labelledby" => "nav-role-applications-tab", :role => "tabpanel"}
+        = render 'role_applications/role_applications_tab', role_applications: @project.role_applications.select { |application| application.required_reviewer_role == Role.by_name('project_manager')}
+

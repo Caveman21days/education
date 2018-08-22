@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   has_many :user_applications, through: :user_applications
 
+  has_many :role_applications, through: :role_applications
+
   has_many :user_answers
   has_many :topics, foreign_key: :author_id
   has_many :answers, foreign_key: :author_id  # Forum answers
@@ -30,6 +32,20 @@ class User < ApplicationRecord
 
   def full_name
     return "#{f_name} #{l_name}"
+  end
+
+  def role_in(rolable)
+    assignment = UserAssignment.where(
+      assignmentable_id: rolable.id,
+      assignmentable_type: rolable.class.name,
+      user_id: id
+    )[0]
+
+    if assignment.nil?
+      return nil
+    end
+
+    return Role.find(assignment.role_id) 
   end
 
   def self.region

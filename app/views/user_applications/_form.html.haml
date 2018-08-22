@@ -2,8 +2,18 @@
   .form-body
     .form-group
       %label{for: 'application-body'}
+        Тип объекта
+      = f.select :application_action, [['Создание', 0], ['Участие', 1]], include_blank: false
+    .form-group
+      %label{for: 'application-body'}
+        В роли
+      = f.select(:role_id, assignmentable_roles(@application_receiver).collect { |role| [role.name, role.id]}, { include_blank: false }, { class: "form-control" })
+    .form-group
+      %label{for: 'application-body'}
         Тело заявки
       = f.text_area :body, class: 'form-control', rows: 9
+
+
   .form-actions
     %a.btn.btn-outline-secondary.btn-sm{ href: request.referer } Назад
     = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"

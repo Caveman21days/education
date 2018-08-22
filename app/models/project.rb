@@ -6,6 +6,8 @@ class Project < ApplicationRecord
   has_many :issues, as: :issuable
   has_many :user_applications, as: :application_receiver
 
+  has_many :role_applications, as: :role_applicable
+
   has_many :wikis, as: :wikiable
 
   has_many :attachments, as: :attachable, dependent: :destroy

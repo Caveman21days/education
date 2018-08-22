@@ -8,6 +8,7 @@
       %thead
         %tr
           %th.name Пользователь
+          %th.role Роль
       %tbody
         - issuable.users.each do |user|
           %tr
@@ -16,3 +17,5 @@
                 = link_to user.full_name, user_path(user)
               - else
                 = user.full_name
+            %td
+              = user.role_in(issuable).name

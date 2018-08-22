@@ -7,5 +7,18 @@
         %a{href: new_field_path}
           %img{src: image_path('add.svg'), alt: 'Добавить направление'}
 
+  %nav.page-nav
+    #nav-tab.nav.page-tabs{:role => "tablist"}
+      %a#nav-home-tab.tab.active{"aria-controls" => "nav-home", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-home", :role => "tab"} Список
+      %a#nav-role-applications-tab.tab{"aria-controls" => "nav-role-applications", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-role-applications", :role => "tab"} Заявки на роли
+      %a#nav-creation-applications-tab.tab{"aria-controls" => "nav-creation-applications", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-creation-applications", :role => "tab"} Заявки на создание
+
   .page-content
-    = render 'fields/fields_list', fields: @fields
+    #nav-tabContent.tab-content
+      #nav-home.tab-pane.fade.show.active.tab-content{"aria-labelledby" => "nav-home-tab", :role => "tabpanel"}
+        = render 'fields/fields_list', fields: @fields
+      #nav-role-applications.tab-pane.fade.tab-content{"aria-labelledby" => "nav-role-applications-tab", :role => "tabpanel"}
+        = render 'role_applications/role_applications_tab', role_applications: admin_role_applications
+      #nav-creation-applications.tab-pane.fade.tab-content{"aria-labelledby" => "nav-creation-applications-tab", :role => "tabpanel"}
+        = render 'creation_applications/creation_applications_tab', creation_applications: admin_creation_applications
+    
