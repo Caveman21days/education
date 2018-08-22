@@ -75,22 +75,6 @@ class CreationApplication < ApplicationRecord
     !(has_been_reviewed || !can_be_reviewed_by(user))
   end
   
-  # where it should be displayed (a Field or a Project / Course)
-  def required_reviewer_role_level
-    case required_reviewer_role.name
-    when 'project_manager'
-      return creation_applicable
-    when 'teacher'
-      return creation_applicable
-    when 'curator'
-      if role_applicable_type == 'Field'
-        return creation_applicable
-      end
-      return creation_applicable.field
-    when 'admin'
-      return 'system'
-    end
-  end
 
   def accept(reviewer)
     if is_reviewable_by(reviewer)
@@ -151,24 +135,6 @@ class CreationApplication < ApplicationRecord
       final_reviewer_role_id: final_reviewer_role.id,
       status: 'pending'
     )
-  end
-
-
-
- 
-  
-  
-
-
-  def self.can_be_created(user, application_receiver)
-    members_ids = application_receiver.users.ids
-    applicants_ids = application_receiver.user_applications.collect { |application| application.user_id }
-    # i dont know how to use NOT in ruby
-    if members_ids.include? user.id or applicants_ids.include? user.id
-      return false
-    else
-      return true
-    end
   end
 end
   

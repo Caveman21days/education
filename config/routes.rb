@@ -13,10 +13,6 @@ Rails.application.routes.draw do
         resources :user_assignments, shallow: true
         resources :user_answers, shallow: true, only: [:create, :update, :destroy]
       end
-      resources :user_applications, only: [:new, :create, :show, :destroy] do
-        delete '/accept', to: 'user_applications#accept', as: :accept
-        delete '/reject', to: 'user_applications#reject', as: :reject
-      end
       resources :role_applications, only: [:new, :create, :show, :destroy] do
         patch '/accept', to: 'role_applications#accept', as: :accept
         patch '/reject', to: 'role_applications#reject', as: :reject
@@ -34,9 +30,6 @@ Rails.application.routes.draw do
       resources :issues, shallow: true, except: [:index] do
         resources :user_assignments, shallow: true
         resources :user_answers, shallow: true, only: [:create, :update, :destroy]
-      end
-      resources :user_applications, only: [:new, :create, :show, :destroy] do
-
       end
       resources :role_applications, only: [:new, :create, :show, :destroy] do
 
