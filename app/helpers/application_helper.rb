@@ -56,7 +56,7 @@ module ApplicationHelper
     when "Course"
       Role.where(name: ['sponsor', 'student'])
     when "Issue"
-      Role.where(name: ["Исполнитель", "Наблюдатель"])
+      Role.where(name: ['Executor', 'Checker'])
     end
   end
 
