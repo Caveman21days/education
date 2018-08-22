@@ -88,7 +88,7 @@ class Project < ApplicationRecord
     if !ua.nil?
       user_role = ua.role if !ua.nil?
       if ["sponsor", "field_sponsor", "mentor", "curator"].include?(user_role.name)
-        true if user.role.name == 'mentor' && attribute == 'card'
+        true if user_role.name == 'mentor' && attribute == 'card'
         typo_access = AdvancedAbility.where(objectable: self, ability_name: attribute, role_id: user_role.id)
         typo_access.empty? ? false : true
       else
