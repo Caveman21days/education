@@ -26,7 +26,7 @@
               - elsif application.role_applicable == 'Field'
                 = link_to "#{application.role_applicable_type}: #{application.role_applicable.name}", field_path(application.role_application)
             %td
-              = application.proposed_role.name
+              = application.proposed_role.display_name
             %td.table-actions
               = link_to 'Принять', role_application_accept_path(application), method: :patch
               = link_to 'Отклонить', role_application_reject_path(application), method: :patch
@@ -56,7 +56,7 @@
               - elsif application.role_applicable == 'Field'
                 = link_to "#{application.role_applicable_type}: #{application.role_applicable.name}", field_path(application.role_application)
             %td
-              = application.proposed_role.name
+              = application.proposed_role.display_name
 
   %h2 Отклоненные
   .fancy-table-container.role-applications-table
@@ -83,4 +83,4 @@
               - elsif application.role_applicable == 'Field'
                 = link_to "#{application.role_applicable_type}: #{application.role_applicable.name}", field_path(application.role_application)
             %td
-              = application.proposed_role.name
+              = application.proposed_role.display_name
