@@ -11,7 +11,7 @@
         - projects.each do |project|
           %tr
             %th
-              - if can? :read, project && project.check_access("card", current_user)
+              - if (can? :read, project) && (project.check_access("card", current_user))
                 = link_to project.name, project_path(project)
               - else
                 = project.name

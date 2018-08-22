@@ -18,16 +18,16 @@
     .key
       Школа
     .value
-      = @user.school
+      = @user.school || '—'
     .key
       Университет
     .value
-      = @user.university
+      = @user.university || '—'
     .key
       Профиль вк
     .value
-      = @user.vk_profile
+      = @user.vk_profile || '—'
     .key
       Профиль телеграм
     .value
-      = @user.telegram_profile
+      = @user.telegram_profile || '—'
