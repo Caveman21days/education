@@ -7,6 +7,8 @@ class Course < ApplicationRecord
   has_many :issues, as: :issuable
   has_many :user_applications, as: :application_receiver
 
+  has_many :role_applications, as: :role_applicable
+
   has_many :advanced_abilities, as: :objectable, dependent: :destroy
 
   has_many :attachments, as: :attachable, dependent: :destroy

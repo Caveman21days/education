@@ -14,11 +14,12 @@ Rails.application.routes.draw do
           resources :user_assignments, shallow: true
           resources :user_answers, shallow: true, only: [:create, :update, :destroy]
         end
-        resources :user_applications, only: [:new, :create, :show, :destroy] do
-          delete '/accept', to: 'user_applications#accept', as: :accept
-          delete '/reject', to: 'user_applications#reject', as: :reject
+        resources :role_applications, only: [:new, :create, :show, :destroy] do
+          patch '/accept', to: 'role_applications#accept', as: :accept
+          patch '/reject', to: 'role_applications#reject', as: :reject
         end
       end
+      
 
       resources :courses, shallow: true do
         resources :wikis, shallow: true
@@ -27,11 +28,19 @@ Rails.application.routes.draw do
           resources :user_assignments, shallow: true
           resources :user_answers, shallow: true, only: [:create, :update, :destroy]
         end
-        resources :user_applications, only: [:new, :create, :show, :destroy] do
-
+        resources :role_applications, only: [:new, :create, :show, :destroy] do
         end
       end
+
+      resources :creation_applications, only: [:new, :create] do
+      
+      end
     end
+  end
+
+  resources :creation_applications, only: [:show, :destroy] do
+    patch '/accept', to: 'creation_applications#accept', as: :accept
+    patch '/reject', to: 'creation_applications#reject', as: :reject
   end
 
   patch '/user_answers/:id/accept_user_answer', to: 'user_answers#accept_user_answer'

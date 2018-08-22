@@ -1,9 +1,0 @@
-= form_for [@application_receiver, @user_application], html: { class: "page-form" } do |f|
-  .form-body
-    .form-group
-      %label{for: 'application-body'}
-        Тело заявки
-      = f.text_area :body, class: 'form-control', rows: 9
-  .form-actions
-    %a.btn.btn-outline-secondary.btn-sm{ href: request.referer } Назад
-    = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"
