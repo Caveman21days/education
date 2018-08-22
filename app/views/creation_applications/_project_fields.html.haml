@@ -1,0 +1,34 @@
+.form-group
+  %label{for: 'application-body'}
+    Наименование
+  = fields.text_field(:name, { class: "form-control" })
+
+.form-group
+  %label Краткое описание
+  = fields.text_area :short_description, placeholder: "Краткое описание", class: "form-control", rows: 2, required: ""
+    
+.form-group
+  %label{for: 'application-body'}
+    Описание
+  = fields.text_area :description, placeholder: "Описание", class: "form-control", rows: 7, required: ""
+
+.form-group
+  %label Область применения
+  = fields.select(:cofield_id, Field.all.collect { |field| [ field.name, field.id ] }, {include_blank: true}, { :class => "form-control" })
+
+
+.form-group
+  %label Стадия разработки
+  = fields.select(:stage, Project.stages.collect { |s| [ s, Project.stages.index(s) ] }, {include_blank: false}, { :class => "form-control" })
+
+.form-group
+  %label НТИ
+  = fields.select(:nti, Project.nti.collect { |nti| [ nti, Project.nti.index(nti) ] }, {include_blank: false}, { :class => "form-control" })
+
+.form-group
+  %label Фонд бортника
+  = fields.select(:bortnik, Project.bortnik.collect { |bortnik| [ bortnik, Project.bortnik.index(bortnik) ] }, {include_blank: false}, { :class => "form-control" })
+
+.form-group
+  %label Тип проекта
+  = fields.select(:project_type, Project.project_type.collect { |type| [ type, Project.project_type.index(type) ] }, {include_blank: false}, { :class => "form-control" })

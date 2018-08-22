@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180821142948) do
+ActiveRecord::Schema.define(version: 20180822051732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,24 @@ ActiveRecord::Schema.define(version: 20180821142948) do
     t.string "application_area"
     t.string "technology"
     t.boolean "access"
+  end
+
+  create_table "creation_applications", force: :cascade do |t|
+    t.integer "creation_applicable_id"
+    t.string "creation_applicable_type"
+    t.integer "user_id"
+    t.string "object_type"
+    t.text "object_details"
+    t.integer "user_role_in_object_id"
+    t.text "body"
+    t.integer "reviewer_id"
+    t.integer "required_reviewer_role_id"
+    t.integer "final_reviewer_role_id"
+    t.string "status"
+    t.integer "previous_application_id"
+    t.integer "next_application_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "fields", force: :cascade do |t|
@@ -112,11 +130,28 @@ ActiveRecord::Schema.define(version: 20180821142948) do
     t.string "technology"
   end
 
+  create_table "role_applications", force: :cascade do |t|
+    t.integer "role_applicable_id"
+    t.string "role_applicable_type"
+    t.integer "user_id"
+    t.integer "proposed_role_id"
+    t.text "body"
+    t.integer "reviewer_id"
+    t.integer "required_reviewer_role_id"
+    t.integer "final_reviewer_role_id"
+    t.string "status"
+    t.integer "previous_application_id"
+    t.integer "next_application_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name", null: false
     t.string "info", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "display_name"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -135,16 +170,6 @@ ActiveRecord::Schema.define(version: 20180821142948) do
     t.integer "recipient_id"
     t.string "status"
     t.integer "perfomance"
-  end
-
-  create_table "user_applications", force: :cascade do |t|
-    t.integer "application_receiver_id"
-    t.string "application_receiver_type"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "body"
-    t.index ["application_receiver_id", "user_id"], name: "index_user_applications_on_application_receiver_id_and_user_id"
   end
 
   create_table "user_assignments", force: :cascade do |t|
@@ -192,6 +217,7 @@ ActiveRecord::Schema.define(version: 20180821142948) do
     t.string "award"
     t.string "vk_profile"
     t.string "telegram_profile"
+    t.string "nickname"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

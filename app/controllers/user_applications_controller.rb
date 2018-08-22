@@ -31,19 +31,12 @@ class UserApplicationsController < ApplicationController
   end
 
   def accept
-    assignmentable_params = {
-      assignmentable_type: @application_receiver.class.name,
-      assignmentable_id: @application_receiver.id,
-      user_id: @user_application.user_id,
-      role_id: Role.where(name: 'student')[0].id
-    }
-    UserAssignment.create(assignmentable_params)
-    @user_application.destroy
+    @user_application.accept()
     redirect_to @application_receiver
   end
 
   def reject
-    @user_application.destroy
+    @user_application.reject()
     redirect_to @application_receiver
   end
 

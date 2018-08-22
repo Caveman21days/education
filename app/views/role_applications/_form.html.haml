@@ -1,0 +1,16 @@
+= form_for [@role_applicable, @role_application], html: { class: "page-form" } do |f|
+  .form-body
+    .form-group
+      %label{for: 'application-body'}
+        Роль
+      = f.select(:proposed_role_id, assignmentable_roles(@role_applicable).collect { |role| [role.display_name, role.id]}, { include_blank: false }, { class: "form-control" })
+    
+    .form-group
+      %label{for: 'application-body'}
+        Тело заявки
+      = f.text_area :body, class: 'form-control', rows: 9
+
+    
+  .form-actions
+    %a.btn.btn-outline-secondary.btn-sm{ href: request.referer } Назад
+    = f.submit "Сохранить", class: "btn btn-outline-secondary btn-sm"

@@ -9,15 +9,20 @@
 
   %nav.page-nav
     #nav-tab.nav.page-tabs{:role => "tablist"}
-      %a#nav-home-tab.tab.active{"aria-controls" => "nav-description", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-description", :role => "tab"} Описание
-      %a#nav-materials-tab.tab{"aria-controls" => "nav-materials", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-materials", :role => "tab"} Учебные материалы
+      %a#nav-home-tab.tab.active{"aria-controls" => "nav-description", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-description", :role => "tab"} Описание направления
+      %a#nav-materials-tab.tab{"aria-controls" => "nav-materials", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-materials", :role => "tab"} Курсы
       %a#nav-projects-tab.tab{"aria-controls" => "nav-projects", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-projects", :role => "tab"} Проекты
+      %a#nav-creation-applications-tab.tab{"aria-controls" => "nav-creation-applications", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-creation-applications", :role => "tab"} Заявки на создание
 
   .page-content
     #nav-tabContent.tab-content
       #nav-description.tab-pane.fade.show.active.tab-content{"aria-labelledby" => "nav-home-tab", :role => "tabpanel"}
+        .actions
+          = link_to 'Подать заявку на создание', new_field_creation_application_path(@field)
         = markdown @field.description
       #nav-materials.tab-pane.fade.tab-content{"aria-labelledby" => "nav-materials-tab", :role => "tabpanel"}
         = render 'courses_tab'
       #nav-projects.tab-pane.fade.tab-content{"aria-labelledby" => "nav-projects-tab", :role => "tabpanel"}
         = render 'projects_tab'
+      #nav-creation-applications.tab-pane.fade.tab-content{"aria-labelledby" => "nav-creation-applications-tab", :role => "tabpanel"}
+        = render 'creation_applications/creation_applications_tab', creation_applications: field_creation_applications

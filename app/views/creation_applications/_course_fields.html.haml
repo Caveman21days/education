@@ -1,0 +1,13 @@
+.form-group
+  %label{for: 'application-body'}
+    Наименование
+  = fields.text_field(:name, { class: "form-control" })
+
+.form-group
+  %label Краткое описание
+  = fields.text_area :short_description, placeholder: "Краткое описание", class: "form-control", rows: 2, required: ""
+    
+.form-group
+  %label{for: 'application-body'}
+    Описание
+  = fields.text_area :description, placeholder: "Описание", class: "form-control", rows: 7, required: ""

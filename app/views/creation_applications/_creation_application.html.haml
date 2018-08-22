@@ -1,0 +1,33 @@
+- content_for :main_container do
+  %header.page-header
+    %h1.page-title
+      - if @creation_application.object_type == 'Project'
+        Заявка на создание проекта
+      - elsif @creation_application.object_type == 'Course'
+        Заявка на создание курса
+  .page-content
+    - if can_be_reviewed
+      .actions
+        = link_to 'Отклонить', creation_application_reject_path(@creation_application), method: :patch, data: { confirm: "Вы уверены?" }
+        = link_to 'Принять', creation_application_accept_path(@creation_application), method: :patch, data: { confirm: "Вы уверены?" }
+
+    .content-group
+      %h2 Отправитель
+      = link_to @creation_application.user.full_name, user_path(@creation_application.user)
+
+    .content-group
+      %h2 Комментарии отправителя
+      = @creation_application.body
+
+    .content-group
+      - if @creation_application.object_type == 'Project'
+        %h2 Информация о проекте
+      - elsif @creation_application.object_type == 'Course'
+        %h2 Информация о курсе
+
+      %h3 Название
+      = @creation_application.object_details[:name]
+      %h3 Краткое описание
+      = @creation_application.object_details[:short_description]
+      %h3 Описание
+      = @creation_application.object_details[:description]

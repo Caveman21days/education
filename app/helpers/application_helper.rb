@@ -49,10 +49,14 @@ module ApplicationHelper
 
   def assignmentable_roles(object)
     case object.class.name
-    when "Field", "Course", "Project", "Wiki"
+    when "Field", "Wiki"
       Role.all
+    when "Project"
+      Role.where(name: ['sponsor', 'mentor', 'student'])
+    when "Course"
+      Role.where(name: ['sponsor', 'student'])
     when "Issue"
-      Role.where(name: ["Исполнитель", "Наблюдатель"])
+      Role.where(name: ['Executor', 'Checker'])
     end
   end
 

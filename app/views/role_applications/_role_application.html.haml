@@ -1,0 +1,10 @@
+.col-12.card
+  .row
+    .col-12.card-header
+      %h5.text-left
+        = @role_application.user.full_name
+    .col-12.card-body
+      = @role_application.body
+
+      = link_to 'Отклонить', role_application_reject_path(@role_application), method: :patch, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
+      = link_to 'Принять', role_application_accept_path(@role_application), method: :patch, class: "btn btn-outline-secondary btn-sm", data: { confirm: "Вы уверены?" }
