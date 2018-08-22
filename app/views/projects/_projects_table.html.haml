@@ -5,10 +5,8 @@
         %tr
           %th.name Название
           %th.short-description Краткое описание
-          %th.cofield Область применения
-          %th.stage Стадия разработки
-          %th.bortnik Бортник
-          %th.nti НТИ
+          %th.sponsor Спонсор
+          %th.mentor Наставник
       %tbody
         - projects.each do |project|
           %tr
@@ -20,13 +18,12 @@
             %td
               = project.short_description
             %td
-              - if project.cofield.nil?
+              - if project.first_sponsor.nil?
                 = '—'
               - else
-                = project.cofield.name
+                = project.first_sponsor.full_name
             %td
-              = stage_name(project)
-            %td
-              = bortnik_name(project)
-            %td
-              = nti_name(project)
+              - if project.first_mentor.nil?
+                = '—'
+              - else
+                = project.first_mentor.full_name

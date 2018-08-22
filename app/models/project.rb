@@ -24,6 +24,22 @@ class Project < ApplicationRecord
     end
   end
 
+  def users_by_role(role_name)
+    UserAssignment.where(
+      assignmentable_type: 'Project',
+      assignmentable_id: id,
+      role_id: Role.by_name(role_name).id
+      ).collect { |assignment| User.find(assignment.user_id) }
+  end
+
+  def first_sponsor
+    users_by_role('sponsor').first
+  end
+
+  def first_mentor
+    users_by_role('mentor').first
+  end
+
   def self.stages
     return [
       'Идея',
