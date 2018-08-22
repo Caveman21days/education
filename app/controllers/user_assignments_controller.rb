@@ -71,6 +71,7 @@ class UserAssignmentsController < ApplicationController
   end
 
   def check_access(assignmentable)
+    return true if current_user.super_admin
     if assignmentable.class.name == "Course"
       !current_user.user_assignments.where(role_id: Role.find_by(name: 'teacher')).empty? ? true : false
     elsif assignmentable.class.name == "Project"

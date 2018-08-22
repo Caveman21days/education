@@ -6,7 +6,7 @@ class Ability
   def initialize(user)
     @user = user
 
-    if user.super_admin
+    if user.super_admin == true
       admin_abilities
     else
       if user.roles.empty?
