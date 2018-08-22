@@ -3,8 +3,8 @@ default: &default
   encoding: unicode
   host: localhost
   pool: 5
-  username: furetur
-  password: password
+  username: kirill
+  password: 111
 
 development:
   <<: *default

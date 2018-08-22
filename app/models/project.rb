@@ -103,7 +103,7 @@ class Project < ApplicationRecord
 
   def check_access(attribute, current_user)
     return true if current_user.super_admin
-    
+
     ua = UserAssignment.where(assignmentable: self, user_id: current_user.id).first
     if !ua.nil?
       user_role = ua.role if !ua.nil?
