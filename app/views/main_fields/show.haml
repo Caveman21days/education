@@ -3,9 +3,9 @@
     %h1.page-title
       Субнаправления
     .actions
-    - if can? :manage, Field
-      %a{href: new_main_field_field_path(@main_field)}
-        %img{src: image_path('add.svg'), alt: 'Добавить направление'}
+      - if can? :manage, Field
+        %a{href: new_main_field_field_path(@main_field)}
+          %img{src: image_path('add.svg'), alt: 'Добавить направление'}
 
   %nav.page-nav
     #nav-tab.nav.page-tabs{:role => "tablist"}
