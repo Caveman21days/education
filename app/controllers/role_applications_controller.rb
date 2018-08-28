@@ -54,6 +54,8 @@ class RoleApplicationsController < ApplicationController
         return Project.find(params[:project_id])
       elsif params[:course_id]
         return Course.find(params[:course_id])
+      elsif params[:field_id]
+        return Field.find(params[:field_id])
       end
     end
 

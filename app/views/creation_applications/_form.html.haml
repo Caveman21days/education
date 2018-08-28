@@ -11,12 +11,14 @@
 
     %h2 Поля объекта
     = f.fields_for :object_details do |fields|
-      - if params[:object_types] == 'Project'
+      - if params[:object_type] == 'Project'
         = render 'project_fields', fields: fields
       - elsif params[:object_type] == 'Course'
         = render 'course_fields', fields: fields
+      - elsif params[:object_type] == 'Field'
+        = render 'field_fields', fields: fields
       - else
-        = render 'project_fields', fields: fields
+        = render 'course_fields', fields: fields
 
     
   .form-actions

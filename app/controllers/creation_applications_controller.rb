@@ -50,7 +50,9 @@ class CreationApplicationsController < ApplicationController
     def set_object_types
       case @creation_applicable.class.name
       when 'Field'
-        @object_types = ['Project', 'Course']
+        @object_types = ['Course', 'Project']
+      when 'MainField'
+        @object_types = ['Field']
       end
     end
   
@@ -62,6 +64,8 @@ class CreationApplicationsController < ApplicationController
     def creation_applicable_object
       if params[:field_id]
         return Field.find(params[:field_id])
+      elsif params[:main_field_id]
+        return MainField.find(params[:main_field_id])
       end
     end
 
@@ -111,6 +115,8 @@ class CreationApplicationsController < ApplicationController
           :project_manager_id, :cofield_id,
           :stage, :nti, :bortnik, :project_type]
       when 'Course'
+        return [:name, :short_description, :description]
+      when 'Field'
         return [:name, :short_description, :description]
       end
     end
