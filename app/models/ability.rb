@@ -50,8 +50,8 @@ class Ability
   end
 
   def common_abilities
-    can :read, User do |user|
-      user.id == current_user.id
+    can :read, User do |u|
+      user.id == u.id
     end
     can :update, User do |user|
       user.id == current_user.id
