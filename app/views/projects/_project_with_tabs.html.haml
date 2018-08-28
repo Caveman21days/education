@@ -10,7 +10,7 @@
   %nav.page-nav
     #nav-tab.nav.page-tabs{:role => "tablist"}
       %a#nav-home-tab.tab.active{"aria-controls" => "nav-description", "aria-selected" => "true", "data-toggle" => "tab", :href => "#nav-description", :role => "tab"} Описание проекта
-      %a#nav-members-tab.tab{"aria-controls" => "nav-wiki", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-wiki", :role => "tab"} Wiki
+      %a#nav-wiki-tab.tab{"aria-controls" => "nav-wiki", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-wiki", :role => "tab"} Wiki
       %a#nav-members-tab.tab{"aria-controls" => "nav-members", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-members", :role => "tab"} Участники
       - if @project.check_access("issue", current_user)
         %a#nav-issues-tab.tab{"aria-controls" => "nav-issues", "aria-selected" => "false", "data-toggle" => "tab", :href => "#nav-issues", :role => "tab"} Задачи

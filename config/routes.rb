@@ -2,8 +2,15 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :main_fields do
+
+    resources :creation_applications, only: [:new, :create] do
+    end
+
     resources :fields, shallow: true do
       resources :user_assignments, shallow: true
+
+      resources :role_applications, only: [:new, :create] do
+      end
 
       resources :projects, shallow: true do
         resources :wikis, shallow: true
@@ -14,9 +21,7 @@ Rails.application.routes.draw do
           resources :user_assignments, shallow: true
           resources :user_answers, shallow: true, only: [:create, :update, :destroy]
         end
-        resources :role_applications, only: [:new, :create, :show, :destroy] do
-          patch '/accept', to: 'role_applications#accept', as: :accept
-          patch '/reject', to: 'role_applications#reject', as: :reject
+        resources :role_applications, only: [:new, :create] do
         end
       end
       
@@ -28,7 +33,7 @@ Rails.application.routes.draw do
           resources :user_assignments, shallow: true
           resources :user_answers, shallow: true, only: [:create, :update, :destroy]
         end
-        resources :role_applications, only: [:new, :create, :show, :destroy] do
+        resources :role_applications, only: [:new, :create] do
         end
       end
 
@@ -36,6 +41,11 @@ Rails.application.routes.draw do
       
       end
     end
+  end
+
+  resources :role_applications, only: [:show, :destroy] do
+    patch '/accept', to: 'role_applications#accept', as: :accept
+    patch '/reject', to: 'role_applications#reject', as: :reject
   end
 
   resources :creation_applications, only: [:show, :destroy] do

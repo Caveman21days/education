@@ -23,8 +23,8 @@
                 = link_to "#{application.role_applicable_type}: #{application.role_applicable.name}", project_path(application.role_applicable)
               - elsif application.role_applicable_type == 'Course'
                 = link_to "#{application.role_applicable_type}: #{application.role_applicable.name}", course_path(application.role_applicable)
-              - elsif application.role_applicable == 'Field'
-                = link_to "#{application.role_applicable_type}: #{application.role_applicable.name}", field_path(application.role_application)
+              - elsif application.role_applicable_type == 'Field'
+                = link_to "#{application.role_applicable_type}: #{application.role_applicable.name}", field_path(application.role_applicable)
             %td
               = application.proposed_role.display_name
             %td.table-actions
